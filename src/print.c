@@ -13,7 +13,7 @@ static int count = 1;
 void printquestion(Question*questions, int id)
 {
 	printf("%d. %s\n\n",count,questions[id].question);
-	printoptions(questions, id);
+
 	count++;
 }
 //보기1,2 사이 간격,줄바꿈 설정

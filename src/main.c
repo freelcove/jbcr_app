@@ -54,7 +54,8 @@ int main() {
 
 */
 	//print question 테스트
-	printquestion(questions, 2);
+	printquestion(questions, 3);
+	printoptions(questions, 3);
 
 	return 0;
 }
