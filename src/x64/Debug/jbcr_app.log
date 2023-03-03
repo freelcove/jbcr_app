@@ -1,7 +1,7 @@
 ﻿  main.c
-D:\GitHub\jbcr_app\src\main.c(37,22): warning C4473: 'sscanf' : not enough arguments passed for format string
-D:\GitHub\jbcr_app\src\main.c(37,22): message : placeholders and their parameters expect 9 variadic arguments, but 8 were provided
-D:\GitHub\jbcr_app\src\main.c(37,22): message : the missing variadic argument 9 is required by format string '%[^\n]'
-D:\GitHub\jbcr_app\src\main.c(28,12): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-D:\GitHub\jbcr_app\src\main.c(37,9): warning C4996: 'sscanf': This function or variable may be unsafe. Consider using sscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\GitHub\jbcr_app\src\main.c(41,22): warning C4473: 'sscanf' : not enough arguments passed for format string
+D:\GitHub\jbcr_app\src\main.c(41,22): message : placeholders and their parameters expect 9 variadic arguments, but 8 were provided
+D:\GitHub\jbcr_app\src\main.c(41,22): message : the missing variadic argument 9 is required by format string '%[^\n]'
+D:\GitHub\jbcr_app\src\main.c(32,12): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\GitHub\jbcr_app\src\main.c(41,9): warning C4996: 'sscanf': This function or variable may be unsafe. Consider using sscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   jbcr_app.vcxproj -> D:\GitHub\jbcr_app\src\x64\Debug\jbcr_app.exe

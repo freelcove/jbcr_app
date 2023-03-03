@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <windows.h>
 
 #define MAX_LINE_LENGTH 1024
 #define MAX_QUESTIONS 100
@@ -18,6 +19,9 @@ typedef struct {
 } Question;
 
 int main() {
+    SetConsoleOutputCP(CP_UTF8);
+    SetConsoleCP(CP_UTF8);
+
     FILE* file;
     char line[MAX_LINE_LENGTH];
     int num_questions = 0;
