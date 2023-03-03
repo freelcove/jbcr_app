@@ -16,7 +16,10 @@ int main() {
     SetConsoleWindowInfo(console, TRUE, &windowSize);
 
     //db를 저장할 questions[] 선언
-    Question questions[MAX_QUESTIONS];
+    //Question questions[MAX_QUESTIONS];
+    //위와 같이 하면 stack 메모리를 너무 많이 사용하기 때문에 동적할당으로 heap에 저장
+    Question* questions = malloc(sizeof(Question) * MAX_QUESTIONS);
+
     int num_questions;
 
     read_questions(questions, &num_questions);
