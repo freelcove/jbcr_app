@@ -23,20 +23,41 @@ int main() {
 
     //여기까지 db에서 데이터 불러와서 questions[] 배열에 저장하기 완료
     // 아래 코드로 questions[] db에 접근 가능
-    
+
     //questions[i].id, questions[i].question, questions[i].option_1,
     //questions[i].option_2, questions[i].option_3, questions[i].option_4,
     //    questions[i].right_answer, questions[i].date
 
 
-    //출력 기능
+    /* 대략적인 구조
+    
+    func 문제 풀기()
+    func 화면 출력()
+      
 
+     func 문제 풀기()
+     {
+        
+        문제 선정;
 
+        func 화면 출력(문제);
+        
+        사용자 입력 받기;
 
-    // 문제 푸는 기능
+        func 화면 출력(결과);
 
+        사용자 입력 받으면 function 종료;
 
+        }
 
+        while(프로그램 종료전까지){
+
+        문제 풀기()
+
+        }
+}
+
+*/
 
     return 0;
 }
