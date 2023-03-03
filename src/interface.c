@@ -29,7 +29,7 @@ void InitScreen() {
 
 	//콘솔 창 크기 바꾸기
 	HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
-	SMALL_RECT windowSize = { 0, 0, 79, 49 };
+	SMALL_RECT windowSize = { 0, 0, 99, 119 };
 	SetConsoleWindowInfo(console, TRUE, &windowSize);
 
 	//깜빡이는 커서 없애기.
