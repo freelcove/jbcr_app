@@ -3,6 +3,8 @@
 #include <string.h>
 #include <windows.h>
 #include "questions.h"
+#include "interface.h"
+
 
 int main() {
 	//콘솔 창 컬러 바꾸기 (흰 배경 검은 글자)
@@ -16,6 +18,9 @@ int main() {
 	HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
 	SMALL_RECT windowSize = { 0, 0, 79, 49 };
 	SetConsoleWindowInfo(console, TRUE, &windowSize);
+
+	//깜빡이는 커서 없애기.
+	SetCursorVisibility(0);
 
 	//db를 저장할 questions[] 선언
 	//Question questions[MAX_QUESTIONS]; <- 이 코드는 stack 메모리를 너무 많이 사용하기 때문에 동적할당으로 heap에 저장
@@ -62,8 +67,6 @@ int main() {
 		}
 
 */
-
-
 
 	return 0;
 }
