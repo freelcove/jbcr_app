@@ -7,3 +7,9 @@ https://miro.com/welcomeonboard/UnJOSG85YzBVS0xqS1ZRVWNYQnJMTTd3a256T3ZwTm9JWTBj
 
 구글 시트 데이터베이스:
 https://docs.google.com/spreadsheets/d/1g3ygewxJyUQHp-9CXS64r2iVQ_I7W1QQw6VjM-njOYo/edit?usp=sharing
+
+정보처리기사 필기 기출문제 모음:
+https://www.comcbt.com/xe/iz
+
+실기 문제 모음:
+https://chobopark.tistory.com/314
