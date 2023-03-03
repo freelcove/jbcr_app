@@ -13,4 +13,8 @@ void ClearScreen();
 //콘솔 창 깜빡이는 커서 켜고 끄기 (parameter 1: 보임, 0: 안 보임.)
 void SetCursorVisibility(int visible);
 
+//콘솔 화면 Initialization.
+void InitScreen();
+
+
 #endif

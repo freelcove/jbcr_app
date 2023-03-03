@@ -14,3 +14,24 @@ void SetCursorVisibility(int visible)
 	cursor_info.bVisible = visible;
 	SetConsoleCursorInfo(console_handle, &cursor_info);
 }
+
+
+
+
+void InitScreen() {
+
+	//콘솔 창 컬러 바꾸기 (흰 배경 검은 글자)
+	system("COLOR F0");
+
+	//콘솔 인코딩 utf_8로 설정
+	SetConsoleOutputCP(CP_UTF8);
+	SetConsoleCP(CP_UTF8);
+
+	//콘솔 창 크기 바꾸기
+	HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
+	SMALL_RECT windowSize = { 0, 0, 79, 49 };
+	SetConsoleWindowInfo(console, TRUE, &windowSize);
+
+	//깜빡이는 커서 없애기.
+	SetCursorVisibility(0);
+}

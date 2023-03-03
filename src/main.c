@@ -1,36 +1,21 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <windows.h>
+
 #include "questions.h"
 #include "interface.h"
 
 
 int main() {
-	//콘솔 창 컬러 바꾸기 (흰 배경 검은 글자)
-	system("COLOR F0");
 
-	//콘솔 인코딩 utf_8로 설정
-	SetConsoleOutputCP(CP_UTF8);
-	SetConsoleCP(CP_UTF8);
-
-	//콘솔 창 크기 바꾸기
-	HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
-	SMALL_RECT windowSize = { 0, 0, 79, 49 };
-	SetConsoleWindowInfo(console, TRUE, &windowSize);
-
-	//깜빡이는 커서 없애기.
-	SetCursorVisibility(0);
+	//콘솔 창 초기화. (화면 크기, 글자 색, 커서 깜빡임 등 설정)
+	InitScreen();
 
 	//db를 저장할 questions[] 선언
-	//Question questions[MAX_QUESTIONS]; <- 이 코드는 stack 메모리를 너무 많이 사용하기 때문에 동적할당으로 heap에 저장
 	Question* questions = malloc(sizeof(Question) * MAX_QUESTIONS);
 
 	int num_questions;
 
+	//tsv 파일에서 데이터 불러와서 questions[] 배열에 저장
 	read_questions(questions, &num_questions);
 
-	//여기까지 db에서 데이터 불러와서 questions[] 배열에 저장하기 완료
 	// 아래 코드로 questions[] db에 접근 가능
 
 	//questions[i].id, questions[i].question, questions[i].option_1,
@@ -72,11 +57,21 @@ int main() {
 }
 
 
-//db의 모든 데이터 출력
 /*
+//
+//	참고
+// 
+ 
+//Question questions[MAX_QUESTIONS];
+//위 코드는 stack 메모리를 너무 많이 사용하기 때문에 본 코드에서는 동적할당으로 바꿈 (stack이 아닌 heap에 저장).
+
+//db의 모든 데이터 출력
 for (int i = 0; i < num_questions; i++) {
 	printf("ID: %d\nQuestion: %s\nOption 1: %s\nOption 2: %s\nOption 3: %s\nOption 4: %s\nRight answer: %s\nDate: %s\n\n",
 		questions[i].id, questions[i].question, questions[i].option_1,
 		questions[i].option_2, questions[i].option_3, questions[i].option_4,
 		questions[i].right_answer, questions[i].date);
+
+//
+
 		*/
