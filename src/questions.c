@@ -23,3 +23,5 @@ void read_questions(Question* questions, int* num_questions) {
 
     fclose(file);
 }
+
+
