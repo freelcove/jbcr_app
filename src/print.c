@@ -1,6 +1,6 @@
-#include"questions.h"
-#include"print.h"
-#include<mbstring.h>
+#include "questions.h"
+#include "print.h"
+#include <mbstring.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

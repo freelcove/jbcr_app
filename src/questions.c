@@ -23,20 +23,22 @@ void read_questions(Question* questions, int* num_questions) {
 
     fclose(file);
 }
-//틀린 문제의 INDEX를 저장하는 배열선언
-int repeat[MAX_QUESTIONS] = { -1 };
-int faltcount = 0;
+
 static count = 0;                       //이 소스 파일에서만 사용할 count변수
 //틀린 문제의 INDEX 저장
+int repeat[MAX_QUESTIONS] = { -1 };
+int faltcount = 0;
+
 void faltquestions(int id)
 {
     repeat[count] = id;
     faltcount++;
     count++;
 }
+
+// 입력값이 1~4 사이의 문자인지 체크하는 함수
 int is_valid_input(char input) {
-    // 입력값이 a~d 사이의 문자인지 체크하는 함수
-    //a~d -> 1~4로 수정
+
     return input == '1' || input == '2' || input == '3' || input == '4';
 }
 

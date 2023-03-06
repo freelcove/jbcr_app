@@ -2,10 +2,9 @@
 #include "interface.h"
 #include "print.h"
 
-
 int main()
 {
-	//콘솔 창 초기화. (화면 크기, 글자 색, 커서 깜빡임 등 설정)
+	//콘솔창 Initialization.
 	InitScreen();
 
 	//db를 저장할 questions[] 선언
@@ -24,7 +23,6 @@ int main()
 		printf("풀 문제 수 입력: ");
 		scanf("%d", &num_to_solve);
 	} while (num_to_solve <= 0 || num_to_solve > num_questions);
-
 
 
 	int i = 0;

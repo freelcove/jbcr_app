@@ -20,6 +20,9 @@ typedef struct {
     char date[MAX_LINE_LENGTH];
 } Question;
 
+//틀린 문제의 INDEX를 저장하는 배열선언
+
+
 void read_questions(Question* questions, int* num_questions);
 
 #endif
