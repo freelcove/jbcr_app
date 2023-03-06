@@ -7,13 +7,13 @@
 #ifndef INTERFACE_H
 #define INTERFACE_H
 
-//ÄÜ¼ÖÃ¢ ±ú²ıÀÌ ºó È­¸éÀ¸·Î
+//ì½˜ì†”ì°½ ê¹¨ë—ì´ ë¹ˆ í™”ë©´ìœ¼ë¡œ
 void ClearScreen();
 
-//ÄÜ¼Ö Ã¢ ±ôºıÀÌ´Â Ä¿¼­ ÄÑ°í ²ô±â (parameter 1: º¸ÀÓ, 0: ¾È º¸ÀÓ.)
+//ì½˜ì†” ì°½ ê¹œë¹¡ì´ëŠ” ì»¤ì„œ ì¼œê³  ë„ê¸° (parameter 1: ë³´ì„, 0: ì•ˆ ë³´ì„.)
 void SetCursorVisibility(int visible);
 
-//ÄÜ¼Ö È­¸é Initialization.
+//ì½˜ì†” í™”ë©´ Initialization.
 void InitScreen();
 
 
