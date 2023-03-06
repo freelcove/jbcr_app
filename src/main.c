@@ -43,21 +43,21 @@ int main()
 		printoptions(questions, i);
 
 		//사용자 입력 받기
-		printf("Input answr (1~4): \n");
+		printf("답을 입력하세요(1~4): \n");
 		scanf(" %c", &input);
 
 		// 입력값이 유효한지 체크
 		while (!is_valid_input(input)) {
-			printf("Invalid input. Enter your answer (1~4): \n");
+			printf("잘못된 값이 입력되었습니다. 다시 입력해주세요(1~4): \n");
 			scanf(" %c", &input);
 		}
 
 		// 정답 체크
 		if (input == questions[i].right_answer[0]) {
-			printf("Correct!\n\n");
+			printf("정답입니다!\n\n");
 		}
 		else {
-			printf("Incorrect. \nThe correct answer is %s.\n\n", questions[i].right_answer);
+			printf("오답입니다. \n정답은 %s입니다.\n\n", questions[i].right_answer);
 		}
 
 		// 다음 문제로 넘어가기
