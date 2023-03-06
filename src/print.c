@@ -172,3 +172,10 @@ int bool()
 	ClearScreen();
 	return a;
 }
+
+void Percentage(int num)
+{
+	int correct = num - faltcount;
+
+	printf("%d문제중 %d문제 맞추었습니다. %d점\n", num, correct, correct * 100 / num);
+}
