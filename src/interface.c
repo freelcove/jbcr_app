@@ -24,8 +24,8 @@ void InitScreen() {
 	system("COLOR F0");
 
 	//콘솔 인코딩 utf_8로 설정
-	SetConsoleOutputCP(CP_UTF8);
-	SetConsoleCP(CP_UTF8);
+	SetConsoleOutputCP(51949);
+	SetConsoleCP(51949);
 
 	//콘솔 창 크기 바꾸기
 	HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
