@@ -1,3 +1,7 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
 #pragma once
 #ifndef QUESTIONS_H
 #define QUESTIONS_H
