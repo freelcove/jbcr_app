@@ -124,12 +124,12 @@ void printoptions(Question* questions, int id)
 {
 	optionchange(questions, id);
 	OptionsMaxLen();
-	printf("1. %s", options[0]);
+	printf("A. %s", options[0]);
 	changerow1();
-	printf("2. %s\n", options[1]);
-	printf("3. %s", options[2]);
+	printf("B. %s\n", options[1]);
+	printf("C. %s", options[2]);
 	changerow2();
-	printf("4. %s\n\n", options[3]);
+	printf("D. %s\n\n", options[3]);
 }
 
 //랜덤의 숫자 반환(10미만)
@@ -171,4 +171,11 @@ int bool()
 	scanf("%d", &a);
 	ClearScreen();
 	return a;
+}
+
+void Percentage(int num)
+{
+	int correct = num - faltcount;
+
+	printf("%d문제중 %d문제 맞추었습니다. %d점\n", num,correct, correct*100 / num);
 }
