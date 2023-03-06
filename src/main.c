@@ -1,34 +1,33 @@
-
 #include "questions.h"
 #include "interface.h"
 #include "print.h"
 
 
 int is_valid_input(char input) {
-	// ÀÔ·Â°ªÀÌ a~d »çÀÌÀÇ ¹®ÀÚÀÎÁö Ã¼Å©ÇÏ´Â ÇÔ¼ö
-	//a~d -> 1~4·Î ¼öÁ¤
+	// ì…ë ¥ê°’ì´ a~d ì‚¬ì´ì˜ ë¬¸ìì¸ì§€ ì²´í¬í•˜ëŠ” í•¨ìˆ˜
+	//a~d -> 1~4ë¡œ ìˆ˜ì •
 	return input == '1' || input == '2' || input == '3' || input == '4';
 }
 
 int main()
 {
-	//ÄÜ¼Ö Ã¢ ÃÊ±âÈ­. (È­¸é Å©±â, ±ÛÀÚ »ö, Ä¿¼­ ±ôºıÀÓ µî ¼³Á¤)
+	//ì½˜ì†” ì°½ ì´ˆê¸°í™”. (í™”ë©´ í¬ê¸°, ê¸€ì ìƒ‰, ì»¤ì„œ ê¹œë¹¡ì„ ë“± ì„¤ì •)
 	InitScreen();
 
-	//db¸¦ ÀúÀåÇÒ questions[] ¼±¾ğ
+	//dbë¥¼ ì €ì¥í•  questions[] ì„ ì–¸
 	Question* questions = malloc(sizeof(Question) * MAX_QUESTIONS);
 
 	int num_questions;
-	
-	// »ç¿ëÀÚ°¡ ÀÔ·ÂÇÑ ¹®Á¦ °³¼ö ÀúÀå
+
+	// ì‚¬ìš©ìê°€ ì…ë ¥í•œ ë¬¸ì œ ê°œìˆ˜ ì €ì¥
 	int num_to_solve;
 
-	//tsv ÆÄÀÏ¿¡¼­ µ¥ÀÌÅÍ ºÒ·¯¿Í¼­ questions[] ¹è¿­¿¡ ÀúÀå
+	//tsv íŒŒì¼ì—ì„œ ë°ì´í„° ë¶ˆëŸ¬ì™€ì„œ questions[] ë°°ì—´ì— ì €ì¥
 	read_questions(questions, &num_questions);
 
-	// »ç¿ëÀÚ·ÎºÎÅÍ ¹®Á¦ °³¼ö ÀÔ·Â ¹Ş±â
+	// ì‚¬ìš©ìë¡œë¶€í„° ë¬¸ì œ ê°œìˆ˜ ì…ë ¥ ë°›ê¸°
 	do {
-		printf("Ç® ¹®Á¦ ¼ö ÀÔ·Â: ");
+		printf("í’€ ë¬¸ì œ ìˆ˜ ì…ë ¥: ");
 		scanf("%d", &num_to_solve);
 	} while (num_to_solve <= 0 || num_to_solve > num_questions);
 
@@ -36,38 +35,38 @@ int main()
 	int i = 0;
 	char input;
 
-	// ¹®Á¦ ÃâÁ¦ ¹× »ç¿ëÀÚ ÀÔ·Â ¹Ş±â
+	// ë¬¸ì œ ì¶œì œ ë° ì‚¬ìš©ì ì…ë ¥ ë°›ê¸°
 	while (i < num_to_solve) {
-		//print question Å×½ºÆ®
+		//print question í…ŒìŠ¤íŠ¸
 		printquestion(questions, i);
 		printoptions(questions, i);
 
-		//»ç¿ëÀÚ ÀÔ·Â ¹Ş±â
-		printf("´äÀ» ÀÔ·ÂÇÏ¼¼¿ä(1~4): \n");
+		//ì‚¬ìš©ì ì…ë ¥ ë°›ê¸°
+		printf("ë‹µì„ ì…ë ¥í•˜ì„¸ìš”(1~4): \n");
 		scanf(" %c", &input);
 
-		// ÀÔ·Â°ªÀÌ À¯È¿ÇÑÁö Ã¼Å©
+		// ì…ë ¥ê°’ì´ ìœ íš¨í•œì§€ ì²´í¬
 		while (!is_valid_input(input)) {
-			printf("Àß¸øµÈ °ªÀÌ ÀÔ·ÂµÇ¾ú½À´Ï´Ù. ´Ù½Ã ÀÔ·ÂÇØÁÖ¼¼¿ä(1~4): \n");
+			printf("ì˜ëª»ëœ ê°’ì´ ì…ë ¥ë˜ì—ˆìŠµë‹ˆë‹¤. ë‹¤ì‹œ ì…ë ¥í•´ì£¼ì„¸ìš”(1~4): \n");
 			scanf(" %c", &input);
 		}
 
-		// Á¤´ä Ã¼Å©
+		// ì •ë‹µ ì²´í¬
 		if (input == questions[i].right_answer[0]) {
-			printf("Á¤´äÀÔ´Ï´Ù!\n\n");
+			printf("ì •ë‹µì…ë‹ˆë‹¤!\n\n");
 		}
 		else {
-			printf("¿À´äÀÔ´Ï´Ù. \nÁ¤´äÀº %sÀÔ´Ï´Ù.\n\n", questions[i].right_answer);
+			printf("ì˜¤ë‹µì…ë‹ˆë‹¤. \nì •ë‹µì€ %sì…ë‹ˆë‹¤.\n\n", questions[i].right_answer);
 		}
 
-		// ´ÙÀ½ ¹®Á¦·Î ³Ñ¾î°¡±â
+		// ë‹¤ìŒ ë¬¸ì œë¡œ ë„˜ì–´ê°€ê¸°
 		i++;
 	}
 
-	free(questions); // µ¿ÀûÇÒ´çÇÑ ¸Ş¸ğ¸® ÇØÁ¦
+	free(questions); // ë™ì í• ë‹¹í•œ ë©”ëª¨ë¦¬ í•´ì œ
 
 
-	// ¾Æ·¡ ÄÚµå·Î questions[] db¿¡ Á¢±Ù °¡´É
+	// ì•„ë˜ ì½”ë“œë¡œ questions[] dbì— ì ‘ê·¼ ê°€ëŠ¥
 
 	//questions[i].id, questions[i].question, questions[i].option_1,
 	//questions[i].option_2, questions[i].option_3, questions[i].option_4,

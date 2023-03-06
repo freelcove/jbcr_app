@@ -16,22 +16,20 @@ void SetCursorVisibility(int visible)
 }
 
 
-
-
 void InitScreen() {
 
-	//ÄÜ¼Ö Ã¢ ÄÃ·¯ ¹Ù²Ù±â (Èò ¹è°æ °ËÀº ±ÛÀÚ)
+	//ì½˜ì†” ì°½ ì»¬ëŸ¬ ë°”ê¾¸ê¸° (í° ë°°ê²½ ê²€ì€ ê¸€ì)
 	system("COLOR F0");
 
-	//ÄÜ¼Ö ÀÎÄÚµù utf_8·Î ¼³Á¤
-	SetConsoleOutputCP(51949);
-	SetConsoleCP(51949);
+	//ì½˜ì†” ì¸ì½”ë”© utf_8ë¡œ ì„¤ì •
+	SetConsoleOutputCP(CP_UTF8);
+	SetConsoleCP(CP_UTF8);
 
-	//ÄÜ¼Ö Ã¢ Å©±â ¹Ù²Ù±â
+	//ì½˜ì†” ì°½ í¬ê¸° ë°”ê¾¸ê¸°
 	HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
 	SMALL_RECT windowSize = { 0, 0, 99, 119 };
 	SetConsoleWindowInfo(console, TRUE, &windowSize);
 
-	//±ôºıÀÌ´Â Ä¿¼­ ¾ø¾Ö±â.
+	//ê¹œë¹¡ì´ëŠ” ì»¤ì„œ ì—†ì• ê¸°.
 	SetCursorVisibility(0);
 }
