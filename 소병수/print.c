@@ -124,12 +124,12 @@ void printoptions(Question* questions, int id)
 {
 	optionchange(questions, id);
 	OptionsMaxLen();
-	printf("A. %s", options[0]);
+	printf("1. %s", options[0]);
 	changerow1();
-	printf("B. %s\n", options[1]);
-	printf("C. %s", options[2]);
+	printf("2. %s\n", options[1]);
+	printf("3. %s", options[2]);
 	changerow2();
-	printf("D. %s\n\n", options[3]);
+	printf("4. %s\n\n", options[3]);
 }
 
 //랜덤의 숫자 반환(10미만)

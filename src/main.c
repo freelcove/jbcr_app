@@ -2,13 +2,6 @@
 #include "interface.h"
 #include "print.h"
 
-
-int is_valid_input(char input) {
-	// 입력값이 a~d 사이의 문자인지 체크하는 함수
-	//a~d -> 1~4로 수정
-	return input == '1' || input == '2' || input == '3' || input == '4';
-}
-
 int main()
 {
 	//콘솔 창 초기화. (화면 크기, 글자 색, 커서 깜빡임 등 설정)
@@ -26,51 +19,48 @@ int main()
 	read_questions(questions, &num_questions);
 
 	// 사용자로부터 문제 개수 입력 받기
-	do 
-	{
+	do {
 		printf("풀 문제 수 입력: ");
 		scanf("%d", &num_to_solve);
 	} while (num_to_solve <= 0 || num_to_solve > num_questions);
 
+
+
 	int i = 0;
-	char input;
+
 
 	// 문제 출제 및 사용자 입력 받기
 	while (i < num_to_solve) {
+
+		int id = randnum();
+
+		ClearScreen();
 		//print question 테스트
-		printquestion(questions, i);
-		printoptions(questions, i);
+		printquestion(questions, id);
+		printoptions(questions, id);
 
-		//사용자 입력 받기
-		printf("답을 입력하세요(1~4): \n");
-		scanf(" %c", &input);
-
-		// 입력값이 유효한지 체크
-		while (!is_valid_input(input)) {
-			printf("잘못된 값이 입력되었습니다. 다시 입력해주세요(1~4): \n");
-			scanf(" %c", &input);
+		if (CheckAnswer(id)) {
+			faltquestions(id);
 		}
-
-		// 정답 체크
-		if (input == questions[i].right_answer[0]) {
-			printf("정답입니다!\n\n");
-		}
-		else {
-			printf("오답입니다. \n정답은 %s입니다.\n\n", questions[i].right_answer);
-		}
-
+		int a = time(NULL);
+		while (time(NULL) - a < 5);
+		ClearScreen();
 		// 다음 문제로 넘어가기
 		i++;
 	}
+	//틀린 문제 풀기
+
+	repeatquestions(questions, bool());
+
 
 	free(questions); // 동적할당한 메모리 해제
 
 
 	// 아래 코드로 questions[] db에 접근 가능
 
-	//questions[i].id, questions[i].question, questions[i].option_1,
-	//questions[i].option_2, questions[i].option_3, questions[i].option_4,
-	//    questions[i].right_answer, questions[i].date
+	//questions[i].id,				questions[i].question,		questions[i].option_1,
+	//questions[i].option_2,		questions[i].option_3,		questions[i].option_4,
+	//questions[i].right_answer,	questions[i].date
 
 
 	return 0;
