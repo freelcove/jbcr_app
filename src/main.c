@@ -5,30 +5,30 @@
 
 
 int is_valid_input(char input) {
-	// ì…ë ¥ê°’ì´ a~d ì‚¬ì´ì˜ ë¬¸ìì¸ì§€ ì²´í¬í•˜ëŠ” í•¨ìˆ˜
-	//a~d -> 1~4ë¡œ ìˆ˜ì •
+	// ÀÔ·Â°ªÀÌ a~d »çÀÌÀÇ ¹®ÀÚÀÎÁö Ã¼Å©ÇÏ´Â ÇÔ¼ö
+	//a~d -> 1~4·Î ¼öÁ¤
 	return input == '1' || input == '2' || input == '3' || input == '4';
 }
 
 int main()
 {
-	//ì½˜ì†” ì°½ ì´ˆê¸°í™”. (í™”ë©´ í¬ê¸°, ê¸€ì ìƒ‰, ì»¤ì„œ ê¹œë¹¡ì„ ë“± ì„¤ì •)
+	//ÄÜ¼Ö Ã¢ ÃÊ±âÈ­. (È­¸é Å©±â, ±ÛÀÚ »ö, Ä¿¼­ ±ôºıÀÓ µî ¼³Á¤)
 	InitScreen();
 
-	//dbë¥¼ ì €ì¥í•  questions[] ì„ ì–¸
+	//db¸¦ ÀúÀåÇÒ questions[] ¼±¾ğ
 	Question* questions = malloc(sizeof(Question) * MAX_QUESTIONS);
 
 	int num_questions;
 	
-	// ì‚¬ìš©ìê°€ ì…ë ¥í•œ ë¬¸ì œ ê°œìˆ˜ ì €ì¥
+	// »ç¿ëÀÚ°¡ ÀÔ·ÂÇÑ ¹®Á¦ °³¼ö ÀúÀå
 	int num_to_solve;
 
-	//tsv íŒŒì¼ì—ì„œ ë°ì´í„° ë¶ˆëŸ¬ì™€ì„œ questions[] ë°°ì—´ì— ì €ì¥
+	//tsv ÆÄÀÏ¿¡¼­ µ¥ÀÌÅÍ ºÒ·¯¿Í¼­ questions[] ¹è¿­¿¡ ÀúÀå
 	read_questions(questions, &num_questions);
 
-	// ì‚¬ìš©ìë¡œë¶€í„° ë¬¸ì œ ê°œìˆ˜ ì…ë ¥ ë°›ê¸°
+	// »ç¿ëÀÚ·ÎºÎÅÍ ¹®Á¦ °³¼ö ÀÔ·Â ¹Ş±â
 	do {
-		printf("Enter the number of questions you want to solve: ");
+		printf("Ç® ¹®Á¦ ¼ö ÀÔ·Â: ");
 		scanf("%d", &num_to_solve);
 	} while (num_to_solve <= 0 || num_to_solve > num_questions);
 
@@ -36,23 +36,23 @@ int main()
 	int i = 0;
 	char input;
 
-	// ë¬¸ì œ ì¶œì œ ë° ì‚¬ìš©ì ì…ë ¥ ë°›ê¸°
+	// ¹®Á¦ ÃâÁ¦ ¹× »ç¿ëÀÚ ÀÔ·Â ¹Ş±â
 	while (i < num_to_solve) {
-		//print question í…ŒìŠ¤íŠ¸
+		//print question Å×½ºÆ®
 		printquestion(questions, i);
 		printoptions(questions, i);
 
-		//ì‚¬ìš©ì ì…ë ¥ ë°›ê¸°
+		//»ç¿ëÀÚ ÀÔ·Â ¹Ş±â
 		printf("Input answr (1~4): \n");
 		scanf(" %c", &input);
 
-		// ì…ë ¥ê°’ì´ ìœ íš¨í•œì§€ ì²´í¬
+		// ÀÔ·Â°ªÀÌ À¯È¿ÇÑÁö Ã¼Å©
 		while (!is_valid_input(input)) {
 			printf("Invalid input. Enter your answer (1~4): \n");
 			scanf(" %c", &input);
 		}
 
-		// ì •ë‹µ ì²´í¬
+		// Á¤´ä Ã¼Å©
 		if (input == questions[i].right_answer[0]) {
 			printf("Correct!\n\n");
 		}
@@ -60,14 +60,14 @@ int main()
 			printf("Incorrect. \nThe correct answer is %s.\n\n", questions[i].right_answer);
 		}
 
-		// ë‹¤ìŒ ë¬¸ì œë¡œ ë„˜ì–´ê°€ê¸°
+		// ´ÙÀ½ ¹®Á¦·Î ³Ñ¾î°¡±â
 		i++;
 	}
 
-	free(questions); // ë™ì í• ë‹¹í•œ ë©”ëª¨ë¦¬ í•´ì œ
+	free(questions); // µ¿ÀûÇÒ´çÇÑ ¸Ş¸ğ¸® ÇØÁ¦
 
 
-	// ì•„ë˜ ì½”ë“œë¡œ questions[] dbì— ì ‘ê·¼ ê°€ëŠ¥
+	// ¾Æ·¡ ÄÚµå·Î questions[] db¿¡ Á¢±Ù °¡´É
 
 	//questions[i].id, questions[i].question, questions[i].option_1,
 	//questions[i].option_2, questions[i].option_3, questions[i].option_4,
