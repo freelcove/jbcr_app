@@ -9,25 +9,25 @@
 
 static int count = 1;
 
-//¹®Á¦ Ãâ·Â
-void printquestion(Question*questions, int id)
+//ë¬¸ì œ ì¶œë ¥
+void printquestion(Question* questions, int id)
 {
-	printf("%d. %s\n\n",count,questions[id].question);
+	printf("%d. %s\n\n", count, questions[id].question);
 
 	count++;
 }
-//º¸±â1,2 »çÀÌ °£°İ,ÁÙ¹Ù²Ş ¼³Á¤
+//ë³´ê¸°1,2 ì‚¬ì´ ê°„ê²©,ì¤„ë°”ê¿ˆ ì„¤ì •
 void changerow1(Question* questions, int id)
 {
-	int lendiff1 = 37-(_mbslen(questions[id].option_1));
-	int lendiff2 = 37-(_mbslen(questions[id].option_3));
-	if (strlen(questions[id].option_1) > 40) 
+	int lendiff1 = 37 - (_mbslen(questions[id].option_1));
+	int lendiff2 = 37 - (_mbslen(questions[id].option_3));
+	if (strlen(questions[id].option_1) > 40)
 	{
 		printf("\n");
 	}
 	else
 	{
-		if (lendiff1 >0)
+		if (lendiff1 > 0)
 		{
 			lendiff1 += 8;
 			while (lendiff1 > 0)
@@ -40,7 +40,7 @@ void changerow1(Question* questions, int id)
 			printf("\t\t");
 	}
 }
-//º¸±â3,4 »çÀÌ °£°İ,ÁÙ¹Ù²Ş ¼³Á¤
+//ë³´ê¸°3,4 ì‚¬ì´ ê°„ê²©,ì¤„ë°”ê¿ˆ ì„¤ì •
 void changerow2(Question* questions, int id)
 {
 	int lendiff1 = 37 - (_mbslen(questions[id].option_1));
@@ -51,7 +51,7 @@ void changerow2(Question* questions, int id)
 	}
 	else
 	{
-		if (lendiff2 >0)
+		if (lendiff2 > 0)
 		{
 			lendiff2 += 8;
 			while (lendiff2 > 0)
@@ -64,22 +64,22 @@ void changerow2(Question* questions, int id)
 			printf("\t\t");
 	}
 }
-//º¸±â 1,2,3,4 Ãâ·Â¼³Á¤
-//a~d -> 1~4·Î ¼öÁ¤
+//ë³´ê¸° 1,2,3,4 ì¶œë ¥ì„¤ì •
+//a~d -> 1~4ë¡œ ìˆ˜ì •
 
 void printoptions(Question* questions, int id)
 {
 	printf("1. %s", questions[id].option_1);
-	changerow1(questions,id);
+	changerow1(questions, id);
 	printf("2. %s\n", questions[id].option_2);
 	printf("3. %s", questions[id].option_3);
 	changerow2(questions, id);
 	printf("4. %s\n\n", questions[id].option_4);
 }
 
-//·£´ıÀÇ ¼ıÀÚ ¹İÈ¯(10¹Ì¸¸)
+//ëœë¤ì˜ ìˆ«ì ë°˜í™˜(10ë¯¸ë§Œ)
 int randnum()
 {
-	srand(time(NULL)*rand());
-	return (rand()%10);
+	srand(time(NULL) * rand());
+	return (rand() % 10);
 }
