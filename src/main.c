@@ -62,6 +62,5 @@ int main()
 	//questions[i].option_2,		questions[i].option_3,		questions[i].option_4,
 	//questions[i].right_answer,	questions[i].date
 
-
 	return 0;
 }
