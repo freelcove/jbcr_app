@@ -9,14 +9,14 @@
 
 static int count = 1;
 
-//ë¬¸ì œ ì¶œë ¥
+//¹®Á¦ Ãâ·Â
 void printquestion(Question*questions, int id)
 {
 	printf("%d. %s\n\n",count,questions[id].question);
 
 	count++;
 }
-//ë³´ê¸°1,2 ì‚¬ì´ ê°„ê²©,ì¤„ë°”ê¿ˆ ì„¤ì •
+//º¸±â1,2 »çÀÌ °£°İ,ÁÙ¹Ù²Ş ¼³Á¤
 void changerow1(Question* questions, int id)
 {
 	int lendiff1 = 37-(_mbslen(questions[id].option_1));
@@ -40,7 +40,7 @@ void changerow1(Question* questions, int id)
 			printf("\t\t");
 	}
 }
-//ë³´ê¸°3,4 ì‚¬ì´ ê°„ê²©,ì¤„ë°”ê¿ˆ ì„¤ì •
+//º¸±â3,4 »çÀÌ °£°İ,ÁÙ¹Ù²Ş ¼³Á¤
 void changerow2(Question* questions, int id)
 {
 	int lendiff1 = 37 - (_mbslen(questions[id].option_1));
@@ -64,8 +64,8 @@ void changerow2(Question* questions, int id)
 			printf("\t\t");
 	}
 }
-//ë³´ê¸° 1,2,3,4 ì¶œë ¥ì„¤ì •
-//a~d -> 1~4ë¡œ ìˆ˜ì •
+//º¸±â 1,2,3,4 Ãâ·Â¼³Á¤
+//a~d -> 1~4·Î ¼öÁ¤
 
 void printoptions(Question* questions, int id)
 {
@@ -77,7 +77,7 @@ void printoptions(Question* questions, int id)
 	printf("4. %s\n\n", questions[id].option_4);
 }
 
-//ëœë¤ì˜ ìˆ«ì ë°˜í™˜(10ë¯¸ë§Œ)
+//·£´ıÀÇ ¼ıÀÚ ¹İÈ¯(10¹Ì¸¸)
 int randnum()
 {
 	srand(time(NULL)*rand());
