@@ -65,14 +65,16 @@ void changerow2(Question* questions, int id)
 	}
 }
 //보기 1,2,3,4 출력설정
+//a~d -> 1~4로 수정
+
 void printoptions(Question* questions, int id)
 {
-	printf("A. %s", questions[id].option_1);
+	printf("1. %s", questions[id].option_1);
 	changerow1(questions,id);
-	printf("B. %s\n", questions[id].option_2);
-	printf("C. %s", questions[id].option_3);
+	printf("2. %s\n", questions[id].option_2);
+	printf("3. %s", questions[id].option_3);
 	changerow2(questions, id);
-	printf("D. %s\n\n", questions[id].option_4);
+	printf("4. %s\n\n", questions[id].option_4);
 }
 
 //랜덤의 숫자 반환(10미만)

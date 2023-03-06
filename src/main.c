@@ -6,7 +6,8 @@
 
 int is_valid_input(char input) {
 	// 입력값이 a~d 사이의 문자인지 체크하는 함수
-	return input == 'a' || input == 'b' || input == 'c' || input == 'd';
+	//a~d -> 1~4로 수정
+	return input == '1' || input == '2' || input == '3' || input == '4';
 }
 
 int main()
@@ -42,12 +43,12 @@ int main()
 		printoptions(questions, i);
 
 		//사용자 입력 받기
-		printf("Input answr (a~d): \n");
+		printf("Input answr (1~4): \n");
 		scanf(" %c", &input);
 
 		// 입력값이 유효한지 체크
 		while (!is_valid_input(input)) {
-			printf("Invalid input. Enter your answer (a~d): \n");
+			printf("Invalid input. Enter your answer (1~4): \n");
 			scanf(" %c", &input);
 		}
 
