@@ -43,11 +43,12 @@ int main()
 			faltquestions(id);
 		}
 		int a = time(NULL);
-		while (time(NULL) - a < 5);
+		while (time(NULL) - a < 2);
 		ClearScreen();
 		// 다음 문제로 넘어가기
 		i++;
 	}
+	Percentage(num_to_solve);
 	//틀린 문제 풀기
 
 	repeatquestions(questions, bool());
