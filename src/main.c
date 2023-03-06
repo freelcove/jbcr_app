@@ -26,11 +26,11 @@ int main()
 	read_questions(questions, &num_questions);
 
 	// 사용자로부터 문제 개수 입력 받기
-	do {
+	do 
+	{
 		printf("풀 문제 수 입력: ");
 		scanf("%d", &num_to_solve);
 	} while (num_to_solve <= 0 || num_to_solve > num_questions);
-
 
 	int i = 0;
 	char input;
