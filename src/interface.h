@@ -1,11 +1,10 @@
 #pragma once
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <windows.h>
+#include "globals.h"
 
 #ifndef INTERFACE_H
 #define INTERFACE_H
+
+
 
 //콘솔창 깨끗이 빈 화면으로
 void ClearScreen();
@@ -17,7 +16,15 @@ void SetCursorVisibility(int visible);
 void set_console_font_size(int size);
 
 //콘솔 화면 Initialization.
-void InitScreen();
+void InitScreen(HANDLE console);
 
+//draw 메인 메뉴 화면 
+void draw_menu(HANDLE console, int* current_menu_item);
+
+//타이틀 그리기
+void draw_title();
+
+//문제 그리기
+void draw_question();
 
 #endif

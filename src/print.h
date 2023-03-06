@@ -1,4 +1,5 @@
 #pragma once
+#include "globals.h"
 #include"questions.h"
 #include"interface.h"
 

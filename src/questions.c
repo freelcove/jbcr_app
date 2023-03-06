@@ -1,3 +1,4 @@
+#include "globals.h"
 #include "questions.h"
 
 void read_questions(Question* questions, int* num_questions) {

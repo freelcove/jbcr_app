@@ -1,8 +1,6 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-
 #pragma once
+#include "globals.h"
+
 #ifndef QUESTIONS_H
 #define QUESTIONS_H
 

@@ -1,11 +1,7 @@
+#include "globals.h"
 #include "questions.h"
 #include "print.h"
-#include <mbstring.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <windows.h>
-#include <time.h>
+
 #define MAX_LINE_LENGTH 1024
 #define MAX_QUESTIONS 100
 

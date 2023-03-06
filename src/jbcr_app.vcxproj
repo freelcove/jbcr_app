@@ -131,11 +131,14 @@
     <ClCompile Include="main.c" />
     <ClCompile Include="print.c" />
     <ClCompile Include="questions.c" />
+    <ClCompile Include="utilities.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="globals.h" />
     <ClInclude Include="interface.h" />
     <ClInclude Include="print.h" />
     <ClInclude Include="questions.h" />
+    <ClInclude Include="utilities.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
