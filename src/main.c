@@ -2,6 +2,7 @@
 #include "interface.h"
 #include "print.h"
 
+
 int main()
 {
 	//콘솔 창 초기화. (화면 크기, 글자 색, 커서 깜빡임 등 설정)
