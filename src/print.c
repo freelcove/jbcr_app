@@ -6,28 +6,43 @@
 #include <string.h>
 #include <windows.h>
 #include <time.h>
+#define MAX_LINE_LENGTH 1024
+#define MAX_QUESTIONS 100
 
 static int count = 1;
+char options[4][MAX_LINE_LENGTH];
+static int maxlen=0;
 
-//문제 출력
-void printquestion(Question* questions, int id)
+//보기 중 가장 긴 길이 저장
+void OptionsMaxLen()
 {
-	printf("%d. %s\n\n", count, questions[id].question);
+	maxlen -= maxlen;	//static값 초기화
+	for (int j = 0; j < 4; j++)	//maxlen에 가장 큰 strlen값 저장
+	{
+		if (maxlen < strlen(options[j]))
+			maxlen = strlen(options[j]);
+	}
+}
+//문제 출력
+void printquestion(Question*questions, int id)
+{
+
+	printf("%d. %s\n\n",count,questions[id].question);
 
 	count++;
 }
 //보기1,2 사이 간격,줄바꿈 설정
-void changerow1(Question* questions, int id)
+void changerow1()
 {
-	int lendiff1 = 37 - (_mbslen(questions[id].option_1));
-	int lendiff2 = 37 - (_mbslen(questions[id].option_3));
-	if (strlen(questions[id].option_1) > 40)
+	int lendiff1 = 37-(_mbslen(options[0]));
+	int lendiff2 = 37-(_mbslen(options[2]));
+	if (maxlen > 40)
 	{
 		printf("\n");
 	}
 	else
 	{
-		if (lendiff1 > 0)
+		if (lendiff1 >0)
 		{
 			lendiff1 += 8;
 			while (lendiff1 > 0)
@@ -41,17 +56,17 @@ void changerow1(Question* questions, int id)
 	}
 }
 //보기3,4 사이 간격,줄바꿈 설정
-void changerow2(Question* questions, int id)
+void changerow2()
 {
-	int lendiff1 = 37 - (_mbslen(questions[id].option_1));
-	int lendiff2 = 37 - (_mbslen(questions[id].option_3));
-	if (strlen(questions[id].option_1) > 40)
+	int lendiff1 = 37 - (_mbslen(options[0]));
+	int lendiff2 = 37 - (_mbslen(options[2]));
+	if (maxlen > 40)
 	{
 		printf("\n");
 	}
 	else
 	{
-		if (lendiff2 > 0)
+		if (lendiff2 >0)
 		{
 			lendiff2 += 8;
 			while (lendiff2 > 0)
@@ -64,22 +79,45 @@ void changerow2(Question* questions, int id)
 			printf("\t\t");
 	}
 }
-//보기 1,2,3,4 출력설정
-//a~d -> 1~4로 수정
+//보기 1,2,3,4 출력 순서 섞기
+void optionchange(Question*questions,int id)
+{
+	for (int x = 0; x < 4; x++)
+	{
+		for (int y = 0; y < sizeof(options[x]); y++)
+			options[x][y] = NULL;
+	}
+	
+	int nums[4] = { 0, 1, 2, 3 };
+	int i, temp, rand_idx;
+	for (i = 0; i < 4; i++) {
+		rand_idx = randnum() % 4;  // 0 ~ 3까지의 랜덤한 인덱스 생성
+		temp = nums[i];
+		nums[i] = nums[rand_idx];
+		nums[rand_idx] = temp;  // 랜덤한 인덱스에 해당하는 값과 i번째 값을 교환
+	}
+	strncpy(options[nums[0]], questions[id].option_1, strlen(questions[id].option_1));
+	strncpy(options[nums[1]], questions[id].option_2, strlen(questions[id].option_2));
+	strncpy(options[nums[2]], questions[id].option_3, strlen(questions[id].option_3));
+	strncpy(options[nums[3]], questions[id].option_4, strlen(questions[id].option_4));
 
+}
+//보기 1,2,3,4 출력설정
 void printoptions(Question* questions, int id)
 {
-	printf("1. %s", questions[id].option_1);
-	changerow1(questions, id);
-	printf("2. %s\n", questions[id].option_2);
-	printf("3. %s", questions[id].option_3);
-	changerow2(questions, id);
-	printf("4. %s\n\n", questions[id].option_4);
+	optionchange(questions, id);
+	OptionsMaxLen();
+	printf("A. %s", options[0]);
+	changerow1();
+	printf("B. %s\n", options[1]);
+	printf("C. %s", options[2]);
+	changerow2();
+	printf("D. %s\n\n", options[3]);
 }
 
 //랜덤의 숫자 반환(10미만)
 int randnum()
 {
-	srand(time(NULL) * rand());
-	return (rand() % 10);
+	srand(time(NULL)*rand());
+	return (rand()%10);
 }
