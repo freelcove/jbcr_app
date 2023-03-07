@@ -77,7 +77,7 @@ void draw_menu(HANDLE console, int* current_menu_item, COORD cursorPosition) {
 	}
 }
 
-void draw_objective_question(HANDLE console, Question* questions, int id, COORD cursorPosition) {
+void draw_question(HANDLE console, Question* questions, int id, COORD cursorPosition) {
 	int sentence_length = strlen(questions[id].question);
 	int target_width = 70;
 	int num_lines = sentence_length / target_width + 1;
@@ -97,7 +97,7 @@ void draw_objective_question(HANDLE console, Question* questions, int id, COORD 
 		strncpy(substring, questions[id].question + start_index, line_length);
 		substring[line_length + 1] = '\0';
 
-		cursorPosition.X = 16;
+		cursorPosition.X = 14;
 		cursorPosition.Y = i;
 		SetConsoleCursorPosition(console, cursorPosition);
 		printf("%s\n", substring);
@@ -109,14 +109,17 @@ void draw_objective_question(HANDLE console, Question* questions, int id, COORD 
 			start_index += line_length;
 		}
 	}
+}
+
+void draw_options(HANDLE console, Question* questions, int id, COORD cursorPosition) {
+
 	cursorPosition.X = 10;
-	cursorPosition.Y += 3;
+	cursorPosition.Y = 10;
 	const char* options[] = { questions[id].option_1, questions[id].option_2,questions[id].option_3,questions[id].option_4 };
-	const char* numbering[] = { "①", "②", "③", "④"};
+	const char* numbering[] = { "①", "②", "③", "④" };
 	for (int i = 0; i < 4; i++) {
 		SetConsoleCursorPosition(console, cursorPosition);
 		printf("%s %s\n", numbering[i], options[i]);
 		cursorPosition.Y += 2;
 	}
-
 }

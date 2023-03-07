@@ -27,4 +27,6 @@ void draw_title();
 //문제 그리기
 void draw_question();
 
+void draw_options();
+
 #endif

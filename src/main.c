@@ -53,8 +53,12 @@ int main()
 		switch (current_menu_item)
 		{
 		case 0:
-			draw_objective_question(console, questions, 4, cursorPosition);
+			
+			draw_question(console, questions, 1, cursorPosition);
+			draw_options(console, questions, 1, cursorPosition);
+
 			break;
+
 		case 1:
 			printf("주관식 문제 풀기");
 			break;
