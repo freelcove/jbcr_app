@@ -184,29 +184,44 @@ void rowchange(Question*questions,int id,int choice)
 	int widlen = 70;
 	char temp1[1024] = { NULL };
 	char temp2[1024] = { NULL };
+	char addChar[4][10] = { {"① "},{"② "},{"③ "},{"④ "} };
 	int nextrow=0;
+	int firstcount = 1;
 	//출력할 내용 선택
 	switch (choice)
 	{
 	case 0:
 		optionchange(questions, id);
+		printf("\n\n");
 		strcpy(name,questions[id].question);
 		break;
 	case 1:
-		strcpy(name,options[0]);
-		printf("① ");
+		for (int i = 0; i < 4; i++)
+		{
+			name[i] = addChar[0][i];
+		}
+		strcpy(name+strlen(name), options[0]);
 		break;
 	case 2:
-		strcpy(name, options[1]);
-		printf("② ");
+		for (int i = 0; i < 4; i++)
+		{
+			name[i] = addChar[1][i];
+		}
+		strcpy(name + strlen(name), options[1]);
 		break;
 	case 3:
-		strcpy(name, options[2]);
-		printf("③ ");
+		for (int i = 0; i < 4; i++)
+		{
+			name[i] = addChar[2][i];
+		}
+		strcpy(name + strlen(name), options[2]);
 		break;
 	case 4:
-		strcpy(name, options[3]);
-		printf("④ ");
+		for (int i = 0; i < 4; i++)
+		{
+			name[i] = addChar[3][i];
+		}
+		strcpy(name + strlen(name), options[3]);
 		break;
 	default:
 		break;
@@ -228,8 +243,10 @@ void rowchange(Question*questions,int id,int choice)
 			temp1[j] = NULL;
 		strncpy(temp1, name, nextrow);		//temp1에 name 내용 복사하기
 		int k = 0;
+		if (name[nextrow] == ' ')
+			nextrow++;
 		//temp2에다가 temp1의 내용을 집어놓고 남은 나머지의 내용 복사하기
-		for (int j = nextrow + 1; name[j] != NULL; j++)
+		for (int j = nextrow; name[j] != NULL; j++)
 		{
 			temp2[k] = name[j];
 			k++;
@@ -237,14 +254,14 @@ void rowchange(Question*questions,int id,int choice)
 		for (int j = 0; j < lengthname; j++)	//name에 있는 데이터 지우기
 			name[j] = NULL;
 		strcpy(name, temp2);					//temp2의 내용을 name으로 옮기기
-		printf("%s\n", temp1);					//temp1의 내용 출력
+		printf("\t%s\n", temp1);					//temp1의 내용 출력
 		dellen = sizeof(temp2);
 		for (int j = 0; j < dellen; j++)		//다음에 받을 데이터를 위해 temp2의 내용 지우기
 			temp2[j] = NULL;
-		nextrow = 0;
+		nextrow = widlen;
 		lengthname = 0;
 		dellen = 0;
 	}
-	printf("%s\n", name);
+	printf("\t%s\n", name);
 
 }

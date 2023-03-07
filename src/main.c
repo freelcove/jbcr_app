@@ -79,11 +79,7 @@ int main()
 			*/
 
 		{
-			int num;
-			printf("몇 문제를 풀지 입력하세요.\n");
-			scanf("%d", &num);
-			ClearScreen();
-			while (num>0)
+			while (1)
 			{
 				int start = time(NULL);
 				int id = randnum();
@@ -99,15 +95,20 @@ int main()
 				puts("");
 				CheckAnswer(id);
 				while (getchar() != '\n');
+				printf("다음 문제로 넘어가시려면 엔터를 누르세요\n종료를 원하시면 x를 누르세요.\n");
+				int swit = 0;
 				while (1)
 				{
 					if (kbhit()) {
 						char input = getchar();
+						if (input == 'x')
+							swit = 1;
 						break;
 					}
 				}
+				if (swit == 1)
+					break;
 				ClearScreen();
-				num--;
 			}
 		}
 			break;
