@@ -36,7 +36,7 @@ int main()
 	{
 		ClearScreen();
 		
-		draw_title();
+		draw_title(console);
 		while (1) {
 			draw_menu(console, &current_menu_item, cursorPosition);
 			key_pressed = getch();
