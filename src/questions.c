@@ -25,6 +25,10 @@ void read_questions(Question* questions, int* num_questions) {
     fclose(file);
 }
 
+void read_subjective_questions() {
+
+}
+
 static count = 0;                       //이 소스 파일에서만 사용할 count변수
 //틀린 문제의 INDEX 저장
 int repeat[MAX_QUESTIONS] = { -1 };

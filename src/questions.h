@@ -23,4 +23,6 @@ typedef struct {
 
 void read_questions(Question* questions, int* num_questions);
 
+void read_subjective_questions();
+
 #endif

@@ -54,8 +54,34 @@ int main()
 		{
 		case 0:
 			
+			//문제 출력
 			draw_question(console, questions, 1, cursorPosition);
+
+			//옵션 출력
 			draw_options(console, questions, 1, cursorPosition);
+
+			//사용자 입력 받기
+			
+			/*
+			
+			do while() 써서 key_pressed = getch(); 한번은 먼저 입력 받음.
+			그리고 while문에서 1~4 또는 종료 키가 나오기 전까지 아무 반응 하지 않기.
+			
+			if (key_pressed == 정답){
+			정답임을 표시
+			}
+
+			else (정답이 아니면){
+			오답과 정답 표시
+			}
+			
+			사용자 맞춤 학습 데이터 추가 함수 call.
+
+			key_pressed = getch();
+			사용자 입력 받아서 추가 행동 실행: 일단은 다음 문제로 넘어가기 하나만 구현				
+
+			
+			*/
 
 			break;
 
