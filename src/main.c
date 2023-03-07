@@ -2,6 +2,7 @@
 #include "questions.h"
 #include "interface.h"
 #include "print.h"
+#include <conio.h> 
 
 
 
@@ -39,10 +40,10 @@ int main()
 		while (1) {
 			draw_menu(console, &current_menu_item, cursorPosition);
 			key_pressed = getch();
-			if (key_pressed == 'w' || key_pressed == 'W') {
+			if (key_pressed == 'w' || key_pressed == 'W' || key_pressed == 72) {
 				current_menu_item = (current_menu_item - 1 + 5) % 5;
 			}
-			else if (key_pressed == 's' || key_pressed == 'S') {
+			else if (key_pressed == 's' || key_pressed == 'S' || key_pressed == 80) {
 				current_menu_item = (current_menu_item + 1) % 5;
 			}
 			else if (key_pressed == '\r') {
