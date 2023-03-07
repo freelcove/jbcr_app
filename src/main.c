@@ -24,7 +24,7 @@ int main()
 	int num_questions;
 
 	//tsv 파일에서 데이터 불러와서 questions[] 배열에 저장
-	read_questions(questions, &num_questions);
+	read_objective_questions(questions, &num_questions);
 
 	int current_menu_item = 0;
 

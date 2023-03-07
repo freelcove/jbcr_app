@@ -1,12 +1,12 @@
 #include "globals.h"
 #include "questions.h"
 
-void read_questions(Question* questions, int* num_questions) {
+void read_objective_questions(Question* questions, int* num_questions) {
     FILE* file;
     char line[MAX_LINE_LENGTH];
     *num_questions = 0;
 
-    file = fopen("db_sample.tsv", "rb");
+    file = fopen("db/db_objective.tsv", "rb");
     if (file == NULL) {
         printf("Failed to open file.\n");
         return;
@@ -25,11 +25,29 @@ void read_questions(Question* questions, int* num_questions) {
     fclose(file);
 }
 
-void read_subjective_questions() {
 
+void read_objective_log() {
+    //작업 예정
 }
 
-static count = 0;                       //이 소스 파일에서만 사용할 count변수
+void write_objective_log() {
+    //작업 예정
+}
+
+void read_subjective_questions() {
+    //작업 예정
+}
+
+void read_subjective_log() {
+    //작업 예정
+}
+
+void write_subjective_log() {
+    //작업 예정
+}
+
+
+static count = 0;     //이 소스 파일에서만 사용할 count변수
 //틀린 문제의 INDEX 저장
 int repeat[MAX_QUESTIONS] = { -1 };
 int faltcount = 0;

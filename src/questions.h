@@ -21,7 +21,7 @@ typedef struct {
 //틀린 문제의 INDEX를 저장하는 배열선언
 
 
-void read_questions(Question* questions, int* num_questions);
+void read_objective_questions(Question* questions, int* num_questions);
 
 void read_subjective_questions();
 
