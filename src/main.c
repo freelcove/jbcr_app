@@ -5,7 +5,6 @@
 #include <conio.h> 
 
 
-
 int main()
 {
 
@@ -18,25 +17,51 @@ int main()
 	InitScreen(console);
 
 	//db를 저장할 questions[] 선언
-	Question* questions = malloc(sizeof(Question) * MAX_QUESTIONS);
+	ObjectiveQuestion* objective_questions = malloc(sizeof(ObjectiveQuestion) * MAX_QUESTIONS);
+	SubjectiveQuestion* subjective_questions = malloc(sizeof(SubjectiveQuestion) * MAX_QUESTIONS);
 
 	// 총 문제 수;
-	int num_questions;
+	int num_objective_questions;
+	int num_subjective_questions;
 
 	//tsv 파일에서 데이터 불러와서 questions[] 배열에 저장
-	read_objective_questions(questions, &num_questions);
+	read_objective_questions(objective_questions, &num_objective_questions);
+	read_subjective_questions(subjective_questions, &num_subjective_questions);
+
+	// 히스토리를 저장할 배열 선언
+	int* objective_history = malloc(num_objective_questions * sizeof(int));
+	int* subjective_history = malloc(num_subjective_questions * sizeof(int));
+
+	read_history(objective_history, subjective_history);
+	
+	//만약 첫번째 플레이라면 히스토리를 새로 채워 넣음.
+	//일단은 인덱스 0부터 순서대로 넣지만 나중에 랜덤하게 넣게 수정 필요.
+	if (objective_history[0] == -1) //history 초기상태에는 값이 -1 하나만 있음.
+	{
+		for (int i = 0; i < num_objective_questions; i++) {
+			objective_history[i] = i;
+		}
+	}
+
+	if (subjective_history[0] == -1) 
+	{
+		for (int i = 0; i < num_subjective_questions; i++) {
+			subjective_history[i] = i;
+		}
+	}
 
 	int current_menu_item = 0;
 
 	char key_pressed = ' ';
-	
+
 
 	// 문제 출제 및 사용자 입력 받기
 	while (1)
 	{
 		ClearScreen();
-		
+
 		draw_title(console);
+
 		while (1) {
 			draw_menu(console, &current_menu_item, cursorPosition);
 			key_pressed = getch();
@@ -54,14 +79,14 @@ int main()
 		switch (current_menu_item)
 		{
 		case 0:
-			
+
 			//사용자 입력 받기
-			
+
 			/*
-			
+
 			do while() 써서 key_pressed = getch(); 한번은 먼저 입력 받음.
 			그리고 while문에서 1~4 또는 종료 키가 나오기 전까지 아무 반응 하지 않기.
-			
+
 			if (key_pressed == 정답){
 			정답임을 표시
 			}
@@ -69,13 +94,13 @@ int main()
 			else (정답이 아니면){
 			오답과 정답 표시
 			}
-			
+
 			사용자 맞춤 학습 데이터 추가 함수 call.
 
 			key_pressed = getch();
-			사용자 입력 받아서 추가 행동 실행: 일단은 다음 문제로 넘어가기 하나만 구현				
+			사용자 입력 받아서 추가 행동 실행: 일단은 다음 문제로 넘어가기 하나만 구현
 
-			
+
 			*/
 
 		{
@@ -83,15 +108,15 @@ int main()
 			{
 				int start = time(NULL);
 				int id = randnum();
-				rowchange(questions, id, 0);
+				rowchange(objective_questions, id, 0);
 				puts("");
-				rowchange(questions, id, 1);
+				rowchange(objective_questions, id, 1);
 				puts("");
-				rowchange(questions, id, 2);
+				rowchange(objective_questions, id, 2);
 				puts("");
-				rowchange(questions, id, 3);
+				rowchange(objective_questions, id, 3);
 				puts("");
-				rowchange(questions, id, 4);
+				rowchange(objective_questions, id, 4);
 				puts("");
 				CheckAnswer(id);
 				while (getchar() != '\n');
@@ -111,7 +136,7 @@ int main()
 				ClearScreen();
 			}
 		}
-			break;
+		break;
 
 		case 1:
 			printf("주관식 문제 풀기");
@@ -124,6 +149,13 @@ int main()
 			break;
 		case 4:
 			printf("프로그램 종료");
+			write_history(objective_history, subjective_history, &num_objective_questions, &num_subjective_questions);
+			// 동적할당한 메모리 해제
+			free(objective_questions);
+			free(subjective_questions);
+			free(objective_history);
+			free(subjective_history);
+
 			return 0;
 		default:
 			break;
@@ -132,16 +164,9 @@ int main()
 		key_pressed = getch();
 
 
-		// 아래 코드로 questions[] db에 접근 가능
 
-		//questions[i].id,				questions[i].question,		questions[i].option_1,
-		//questions[i].option_2,		questions[i].option_3,		questions[i].option_4,
-		//questions[i].right_answer,	questions[i].date
-
-		
-
-		
 	}
-	free(questions); // 동적할당한 메모리 해제
+
+
 	return 0;
 }

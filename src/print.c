@@ -22,7 +22,7 @@ void OptionsMaxLen()
 	}
 }
 //문제 출력
-void printquestion(Question* questions, int id)
+void printquestion(ObjectiveQuestion* questions, int id)
 {
 
 	printf("%d. %s\n\n", count, questions[id].question);
@@ -84,7 +84,7 @@ char changedanswer()
 	return right_answer + '0';
 }
 //보기 1,2,3,4 출력 순서 섞기
-void optionchange(Question* questions, int id)
+void optionchange(ObjectiveQuestion* questions, int id)
 {
 	right_answer -= right_answer;
 	for (int x = 0; x < 4; x++)
@@ -117,7 +117,7 @@ void optionchange(Question* questions, int id)
 
 }
 //보기 1,2,3,4 출력설정
-void printoptions(Question* questions, int id)
+void printoptions(ObjectiveQuestion* questions, int id)
 {
 	optionchange(questions, id);
 	OptionsMaxLen();
@@ -139,7 +139,7 @@ int randnum()
 //틀린 문제 재출력
 extern repeat[];
 extern faltcount;
-void repeatquestions(Question* questions, int bool)
+void repeatquestions(ObjectiveQuestion* questions, int bool)
 {
 	if (bool == 1)
 	{
@@ -178,7 +178,7 @@ void Percentage(int num)
 }
 
 //줄 바꿔서 출력하기(0:문제, 1:옵션1, 2:옵션2, 3:옵션3, 4:옵션4)
-void rowchange(Question*questions,int id,int choice)
+void rowchange(ObjectiveQuestion*questions,int id,int choice)
 {
 	char name[1024] = { NULL };
 	int widlen = 70;

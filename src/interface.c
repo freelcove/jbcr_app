@@ -80,7 +80,7 @@ void draw_menu(HANDLE console, int* current_menu_item, COORD cursorPosition) {
 	}
 }
 
-void draw_question(HANDLE console, Question* questions, int id, COORD cursorPosition) {
+void draw_question(HANDLE console, ObjectiveQuestion* questions, int id, COORD cursorPosition) {
 	int sentence_length = strlen(questions[id].question);
 	int target_width = 70;
 	int num_lines = sentence_length / target_width + 1;
@@ -114,7 +114,7 @@ void draw_question(HANDLE console, Question* questions, int id, COORD cursorPosi
 	}
 }
 
-void draw_options(HANDLE console, Question* questions, int id, COORD cursorPosition) {
+void draw_options(HANDLE console, ObjectiveQuestion* questions, int id, COORD cursorPosition) {
 
 	cursorPosition.X = 10;
 	cursorPosition.Y = 10;
