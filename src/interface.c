@@ -42,11 +42,13 @@ void InitScreen(HANDLE console) {
 	SetConsoleWindowInfo(console, TRUE, &windowSize);
 }
 
-void draw_title()
+void draw_title(HANDLE console)
 {
 	printf("\n");
 	printf("\n");
 	printf("\n");
+	printf("\n");
+	SetConsoleTextAttribute(console, 250);
 	printf("              _________  _____ ______       _             _       \n");
 	printf("             |_  | ___ \\/  __ \\| ___ \\     | |           | |      \n");
 	printf("               | | |_/ /| /  \\/| |_/ /  ___| |_ _   _  __| |_   _ \n");
@@ -56,6 +58,7 @@ void draw_title()
 	printf("                                                             __/ |\n");
 	printf("                                                            |___/ \n");
 	printf("\n");
+	SetConsoleTextAttribute(console, 240);
 	printf("                           - 정보처리기사 공부 App -\n");
 }
 
