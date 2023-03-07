@@ -14,3 +14,9 @@ https://www.comcbt.com/xe/iz
 
 실기 문제 모음:
 https://chobopark.tistory.com/314
+
+
+※실행시 한글이 깨질경우
+제어판 -> 시계 및 국가 -> 국가 또는 지역 -> 관리자 옵션 -> 시스템 로캘 변경
+-> Beta: 세계 언어 지원을 위해 Unicode UTF-8 사용 체크 ->
+시스템 재시작
