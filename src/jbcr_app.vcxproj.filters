@@ -30,6 +30,9 @@
     <ClCompile Include="utilities.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="main(util용).c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="questions.h">
