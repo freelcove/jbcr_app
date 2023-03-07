@@ -2,7 +2,7 @@
 #include "questions.h"
 #include "interface.h"
 #include "print.h"
-
+#include <conio.h> 
 
 
 int main()
@@ -28,24 +28,26 @@ int main()
 	int current_menu_item = 0;
 
 	char key_pressed = ' ';
-	
+
 
 	// 문제 출제 및 사용자 입력 받기
 	while (1)
 	{
 		ClearScreen();
-		
+
 		draw_title();
-		while (1) {
+		while (1)
+		{
 			draw_menu(console, &current_menu_item, cursorPosition);
-			key_pressed = getch();
-			if (key_pressed == 'w' || key_pressed == 'W') {
+			int key_pressed = _getch();
+
+			if (key_pressed == 72) {
 				current_menu_item = (current_menu_item - 1 + 5) % 5;
 			}
-			else if (key_pressed == 's' || key_pressed == 'S') {
+			else if (key_pressed == 80) {
 				current_menu_item = (current_menu_item + 1) % 5;
 			}
-			else if (key_pressed == '\r') {
+			else if (key_pressed == 13) {
 				ClearScreen();
 				break;
 			}
@@ -53,7 +55,7 @@ int main()
 		switch (current_menu_item)
 		{
 		case 0:
-			
+
 			draw_question(console, questions, 1, cursorPosition);
 			draw_options(console, questions, 1, cursorPosition);
 
@@ -84,9 +86,9 @@ int main()
 		//questions[i].option_2,		questions[i].option_3,		questions[i].option_4,
 		//questions[i].right_answer,	questions[i].date
 
-		
 
-		
+
+
 	}
 	free(questions); // 동적할당한 메모리 해제
 	return 0;
