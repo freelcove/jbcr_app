@@ -54,12 +54,6 @@ int main()
 		{
 		case 0:
 			
-			//문제 출력
-			draw_question(console, questions, 1, cursorPosition);
-
-			//옵션 출력
-			draw_options(console, questions, 1, cursorPosition);
-
 			//사용자 입력 받기
 			
 			/*
