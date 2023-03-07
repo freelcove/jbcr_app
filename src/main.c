@@ -53,10 +53,38 @@ int main()
 		switch (current_menu_item)
 		{
 		case 0:
-			
-			draw_question(console, questions, 1, cursorPosition);
-			draw_options(console, questions, 1, cursorPosition);
-
+		{
+			int num;
+			printf("몇 문제를 풀지 입력하세요.\n");
+			scanf("%d", &num);
+			ClearScreen();
+			while (num>0)
+			{
+				int start = time(NULL);
+				int id = randnum();
+				rowchange(questions, id, 0);
+				puts("");
+				rowchange(questions, id, 1);
+				puts("");
+				rowchange(questions, id, 2);
+				puts("");
+				rowchange(questions, id, 3);
+				puts("");
+				rowchange(questions, id, 4);
+				puts("");
+				CheckAnswer(id);
+				while (getchar() != '\n');
+				while (1)
+				{
+					if (kbhit()) {
+						char input = getchar();
+						break;
+					}
+				}
+				ClearScreen();
+				num--;
+			}
+		}
 			break;
 
 		case 1:
