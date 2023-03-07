@@ -1,6 +1,7 @@
 #include "globals.h"
 #include "questions.h"
 #include "print.h"
+#include "interface.h"
 
 #define MAX_LINE_LENGTH 1024
 #define MAX_QUESTIONS 100
@@ -174,4 +175,76 @@ void Percentage(int num)
 	int correct = num - faltcount;
 
 	printf("%d문제중 %d문제 맞추었습니다. %d점\n", num, correct, correct * 100 / num);
+}
+
+//줄 바꿔서 출력하기(0:문제, 1:옵션1, 2:옵션2, 3:옵션3, 4:옵션4)
+void rowchange(Question*questions,int id,int choice)
+{
+	char name[1024] = { NULL };
+	int widlen = 70;
+	char temp1[1024] = { NULL };
+	char temp2[1024] = { NULL };
+	int nextrow=0;
+	//출력할 내용 선택
+	switch (choice)
+	{
+	case 0:
+		optionchange(questions, id);
+		strcpy(name,questions[id].question);
+		break;
+	case 1:
+		strcpy(name,options[0]);
+		printf("① ");
+		break;
+	case 2:
+		strcpy(name, options[1]);
+		printf("② ");
+		break;
+	case 3:
+		strcpy(name, options[2]);
+		printf("③ ");
+		break;
+	case 4:
+		strcpy(name, options[3]);
+		printf("④ ");
+		break;
+	default:
+		break;
+	}
+	while (strlen(name) > widlen)
+	{
+		int lengthname = strlen(name);
+		//내용이 지정한 길이보다 길때 자를 위치 지정
+		if (lengthname >= widlen)
+		{
+			for (int i = widlen; name[i] != ' '; i++)
+				nextrow = i + 1;
+		}
+		//자를위치가 내용의 길이와 같거나 길때 내용 그대로 출력하기 위해 반복문 종료
+		if (nextrow >= lengthname)
+			break;
+		int dellen = sizeof(temp1);
+		for (int j = 0; j < dellen; j++)	//temp1의 내용 지우기
+			temp1[j] = NULL;
+		strncpy(temp1, name, nextrow);		//temp1에 name 내용 복사하기
+		int k = 0;
+		//temp2에다가 temp1의 내용을 집어놓고 남은 나머지의 내용 복사하기
+		for (int j = nextrow + 1; name[j] != NULL; j++)
+		{
+			temp2[k] = name[j];
+			k++;
+		}
+		for (int j = 0; j < lengthname; j++)	//name에 있는 데이터 지우기
+			name[j] = NULL;
+		strcpy(name, temp2);					//temp2의 내용을 name으로 옮기기
+		printf("%s\n", temp1);					//temp1의 내용 출력
+		dellen = sizeof(temp2);
+		for (int j = 0; j < dellen; j++)		//다음에 받을 데이터를 위해 temp2의 내용 지우기
+			temp2[j] = NULL;
+		nextrow = 0;
+		lengthname = 0;
+		dellen = 0;
+	}
+	printf("%s\n", name);
+
 }
