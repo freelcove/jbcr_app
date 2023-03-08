@@ -129,11 +129,36 @@ void printoptions(ObjectiveQuestion* questions, int id)
 	printf("④ %s\n\n", options[3]);
 }
 
-//랜덤의 숫자 반환(10미만)
+int rand_id[100] = { -1 };
+
+void id_sequence()
+{
+	int num = 0;
+	for (int i = 0; i < 29; i++)
+	{
+		while (1)
+		{
+			int swit = 1;
+			num = randnum();
+			for (int j = 0; j <= i; j++)
+			{
+				if (rand_id[j] == num)
+					swit = 0;
+			}
+			if (swit)
+			{
+				rand_id[i] = num;
+				break;
+			}
+		}
+
+	}
+}
+//랜덤의 숫자 반환(29미만)
 int randnum()
 {
 	srand(time(NULL) * rand());
-	return rand() % 10;
+	return rand() % 29;
 }
 
 //틀린 문제 재출력

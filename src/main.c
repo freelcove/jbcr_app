@@ -8,6 +8,8 @@
 #include "convert.h"
 #include "filecontrol.h"
 
+extern int rand_id[100];
+
 int main()
 {
 
