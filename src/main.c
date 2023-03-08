@@ -111,17 +111,18 @@ int main()
 			{
 				int start = time(NULL);
 				int id = randnum();
-				rowchange(objective_questions, id, 0);
-				puts("");
-				rowchange(objective_questions, id, 1);
-				puts("");
-				rowchange(objective_questions, id, 2);
-				puts("");
-				rowchange(objective_questions, id, 3);
-				puts("");
-				rowchange(objective_questions, id, 4);
-				puts("");
-				CheckAnswer(id);
+				questionrowchange(objective_questions, id);
+
+				optionrowchange(objective_questions, id, 1, console);
+
+				optionrowchange(objective_questions, id, 2, console);
+
+				optionrowchange(objective_questions, id, 3, console);
+
+				optionrowchange(objective_questions, id, 4, console);
+
+				CheckAnswer(objective_questions,id,console);
+
 				while (getchar() != '\n');
 				printf("다음 문제로 넘어가시려면 엔터를 누르세요\n종료를 원하시면 x를 누르세요.\n");
 				int swit = 0;

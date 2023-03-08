@@ -1,5 +1,6 @@
 #include "globals.h"
 #include "questions.h"
+#include"print.h"
 
 void read_objective_questions(ObjectiveQuestion* questions, int* num_objective_questions) {
 	FILE* file;
@@ -131,29 +132,38 @@ int is_valid_input(char input) {
 
 	return input == '1' || input == '2' || input == '3' || input == '4';
 }
-
-int CheckAnswer(int id)
+extern int changecolor[3];
+void CheckAnswer(ObjectiveQuestion*questions,int id,HANDLE console)
 {
-	char input;
-	//사용자 입력 받기
-	printf("답을 입력하세요(1~4): \n");
-	scanf(" %c", &input);
+    char input;
+	printf("\n\n");
+    //사용자 입력 받기
+    printf("답을 입력하세요(1~4): \n");
+    scanf(" %c", &input);
 
-
-	// 입력값이 유효한지 체크
-	while (!is_valid_input(input)) {
-		printf("잘못된 값이 입력되었습니다. 다시 입력해주세요(1~4): \n");
-		scanf(" %c", &input);
-	}
-
-	// 정답 체크
-	if (input == changedanswer()) {
-		printf("정답입니다!\n\n");
-		return 0;
-	}
-	else {
-		printf("오답입니다. \n정답은 %c입니다.\n\n", changedanswer());
-		return 1;
-
-	}
+    // 입력값이 유효한지 체크
+    while (!is_valid_input(input)) {
+        printf("잘못된 값이 입력되었습니다. 다시 입력해주세요(1~4): \n");
+        scanf(" %c", &input);
+    }
+    changecolor[0] += input-'0';
+    changecolor[1] += changedanswer()-'0';
+    changecolor[2] += 1;
+    // 정답 체크
+    ClearScreen();
+    questionrowchange(questions, id);
+    optionrowchange(questions, id,1,console);
+    optionrowchange(questions, id,2, console);
+    optionrowchange(questions, id,3, console);
+    optionrowchange(questions, id,4, console);
+	printf("\n\n");
+    if (input == changedanswer()) {
+        printf("정답입니다!\n\n");
+    }
+    else {
+        printf("오답입니다. \n정답은 %c입니다.\n\n", changedanswer());
+    }
+	changecolor[0] -= input - '0';
+	changecolor[1] -= changedanswer() - '0';
+	changecolor[2] -= 1;
 }
