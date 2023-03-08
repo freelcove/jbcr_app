@@ -1,14 +1,6 @@
 #include "globals.h"
-#include "questions.h"
-#include "interface.h"
-#include "print.h"
-#include <conio.h> 
 
-#include <stdio.h>
-#include "convert.h"
-#include "filecontrol.h"
 
-extern int rand_id[100];
 
 int main()
 {
@@ -22,27 +14,17 @@ int main()
 	ObjectiveQuestion* objective_questions = malloc(sizeof(ObjectiveQuestion) * MAX_QUESTIONS);
 	SubjectiveQuestion* subjective_questions = malloc(sizeof(SubjectiveQuestion) * MAX_QUESTIONS);
 
-	// 총 문제 수;
-	int num_objective_questions;
-	int num_subjective_questions;
-
 	//tsv 파일에서 데이터 불러와서 questions[] 배열에 저장
-	read_objective_questions(objective_questions, &num_objective_questions);
-	read_subjective_questions(subjective_questions, &num_subjective_questions);
+	read_objective_questions(objective_questions);
+	read_subjective_questions(subjective_questions);
 
-	// 
+	//히스토리를 저장할 queue 생성
 	struct Queue* queue_objective = create_queue();
 	struct Queue* queue_subjective = create_queue();
 
-
-	// 히스토리를 저장할 배열 선언
-	//int* objective_history = malloc(num_objective_questions * sizeof(int));
-	//int* subjective_history = malloc(num_subjective_questions * sizeof(int));
-
 	read_history(queue_objective, queue_subjective);
 	
-	//만약 첫번째 플레이라면 히스토리를 새로 채워 넣음.
-	//일단은 인덱스 0부터 순서대로 넣지만 나중에 랜덤하게 넣게 수정 필요.
+	//만약 프로그램 첫 실행이라면 히스토리를 새로 채워 넣음.
 	if (queue_objective->front == NULL)
 	{
 		for (int i = 0; i < num_objective_questions; i++) {
@@ -83,9 +65,6 @@ int main()
 		{
 			int solved_questions = 0;
 
-			//틀린 문제를 큐에서 몇번째 다음에 삽입할지 정하기.
-			int interval_failed_questions = 4;
-
 			while (1)
 			{
 				int start = time(NULL);
@@ -101,14 +80,12 @@ int main()
 
 				optionrowchange(objective_questions, id, 4);
 
-				int result_check_answer = CheckAnswer(objective_questions, id);
-
-				if (result_check_answer == 1) {
-					
+		
+				if (CheckAnswer(objective_questions, id) == 1) {
 					enqueue(queue_objective, queue_objective->front->key);
 					dequeue(queue_objective);
 				}
-				else if (result_check_answer == 0) {
+				else {
 					insert_after_x(queue_objective, queue_objective->front->key, interval_failed_questions);
 					dequeue(queue_objective);
 				}
@@ -144,7 +121,7 @@ int main()
 
 			break;
 		case 2:
-			printf("미정");
+			printf("미니게임");
 			break;
 		case 3:
 			printf("옵션");
@@ -163,13 +140,7 @@ int main()
 		default:
 			break;
 		}
-
 		key_pressed = getch();
-
-
-
 	}
-
-
 	return 0;
 }

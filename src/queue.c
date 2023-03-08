@@ -1,5 +1,4 @@
 #include "globals.h"
-#include "queue.h"
 
 // 새로운 노드를 만드는 function
 struct Node* create_node(int k)

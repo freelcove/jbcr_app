@@ -1,11 +1,8 @@
 #include "globals.h"
-#include "questions.h"
-#include"print.h"
 
-void read_objective_questions(ObjectiveQuestion* questions, int* num_objective_questions) {
+void read_objective_questions(ObjectiveQuestion* questions) {
 	FILE* file;
 	char line[MAX_LINE_LENGTH];
-	*num_objective_questions = 0;
 
 	file = fopen("db/db_objective.tsv", "rb");
 	if (file == NULL) {
@@ -13,23 +10,22 @@ void read_objective_questions(ObjectiveQuestion* questions, int* num_objective_q
 		return;
 	}
 
-	while (fgets(line, MAX_LINE_LENGTH, file) && *num_objective_questions < MAX_QUESTIONS) {
+	while (fgets(line, MAX_LINE_LENGTH, file) && num_objective_questions < MAX_QUESTIONS) {
 		sscanf(line, "%d\t%[^\t]\t%[^\t]\t%[^\t]\t%[^\t]\t%[^\t]\t%[^\t]\t%[^\t]\t%[^\n]\n",
-			&questions[*num_objective_questions].id, questions[*num_objective_questions].question,
-			questions[*num_objective_questions].option_1, questions[*num_objective_questions].option_2,
-			questions[*num_objective_questions].option_3, questions[*num_objective_questions].option_4,
-			questions[*num_objective_questions].right_answer, questions[*num_objective_questions].date);
+			&questions[num_objective_questions].id, questions[num_objective_questions].question,
+			questions[num_objective_questions].option_1, questions[num_objective_questions].option_2,
+			questions[num_objective_questions].option_3, questions[num_objective_questions].option_4,
+			questions[num_objective_questions].right_answer, questions[num_objective_questions].date);
 
-		(*num_objective_questions)++;
+		(num_objective_questions)++;
 	}
 
 	fclose(file);
 }
 
-void read_subjective_questions(SubjectiveQuestion* questions, int* num_subjective_questions) {
+void read_subjective_questions(SubjectiveQuestion* questions) {
 	FILE* file;
 	char line[MAX_LINE_LENGTH];
-	*num_subjective_questions = 0;
 
 	file = fopen("db/db_subjective.tsv", "rb");
 	if (file == NULL) {
@@ -37,12 +33,12 @@ void read_subjective_questions(SubjectiveQuestion* questions, int* num_subjectiv
 		return;
 	}
 
-	while (fgets(line, MAX_LINE_LENGTH, file) && *num_subjective_questions < MAX_QUESTIONS) {
+	while (fgets(line, MAX_LINE_LENGTH, file) && num_subjective_questions < MAX_QUESTIONS) {
 		sscanf(line, "%d\t%[^\t]\t%[^\n]\n",
-			&questions[*num_subjective_questions].id, questions[*num_subjective_questions].name,
-			questions[*num_subjective_questions].definition);
+			&questions[num_subjective_questions].id, questions[num_subjective_questions].name,
+			questions[num_subjective_questions].definition);
 
-		(*num_subjective_questions)++;
+		num_subjective_questions++;
 	}
 
 	fclose(file);

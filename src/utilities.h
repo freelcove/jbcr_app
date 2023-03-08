@@ -1,5 +1,4 @@
 #pragma once
-
 #include "globals.h"
 
 #ifndef UTILITIES_H

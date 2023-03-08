@@ -1,7 +1,4 @@
 #include "globals.h"
-#include "interface.h"
-#include "questions.h"
-#include <windows.h>
 
 void ClearScreen()
 {

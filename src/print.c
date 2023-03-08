@@ -1,7 +1,4 @@
 #include "globals.h"
-#include "questions.h"
-#include "print.h"
-#include "interface.h"
 
 #define MAX_LINE_LENGTH 1024
 #define MAX_QUESTIONS 100

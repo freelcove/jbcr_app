@@ -4,8 +4,6 @@
 #ifndef INTERFACE_H
 #define INTERFACE_H
 
-
-
 //콘솔창 깨끗이 빈 화면으로
 void ClearScreen();
 
@@ -23,10 +21,5 @@ void draw_menu();
 
 //타이틀 그리기
 void draw_title();
-
-//문제 그리기
-void draw_question();
-
-void draw_options();
 
 #endif

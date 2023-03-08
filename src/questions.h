@@ -5,7 +5,7 @@
 #define QUESTIONS_H
 
 #define MAX_LINE_LENGTH 1024
-#define MAX_QUESTIONS 100
+#define MAX_QUESTIONS 1000
 
 typedef struct {
     int id;
@@ -24,12 +24,10 @@ typedef struct {
     char definition[MAX_LINE_LENGTH];
 } SubjectiveQuestion;
 
-//틀린 문제의 INDEX를 저장하는 배열선언
 
+void read_objective_questions(ObjectiveQuestion* questions);
 
-void read_objective_questions(ObjectiveQuestion* questions, int* num_objective_questions);
-
-void read_subjective_questions(SubjectiveQuestion* questions, int* num_subjective_questions);
+void read_subjective_questions(SubjectiveQuestion* questions);
 
 //db_history.tsv를 불러오기
 void read_history(int* objective_history, int* subjective_history);
