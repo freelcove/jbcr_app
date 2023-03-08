@@ -114,11 +114,7 @@ int main()
 
 		{
 			int solved_questions = 0;
-			for (int i = 0; i < 20; i++)
-			{
-				insert_after_x(queue_objective, queue_objective->front->key, randnum());
-				dequeue(queue_objective);
-			}
+
 			while (1)
 			{
 				int start = time(NULL);
@@ -134,13 +130,15 @@ int main()
 
 				optionrowchange(objective_questions, id, 4, console);
 
-				if (CheckAnswer(objective_questions, id, console) == 1) {
+				int result_check_answer = CheckAnswer(objective_questions, id, console);
+
+				if (result_check_answer == 1) {
 					
-					enqueue(queue_objective, queue_objective->front->key);
+					//enqueue(queue_objective, queue_objective->front->key);
 					dequeue(queue_objective);
 				}
-				else {
-					insert_after_x(queue_objective, queue_objective->front->key, 4);
+				else if (result_check_answer == 0) {
+					//insert_after_x(queue_objective, queue_objective->front->key, 4);
 					dequeue(queue_objective);
 				}
 
@@ -185,6 +183,8 @@ int main()
 			break;
 		case 4:
 			printf("프로그램 종료");
+
+			//db_history.tsv에 history를 저장
 			write_history(queue_objective, queue_subjective);
 
 			// 동적할당한 메모리 해제

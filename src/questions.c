@@ -85,21 +85,29 @@ void write_history(struct Queue* queue_objective, struct Queue* queue_subjective
 		printf("Failed to open file.\n");
 		return;
 	}
-	struct Node* curr = queue_objective->front;
-	while (curr != NULL) {
-		fprintf(file, "%d\t", curr->key);
-		curr = curr->next;
+
+	struct Node* curr_obj = queue_objective->front;
+	while (curr_obj != NULL) {
+		fprintf(file, "%d", curr_obj->key);
+		if (curr_obj->next != NULL) {
+			fprintf(file, "\t");
+		}
+		curr_obj = curr_obj->next;
 	}
 	fprintf(file, "\n");
 
-	curr = queue_subjective->front;
-	while (curr != NULL) {
-		fprintf(file, "%d\t", curr->key);
-		curr = curr->next;
+	struct Node* curr_subj = queue_subjective->front;
+	while (curr_subj != NULL) {
+		fprintf(file, "%d", curr_subj->key);
+		if (curr_subj->next != NULL) {
+			fprintf(file, "\t");
+		}
+		curr_subj = curr_subj->next;
 	}
 
 	fclose(file);
 }
+
 
 
 static count = 0;     //이 소스 파일에서만 사용할 count변수
