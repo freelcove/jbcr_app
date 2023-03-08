@@ -4,6 +4,9 @@
 #include "print.h"
 #include <conio.h> 
 
+#include <stdio.h>
+#include "convert.h"
+#include "filecontrol.h"
 
 int main()
 {
@@ -140,6 +143,12 @@ int main()
 
 		case 1:
 			printf("주관식 문제 풀기");
+			{
+				convert_to_lowercase();
+
+			}
+
+
 			break;
 		case 2:
 			printf("미정");

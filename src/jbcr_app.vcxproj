@@ -127,23 +127,28 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="convert.c" />
     <ClCompile Include="interface.c" />
-    <ClCompile Include="main(util용).c">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
-    </ClCompile>
     <ClCompile Include="main.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="filecontrol.c" />
     <ClCompile Include="print.c" />
     <ClCompile Include="questions.c" />
-    <ClCompile Include="utilities.c" />
+    <ClCompile Include="utilities.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="convert.h" />
     <ClInclude Include="globals.h" />
     <ClInclude Include="interface.h" />
+    <ClInclude Include="filecontrol.h" />
     <ClInclude Include="print.h" />
     <ClInclude Include="questions.h" />
-    <ClInclude Include="utilities.h" />
+    <ClInclude Include="utilities.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
