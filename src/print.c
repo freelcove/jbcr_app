@@ -174,7 +174,7 @@ void Percentage(int num)
 {
 	int correct = num - faltcount;
 
-	printf("%d문제중 %d문제 맞추었습니다. %d점\n", num, correct, correct * 100 / num);
+	printf("\n\n\n\n\t\t\t%d문제중 %d문제 맞추었습니다.\n\n\t\t\t%d점\n", num, correct, correct * 100 / num);
 }
 
 //줄 바꿔서 출력하기(0:문제, 1:옵션1, 2:옵션2, 3:옵션3, 4:옵션4)
@@ -248,6 +248,7 @@ char backcolor[8][20] = {
 //[0] : 입력한 번호, [1] : 정답 번호, [2] : 0==색 변환X, 1==색 변환O
 int changecolor[3] = { 0,0,0 };
 
+//문자열 길이 맞춰서 줄바꾸기
 void print_change_row(char* sentence)
 {
 	char print_sentence[1024] = { NULL };
@@ -309,6 +310,7 @@ void print_change_row(char* sentence)
 		printf("\t   %s\n", print_sentence);
 	puts("");
 }
+//문제 자동 줄바꿈해서 출력
 void questionrowchange(ObjectiveQuestion* questions, int id)
 {
 	printf("\n\n");
@@ -326,7 +328,7 @@ void questionrowchange(ObjectiveQuestion* questions, int id)
 	print_change_row(&name);
 	printf("\n");
 }
-
+//보기 자동 줄바꿈해서 출력
 void optionrowchange(ObjectiveQuestion* questions, int id, int choice,HANDLE console)
 {
 	char name[1024] = { NULL };

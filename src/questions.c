@@ -161,6 +161,7 @@ void CheckAnswer(ObjectiveQuestion*questions,int id,HANDLE console)
         printf("정답입니다!\n\n");
     }
     else {
+		faltquestions(id);
         printf("오답입니다. \n정답은 %c입니다.\n\n", changedanswer());
     }
 	changecolor[0] -= input - '0';

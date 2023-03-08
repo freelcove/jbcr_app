@@ -107,6 +107,7 @@ int main()
 			*/
 
 		{
+			int solved_questions = 0;
 			while (1)
 			{
 				int start = time(NULL);
@@ -122,7 +123,7 @@ int main()
 				optionrowchange(objective_questions, id, 4, console);
 
 				CheckAnswer(objective_questions,id,console);
-
+				solved_questions++;
 				while (getchar() != '\n');
 				printf("다음 문제로 넘어가시려면 엔터를 누르세요\n종료를 원하시면 x를 누르세요.\n");
 				int swit = 0;
@@ -136,7 +137,11 @@ int main()
 					}
 				}
 				if (swit == 1)
+				{
+					ClearScreen();
+					Percentage(solved_questions);
 					break;
+				}
 				ClearScreen();
 			}
 		}
