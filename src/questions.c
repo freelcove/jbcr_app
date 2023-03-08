@@ -77,40 +77,29 @@ void read_history(struct Queue* queue_objective, struct Queue* queue_subjective)
 	fclose(file);
 }
 
-void write_history(int* objective_history, int* subjective_history, int* num_objective_questions, int* num_subjective_questions) {
+
+void write_history(struct Queue* queue_objective, struct Queue* queue_subjective) {
 	FILE* file;
 	file = fopen("db/db_history.tsv", "w");
 	if (file == NULL) {
 		printf("Failed to open file.\n");
 		return;
 	}
-
-	for (int i = 0; i < *num_objective_questions; i++) {
-		fprintf(file, "%d\t", objective_history[i]);
+	struct Node* curr = queue_objective->front;
+	while (curr != NULL) {
+		fprintf(file, "%d\t", curr->key);
+		curr = curr->next;
 	}
 	fprintf(file, "\n");
 
-	for (int i = 0; i < *num_subjective_questions; i++) {
-		fprintf(file, "%d\t", subjective_history[i]);
+	curr = queue_subjective->front;
+	while (curr != NULL) {
+		fprintf(file, "%d\t", curr->key);
+		curr = curr->next;
 	}
 
 	fclose(file);
 }
-
-void reset_history(int* objective_history, int* subjective_history) {
-	FILE* file;
-	file = fopen("db/db_history.tsv", "w");
-	if (file == NULL) {
-		printf("Failed to open file.\n");
-		return;
-	}
-	fprintf(file, "%d", -1);
-	fprintf(file, "\n");
-	fprintf(file, "%d", -1);
-	fclose(file);
-}
-
-
 
 
 static count = 0;     //이 소스 파일에서만 사용할 count변수

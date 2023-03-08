@@ -185,7 +185,8 @@ int main()
 			break;
 		case 4:
 			printf("프로그램 종료");
-			//write_history(objective_history, subjective_history, &num_objective_questions, &num_subjective_questions);
+			write_history(queue_objective, queue_subjective);
+
 			// 동적할당한 메모리 해제
 			free(objective_questions);
 			free(subjective_questions);

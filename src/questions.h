@@ -35,9 +35,7 @@ void read_subjective_questions(SubjectiveQuestion* questions, int* num_subjectiv
 void read_history(int* objective_history, int* subjective_history);
 
 //현재 히스토리 값들을 db_history.tsv에 저장.
-void write_history(int* objective_history, int* subjective_history, int* num_objective_questions, int* num_subjective_questions);
+void write_history(struct Queue* queue_objective, struct Queue* queue_subjective);
 
-//히스토리를 초기값으로 돌림 (초기값 == 각 행에 -1)
-void reset_history(int* objective_history, int* subjective_history);
 
 #endif
