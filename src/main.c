@@ -134,11 +134,11 @@ int main()
 
 				if (result_check_answer == 1) {
 					
-					//enqueue(queue_objective, queue_objective->front->key);
+					enqueue(queue_objective, queue_objective->front->key);
 					dequeue(queue_objective);
 				}
 				else if (result_check_answer == 0) {
-					//insert_after_x(queue_objective, queue_objective->front->key, 4);
+					insert_after_x(queue_objective, queue_objective->front->key, 4);
 					dequeue(queue_objective);
 				}
 
