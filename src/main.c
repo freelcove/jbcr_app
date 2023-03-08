@@ -114,6 +114,11 @@ int main()
 
 		{
 			int solved_questions = 0;
+			for (int i = 0; i < 20; i++)
+			{
+				insert_after_x(queue_objective, queue_objective->front->key, randnum());
+				dequeue(queue_objective);
+			}
 			while (1)
 			{
 				int start = time(NULL);
