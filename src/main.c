@@ -115,6 +115,9 @@ int main()
 		{
 			int solved_questions = 0;
 
+			//틀린 문제를 큐에서 몇번째 다음에 삽입할지 정하기.
+			int interval_failed_questions = 4;
+
 			while (1)
 			{
 				int start = time(NULL);
@@ -138,7 +141,7 @@ int main()
 					dequeue(queue_objective);
 				}
 				else if (result_check_answer == 0) {
-					insert_after_x(queue_objective, queue_objective->front->key, 4);
+					insert_after_x(queue_objective, queue_objective->front->key, interval_failed_questions);
 					dequeue(queue_objective);
 				}
 
@@ -168,10 +171,7 @@ int main()
 
 		case 1:
 			printf("주관식 문제 풀기");
-			{
-				convert_to_lowercase();
 
-			}
 
 
 			break;
