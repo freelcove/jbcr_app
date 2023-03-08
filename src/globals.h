@@ -15,11 +15,13 @@
 #define CONSOLE_WIDTH 80
 #define CONSOLE_HEIGHT 30
 
+void init_globals();
+
 extern COORD cursorPosition;
 
-extern int current_menu_item;
-
 extern HANDLE console;
+
+extern int current_menu_item;
 
 extern int num_objective_questions;
 
@@ -28,5 +30,7 @@ extern int num_subjective_questions;
 extern char key_pressed;
 
 extern ObjectiveQuestion* objective_questions;
+
+
 
 #endif // GLOBALS_H

@@ -16,10 +16,10 @@ void SetCursorVisibility(int visible);
 void set_console_font_size(int size);
 
 //콘솔 화면 Initialization.
-void InitScreen(HANDLE console);
+void InitScreen();
 
 //draw 메인 메뉴 화면 
-void draw_menu(HANDLE console, int* current_menu_item);
+void draw_menu();
 
 //타이틀 그리기
 void draw_title();

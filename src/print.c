@@ -354,7 +354,7 @@ void questionrowchange(ObjectiveQuestion* questions, int id)
 	printf("\n");
 }
 //보기 자동 줄바꿈해서 출력
-void optionrowchange(ObjectiveQuestion* questions, int id, int choice,HANDLE console)
+void optionrowchange(ObjectiveQuestion* questions, int id, int choice)
 {
 	char name[1024] = { NULL };
 	char addChar[4][10] = {{"① "},{"② "},{"③ "},{"④ "} };

@@ -12,14 +12,11 @@ extern int rand_id[100];
 
 int main()
 {
-
-	COORD cursorPosition = { 0, 0 };
-
-	//콘솔 관련 함수 사용에 필요
-	HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
+	//전역 변수 Initialization
+	init_globals();
 
 	//콘솔창 Initialization.
-	InitScreen(console);
+	InitScreen();
 
 	//db를 저장할 questions[] 선언
 	ObjectiveQuestion* objective_questions = malloc(sizeof(ObjectiveQuestion) * MAX_QUESTIONS);
@@ -60,19 +57,14 @@ int main()
 		}
 	}
 
-	int current_menu_item = 0;
-
-	char key_pressed = ' ';
-
-
 	// 문제 출제 및 사용자 입력 받기
 	while (1)
 	{
 		ClearScreen();
-		draw_title(console);
+		draw_title();
 
 		while (1) {
-			draw_menu(console, &current_menu_item, cursorPosition);
+			draw_menu();
 			key_pressed = getch();
 			if (key_pressed == 'w' || key_pressed == 'W' || key_pressed == 72) {
 				current_menu_item = (current_menu_item - 1 + 5) % 5;
@@ -88,30 +80,6 @@ int main()
 		switch (current_menu_item)
 		{
 		case 0:
-
-			//사용자 입력 받기
-
-			/*
-
-			do while() 써서 key_pressed = getch(); 한번은 먼저 입력 받음.
-			그리고 while문에서 1~4 또는 종료 키가 나오기 전까지 아무 반응 하지 않기.
-
-			if (key_pressed == 정답){
-			정답임을 표시
-			}
-
-			else (정답이 아니면){
-			오답과 정답 표시
-			}
-
-			사용자 맞춤 학습 데이터 추가 함수 call.
-
-			key_pressed = getch();
-			사용자 입력 받아서 추가 행동 실행: 일단은 다음 문제로 넘어가기 하나만 구현
-
-
-			*/
-
 		{
 			int solved_questions = 0;
 
@@ -125,15 +93,15 @@ int main()
 
 				questionrowchange(objective_questions, id);
 
-				optionrowchange(objective_questions, id, 1, console);
+				optionrowchange(objective_questions, id, 1);
 
-				optionrowchange(objective_questions, id, 2, console);
+				optionrowchange(objective_questions, id, 2);
 
-				optionrowchange(objective_questions, id, 3, console);
+				optionrowchange(objective_questions, id, 3);
 
-				optionrowchange(objective_questions, id, 4, console);
+				optionrowchange(objective_questions, id, 4);
 
-				int result_check_answer = CheckAnswer(objective_questions, id, console);
+				int result_check_answer = CheckAnswer(objective_questions, id);
 
 				if (result_check_answer == 1) {
 					
