@@ -10,6 +10,7 @@
 #include <mbstring.h>
 #include <time.h>
 #include "questions.h"
+#include "queue.h"
 
 #define CONSOLE_WIDTH 80
 #define CONSOLE_HEIGHT 30

@@ -31,25 +31,30 @@ int main()
 	read_objective_questions(objective_questions, &num_objective_questions);
 	read_subjective_questions(subjective_questions, &num_subjective_questions);
 
-	// 히스토리를 저장할 배열 선언
-	int* objective_history = malloc(num_objective_questions * sizeof(int));
-	int* subjective_history = malloc(num_subjective_questions * sizeof(int));
+	// 
+	struct Queue* queue_objective = create_queue();
+	struct Queue* queue_subjective = create_queue();
 
-	read_history(objective_history, subjective_history);
+
+	// 히스토리를 저장할 배열 선언
+	//int* objective_history = malloc(num_objective_questions * sizeof(int));
+	//int* subjective_history = malloc(num_subjective_questions * sizeof(int));
+
+	read_history(queue_objective, queue_subjective);
 	
 	//만약 첫번째 플레이라면 히스토리를 새로 채워 넣음.
 	//일단은 인덱스 0부터 순서대로 넣지만 나중에 랜덤하게 넣게 수정 필요.
-	if (objective_history[0] == -1) //history 초기상태에는 값이 -1 하나만 있음.
+	if (queue_objective->front == NULL)
 	{
 		for (int i = 0; i < num_objective_questions; i++) {
-			objective_history[i] = i;
+			enqueue(queue_objective, i);
 		}
 	}
 
-	if (subjective_history[0] == -1) 
+	if (queue_subjective->front == NULL)
 	{
 		for (int i = 0; i < num_subjective_questions; i++) {
-			subjective_history[i] = i;
+			enqueue(queue_subjective, i);
 		}
 	}
 
@@ -62,7 +67,6 @@ int main()
 	while (1)
 	{
 		ClearScreen();
-
 		draw_title(console);
 
 		while (1) {
@@ -111,7 +115,8 @@ int main()
 			while (1)
 			{
 				int start = time(NULL);
-				int id = randnum();
+				int id = queue_objective->front->key;
+
 				questionrowchange(objective_questions, id);
 
 				optionrowchange(objective_questions, id, 1, console);
@@ -122,7 +127,16 @@ int main()
 
 				optionrowchange(objective_questions, id, 4, console);
 
-				CheckAnswer(objective_questions,id,console);
+				if (CheckAnswer(objective_questions, id, console) == 1) {
+					
+					enqueue(queue_objective, queue_objective->front->key);
+					dequeue(queue_objective);
+				}
+				else {
+					insert_after_x(queue_objective, queue_objective->front->key, 4);
+					dequeue(queue_objective);
+				}
+
 				solved_questions++;
 				while (getchar() != '\n');
 				printf("다음 문제로 넘어가시려면 엔터를 누르세요\n종료를 원하시면 x를 누르세요.\n");
@@ -164,12 +178,10 @@ int main()
 			break;
 		case 4:
 			printf("프로그램 종료");
-			write_history(objective_history, subjective_history, &num_objective_questions, &num_subjective_questions);
+			//write_history(objective_history, subjective_history, &num_objective_questions, &num_subjective_questions);
 			// 동적할당한 메모리 해제
 			free(objective_questions);
 			free(subjective_questions);
-			free(objective_history);
-			free(subjective_history);
 
 			return 0;
 		default:

@@ -48,7 +48,7 @@ void read_subjective_questions(SubjectiveQuestion* questions, int* num_subjectiv
 	fclose(file);
 }
 
-void read_history(int* objective_history, int* subjective_history) {
+void read_history(struct Queue* queue_objective, struct Queue* queue_subjective) {
 	// 첫째 행 객관식 문제 큐 배열
 	// 둘째 행 주관식 문제 큐 배열
 	FILE* file;
@@ -63,16 +63,14 @@ void read_history(int* objective_history, int* subjective_history) {
 	int i = 0;
 	while (fgets(line, sizeof(line), file) != NULL) {
 		char* token = strtok(line, "\t");
-		int j = 0;
 		while (token != NULL) {
 			if (i == 0) {
-				objective_history[j] = atoi(token);
+				 enqueue(queue_objective, atoi(token));
 			}
 			else if (i == 1) {
-				subjective_history[j] = atoi(token);
+				enqueue(queue_subjective, atoi(token));
 			}
 			token = strtok(NULL, "\t");
-			j++;
 		}
 		i++;
 	}
@@ -133,8 +131,9 @@ int is_valid_input(char input) {
 	return input == '1' || input == '2' || input == '3' || input == '4';
 }
 extern int changecolor[3];
-void CheckAnswer(ObjectiveQuestion*questions,int id,HANDLE console)
+int CheckAnswer(ObjectiveQuestion*questions,int id,HANDLE console)
 {
+	int result;
     char input;
 	printf("\n\n");
     //사용자 입력 받기
@@ -159,12 +158,16 @@ void CheckAnswer(ObjectiveQuestion*questions,int id,HANDLE console)
 	printf("\n\n");
     if (input == changedanswer()) {
         printf("정답입니다!\n\n");
+		result = 1;
     }
     else {
 		faltquestions(id);
         printf("오답입니다. \n정답은 %c입니다.\n\n", changedanswer());
+		result = 0;
     }
 	changecolor[0] -= input - '0';
 	changecolor[1] -= changedanswer() - '0';
 	changecolor[2] -= 1;
+	
+	return result;
 }
