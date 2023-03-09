@@ -1,9 +1,9 @@
 #include "globals.h"
 
 
-
 int main()
 {
+	
 
 	//전역 변수 Initialization
 	init_globals();
@@ -51,11 +51,12 @@ int main()
 	// 코멘트 입력 테스트 (추후 삭제)
 	enqueue_comment(comment_list, 1, "test");
 
-	// 문제 출제 및 사용자 입력 받기
+
 	while (1)
 	{
 		ClearScreen();
 		draw_title();
+
 
 
 		while (1) {
@@ -74,6 +75,8 @@ int main()
 		}
 		switch (current_menu_item)
 		{
+
+			// 메뉴 "객관식 문제"
 		case 0:
 		{
 			int solved_questions = 0;
@@ -127,18 +130,99 @@ int main()
 		}
 		break;
 
+
+		// 메뉴 "주관식 문제"
 		case 1:
 			printf("주관식 문제");
 
 
 
 			break;
+
+
+			// 메뉴 "사용자"
 		case 2:
-			printf("사용자 정보");
+
+
+			draw_title();
+			current_option_item = 0;
+			while (1) {
+				draw_user_options();
+				key_pressed = getch();
+				if (key_pressed == 'w' || key_pressed == 'W' || key_pressed == 72) {
+					current_option_item = (current_option_item - 1 + 5) % 5;
+				}
+
+				else if (key_pressed == 's' || key_pressed == 'S' || key_pressed == 80) {
+					current_option_item = (current_option_item + 1) % 5;
+				}
+
+				else if (key_pressed == 'a' || key_pressed == 'A' || key_pressed == 37) {
+
+
+				}
+				else if (key_pressed == 'd' || key_pressed == 'D' || key_pressed == 39) {
+				}
+
+				//사용자 정보
+				else if (key_pressed == '\r' && current_option_item == 1) {
+					ClearScreen();
+					draw_title();
+					draw_user_info();
+					getch();
+					ClearScreen();
+					draw_title();
+				}
+				//이름 변경
+				else if (key_pressed == '\r' && current_option_item == 2) {
+					ClearScreen();
+					draw_title();
+					cursorPosition.X = 26;
+					cursorPosition.Y = 16;
+					SetConsoleCursorPosition(console, cursorPosition);
+					printf("새로운 이름을 입력하세요");
+					
+					cursorPosition.X = 26;
+					cursorPosition.Y = 18;
+					SetConsoleCursorPosition(console, cursorPosition);
+					printf("이름: ");
+					char new_name[30];
+					scanf("%s", &new_name);
+					
+					strcpy(user_name, new_name);
+
+					cursorPosition.X = 26;
+					cursorPosition.Y = 20;
+					SetConsoleCursorPosition(console, cursorPosition);
+					printf("환영합니다 %s님!", user_name);
+					getch();
+					ClearScreen();
+					draw_title();
+				}
+
+				//기록 초기화
+				else if (key_pressed == '\r' && current_option_item == 3) {
+
+
+				
+				}
+
+				else if (key_pressed == '\r' && current_option_item == 4) {
+
+					break;
+				}
+
+			}
+
+
+
+
+
+
 			break;
 
 
-
+			// 메뉴 "옵션"
 		case 3:
 			draw_title();
 			while (1) {
@@ -206,7 +290,7 @@ int main()
 
 				else if (key_pressed == '\r' && current_option_item == 3) {
 					interval_failed_questions = 10;
-					font_size = 25;				
+					font_size = 25;
 					color_mode = 0;
 					InitScreen();
 					ClearScreen();

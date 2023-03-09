@@ -140,6 +140,7 @@
     <ClCompile Include="print.c" />
     <ClCompile Include="questions.c" />
     <ClCompile Include="queue.c" />
+    <ClCompile Include="user.c" />
     <ClCompile Include="utilities.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClCompile>
@@ -153,6 +154,7 @@
     <ClInclude Include="print.h" />
     <ClInclude Include="questions.h" />
     <ClInclude Include="queue.h" />
+    <ClInclude Include="user.h" />
     <ClInclude Include="utilities.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClInclude>

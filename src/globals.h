@@ -20,11 +20,16 @@
 #include "comment.h"
 #include "utilities.h"
 #include "options.h"
+#include "user.h"
 
 #define CONSOLE_WIDTH 80
 #define CONSOLE_HEIGHT 30
 
 void init_globals();
+
+extern int app_started;
+
+extern char user_name[50];
 
 extern int font_size;
 
@@ -56,6 +61,16 @@ extern int color_mode;
 
 extern int color_mode_preset[];
 
+extern int best_streak;
+extern int current_streak;
+
+extern int total_tried_objective;
+
+extern int total_right_objective;
+
+extern int total_tried_subjective;
+
+extern int total_right_subjective;
 
 
 

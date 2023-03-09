@@ -66,7 +66,13 @@ void draw_title()
 {
 	printf("\n");
 	printf("\n");
-	printf("\n");
+	if (app_started == 0) {
+		printf("                               안녕하세요 %s님!\n", user_name);
+		app_started = 1;
+	}
+	else {
+		printf("\n");
+	}
 	printf("\n");
 	printf("              _________  _____ ______       _             _       \n");
 	printf("             |_  | ___ \\/  __ \\| ___ \\     | |           | |      \n");
@@ -78,6 +84,7 @@ void draw_title()
 	printf("                                                            |___/ \n");
 	printf("\n");
 	printf("                           - 정보처리기사 공부 App -\n");
+
 }
 
 void draw_menu() {
