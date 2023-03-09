@@ -49,7 +49,7 @@ void write_txt_comments(struct Comment_list* comment_list) {
 	FILE* file;
 	char* current_time_str = get_current_time();
 	char file_name[50];
-	sprintf(file_name, "comments %s.txt", current_time_str);
+	sprintf(file_name, "comments/comments %s.txt", current_time_str);
 	file = fopen(file_name, "a+");
 	if (file == NULL) {
 		printf("Failed to open file.\n");
