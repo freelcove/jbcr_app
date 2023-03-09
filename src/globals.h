@@ -17,6 +17,8 @@
 #include "print.h"
 #include "convert.h"
 #include "filecontrol.h"
+#include "comment.h"
+#include "utilities.h"
 
 #define CONSOLE_WIDTH 80
 #define CONSOLE_HEIGHT 30

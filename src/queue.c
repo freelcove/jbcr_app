@@ -64,7 +64,6 @@ void insert_after_x(struct Queue* q, int key, int x) {
 	while (curr != NULL) {
 
 		// x번째 노드에 접근할 때까지 while문에서 "curr = 지금 노드가 가르키는 다음 노드"를 반복
-		// 그리고 만약 count가 x면, 즉 curr가 x번째 노드가 
 		if (count == x) {
 			temp->next = curr->next;
 			curr->next = temp;

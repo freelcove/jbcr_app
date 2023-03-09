@@ -4,6 +4,7 @@
 
 int main()
 {
+
 	//전역 변수 Initialization
 	init_globals();
 
@@ -39,11 +40,23 @@ int main()
 		}
 	}
 
+	// 코멘트 리스트 생성
+	struct CommentList* comment_list = create_comment_list();
+
+
+	// 코멘트 입력 하는 방법:
+	// 2번째 parameter에 문제 id, 3번째 parameter에 코멘트를 넣으면 됨
+	// enqueue_comment(comment_list, 문제 id, 코멘트);
+
+	// 코멘트 입력 테스트 (추후 삭제)
+	enqueue_comment(comment_list, 1, "test");
+
 	// 문제 출제 및 사용자 입력 받기
 	while (1)
 	{
 		ClearScreen();
 		draw_title();
+
 
 		while (1) {
 			draw_menu();
@@ -131,6 +144,9 @@ int main()
 
 			//db_history.tsv에 history를 저장
 			write_history(queue_objective, queue_subjective);
+
+			//코멘트를 txt 파일로 출력
+			write_txt_comments(comment_list);
 
 			// 동적할당한 메모리 해제
 			free(objective_questions);

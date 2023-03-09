@@ -158,39 +158,9 @@ int randnum()
 	return rand() % 29;
 }
 
-//틀린 문제 재출력
 extern repeat[];
 extern faltcount;
-void repeatquestions(ObjectiveQuestion* questions, int bool)
-{
-	if (bool == 1)
-	{
-		count -= count - 1;
-		int i = 0;
-		int id;
-		while (i < faltcount)
-		{
-			id = repeat[i];
-			printquestion(questions, id);
-			printoptions(questions, id);
-			i++;
-			CheckAnswer(id);
-			int a = time(NULL);
-			while (time(NULL) - a < 5);
-			ClearScreen();
-		}
-	}
-}
 
-int bool()
-{
-	printf("틀린 문제를 다시 풀어보시겠습니까?(Yes : 1, No : 0)\n");
-	int a;
-	while (getchar() != '\n');
-	scanf("%d", &a);
-	ClearScreen();
-	return a;
-}
 
 void Percentage(int num)
 {

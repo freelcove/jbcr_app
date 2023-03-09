@@ -5,7 +5,8 @@
 #define UTILITIES_H
 
 
-void convert_to_lowercase();
+
+char* get_current_time();
 
 #endif
 
