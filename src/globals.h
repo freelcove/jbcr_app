@@ -19,11 +19,14 @@
 #include "filecontrol.h"
 #include "comment.h"
 #include "utilities.h"
+#include "options.h"
 
 #define CONSOLE_WIDTH 80
 #define CONSOLE_HEIGHT 30
 
 void init_globals();
+
+extern int font_size;
 
 //커서 위치 관련
 extern COORD cursorPosition;
@@ -33,6 +36,7 @@ extern HANDLE console;
 
 //메인 메뉴에서 현재 메뉴 아이템
 extern int current_menu_item;
+extern int current_option_item;
 
 //객관식 문제 개수
 extern int num_objective_questions;
@@ -47,5 +51,12 @@ extern char key_pressed;
 extern int interval_failed_questions;
 
 extern int rand_id[100];
+
+extern int color_mode;
+
+extern int color_mode_preset[];
+
+
+
 
 #endif // GLOBALS_H

@@ -8,7 +8,7 @@
 struct Comment {
 	int id;
 	int mode;
-	char text[100];
+	char text[256];
 	struct Comment* next;
 };
 

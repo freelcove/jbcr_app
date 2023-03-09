@@ -107,6 +107,7 @@ void write_history(struct Queue* queue_objective, struct Queue* queue_subjective
 
 
 static count = 0;     //이 소스 파일에서만 사용할 count변수
+
 //틀린 문제의 INDEX 저장
 int repeat[MAX_QUESTIONS] = { -1 };
 int faltcount = 0;

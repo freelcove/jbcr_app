@@ -24,7 +24,7 @@ int main()
 	struct Queue* queue_subjective = create_queue();
 
 	read_history(queue_objective, queue_subjective);
-	
+
 	//만약 프로그램 첫 실행이라면 히스토리를 새로 채워 넣음.
 	if (queue_objective->front == NULL)
 	{
@@ -93,7 +93,7 @@ int main()
 
 				optionrowchange(objective_questions, id, 4);
 
-		
+
 				if (CheckAnswer(objective_questions, id) == 1) {
 					enqueue(queue_objective, queue_objective->front->key);
 					dequeue(queue_objective);
@@ -128,16 +128,100 @@ int main()
 		break;
 
 		case 1:
-			printf("주관식 문제 풀기");
+			printf("주관식 문제");
 
 
 
 			break;
 		case 2:
-			printf("미니게임");
+			printf("사용자 정보");
 			break;
+
+
+
 		case 3:
-			printf("옵션");
+			draw_title();
+			while (1) {
+				draw_options();
+				key_pressed = getch();
+				if (key_pressed == 'w' || key_pressed == 'W' || key_pressed == 72) {
+					current_option_item = (current_option_item - 1 + 5) % 5;
+				}
+				else if (key_pressed == 's' || key_pressed == 'S' || key_pressed == 80) {
+					current_option_item = (current_option_item + 1) % 5;
+				}
+
+				else if (key_pressed == 'a' || key_pressed == 'A' || key_pressed == 37) {
+
+					switch (current_option_item) {
+					case 0:
+						if (interval_failed_questions > 1) {
+							interval_failed_questions--;
+						}
+						break;
+					case 1:
+						if (font_size > 1) {
+							font_size--;
+							set_console_font_size(font_size);
+						}
+						break;
+					case 2:
+						if (color_mode > 0) {
+							color_mode--;
+							set_color_theme(color_mode);
+							ClearScreen();
+							draw_title();
+							draw_options();
+						}
+						break;
+					}
+
+				}
+				else if (key_pressed == 'd' || key_pressed == 'D' || key_pressed == 39) {
+					switch (current_option_item) {
+					case 0:
+						if (interval_failed_questions < 50) {
+							interval_failed_questions++;
+						}
+						break;
+					case 1:
+						if (font_size < 50) {
+							font_size++;
+							set_console_font_size(font_size);
+						}
+						break;
+					case 2:
+						if (color_mode < 3)
+						{
+							color_mode++;
+							set_color_theme(color_mode);
+							ClearScreen();
+							draw_title();
+							draw_options();
+						}
+						break;
+					}
+
+				}
+
+				else if (key_pressed == '\r' && current_option_item == 3) {
+					interval_failed_questions = 10;
+					font_size = 25;				
+					color_mode = 0;
+					InitScreen();
+					ClearScreen();
+					draw_title();
+					draw_options();
+
+				}
+
+				else if (key_pressed == '\r' && current_option_item == 4) {
+
+					break;
+				}
+
+			}
+
 			break;
 		case 4:
 			printf("프로그램 종료");
@@ -156,7 +240,6 @@ int main()
 		default:
 			break;
 		}
-		key_pressed = getch();
 	}
 	return 0;
 }

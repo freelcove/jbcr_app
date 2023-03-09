@@ -22,21 +22,44 @@ void set_console_font_size(int size)
 	SetCurrentConsoleFontEx(console, FALSE, &font_info);
 }
 
+void fit_console_screen_buffer_size() {
+	CONSOLE_SCREEN_BUFFER_INFO csbi;
+	GetConsoleScreenBufferInfo(console, &csbi);
+
+	COORD new_size = {
+		csbi.srWindow.Right - csbi.srWindow.Left + 1,
+		csbi.srWindow.Bottom - csbi.srWindow.Top + 1
+	};
+	SetConsoleScreenBufferSize(console, new_size);
+}
+
+
+void set_color_theme(int color_mode) {
+
+	SetConsoleTextAttribute(console, color_mode_preset[color_mode]);
+
+}
+
+
 void InitScreen() {
-	set_console_font_size(25);
+	//콘솔 창 크기 바꾸기	
+	SMALL_RECT windowSize = { 0, 0, 79, 29 };	// {, , 넓이(80열), 높이 (30행)}
+	SetConsoleWindowInfo(console, TRUE, &windowSize);
+
+	set_console_font_size(font_size);
+
+	fit_console_screen_buffer_size();
 
 	SetCursorVisibility(0);
 
-	//콘솔 창 컬러 바꾸기 (흰 배경 검은 글자)
-	system("COLOR F0");
+	//콘솔 창 컬러 바꾸기
+	set_color_theme(color_mode);
 
 	//콘솔 인코딩 utf_8로 설정
 	SetConsoleOutputCP(CP_UTF8);
 	SetConsoleCP(CP_UTF8);
 
-	//콘솔 창 크기 바꾸기	
-	SMALL_RECT windowSize = { 0, 0, 79, 29 };	// {, , 넓이(80열), 높이 (30행)}
-	SetConsoleWindowInfo(console, TRUE, &windowSize);
+
 }
 
 void draw_title()
@@ -45,7 +68,6 @@ void draw_title()
 	printf("\n");
 	printf("\n");
 	printf("\n");
-	SetConsoleTextAttribute(console, 250);
 	printf("              _________  _____ ______       _             _       \n");
 	printf("             |_  | ___ \\/  __ \\| ___ \\     | |           | |      \n");
 	printf("               | | |_/ /| /  \\/| |_/ /  ___| |_ _   _  __| |_   _ \n");
@@ -55,15 +77,14 @@ void draw_title()
 	printf("                                                             __/ |\n");
 	printf("                                                            |___/ \n");
 	printf("\n");
-	SetConsoleTextAttribute(console, 240);
 	printf("                           - 정보처리기사 공부 App -\n");
 }
 
 void draw_menu() {
 
 	const char* menu_items[] = { "1. 객관식 문제",
-								 "2. 주관식 문제",
-								 "3. 미니게임",
+								 "2. 주관식 풀기",
+								 "3. 사용자",
 								 "4. 옵션",
 								 "5. 종료" };
 

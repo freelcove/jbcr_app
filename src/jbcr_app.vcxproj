@@ -136,6 +136,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="filecontrol.c" />
+    <ClCompile Include="options.c" />
     <ClCompile Include="print.c" />
     <ClCompile Include="questions.c" />
     <ClCompile Include="queue.c" />
@@ -148,6 +149,7 @@
     <ClInclude Include="globals.h" />
     <ClInclude Include="interface.h" />
     <ClInclude Include="filecontrol.h" />
+    <ClInclude Include="options.h" />
     <ClInclude Include="print.h" />
     <ClInclude Include="questions.h" />
     <ClInclude Include="queue.h" />

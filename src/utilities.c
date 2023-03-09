@@ -1,6 +1,6 @@
 #include "utilities.h"
 
-
+// 현재 시간 불러와서 문자열로 return
 char* get_current_time() {
     time_t now;
     struct tm* timeinfo;
