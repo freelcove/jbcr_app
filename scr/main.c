@@ -100,6 +100,7 @@ int main()
 				solved_questions++;
 				while (getchar() != '\n');
 				printf("다음 문제로 넘어가시려면 엔터를 누르세요\n종료를 원하시면 x를 누르세요.\n");
+				current_menu_item = 0;
 				int swit = 0;
 				while (1)
 				{
