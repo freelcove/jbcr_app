@@ -85,19 +85,10 @@ int main()
 			{
 				int start = time(NULL);
 				int id = queue_objective->front->key;
-
-				questionrowchange(objective_questions, id);
-
-				optionrowchange(objective_questions, id, 1);
-
-				optionrowchange(objective_questions, id, 2);
-
-				optionrowchange(objective_questions, id, 3);
-
-				optionrowchange(objective_questions, id, 4);
-
-
-				if (CheckAnswer(objective_questions, id) == 1) {
+				int num;
+				optionchange(objective_questions, id);
+				num = select_by_arrow(objective_questions, id);
+				if (num == 1) {
 					enqueue(queue_objective, queue_objective->front->key);
 					dequeue(queue_objective);
 				}

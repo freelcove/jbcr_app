@@ -6,6 +6,7 @@
 static int count = 1;
 char options[4][MAX_LINE_LENGTH];
 static int maxlen = 0;
+static int count_change_row = 0;
 
 
 //보기 중 가장 긴 길이 저장
@@ -181,7 +182,7 @@ void rowchange(ObjectiveQuestion*questions,int id,int choice)
 	int firstcount = 1;
 	//출력할 내용 선택
 	optionchange(questions, id);
-	printf("\n\n");
+
 	for (int i = 0; i < 4; i++)
 	{
 		name[i] = addChar[i];
@@ -243,6 +244,7 @@ int changecolor[3] = { 0,0,0 };
 //문자열 길이 맞춰서 줄바꾸기
 void print_change_row(char* sentence)
 {
+	count_change_row = 2;
 	char print_sentence[1024] = { NULL };
 	int widlen = 70;
 	char temp1[1024] = { NULL };
@@ -295,13 +297,14 @@ void print_change_row(char* sentence)
 		nextrow = widlen;
 		lengthname = 0;
 		dellen = 0;
+		count_change_row++;
 	}
 	if (firstcount)
 		printf("\t%s\n", print_sentence);
 	else
 		printf("\t   %s\n", print_sentence);
-	puts("");
 }
+
 //문제 자동 줄바꿈해서 출력
 void questionrowchange(ObjectiveQuestion* questions, int id)
 {
@@ -320,25 +323,34 @@ void questionrowchange(ObjectiveQuestion* questions, int id)
 	print_change_row(&name);
 	printf("\n");
 }
-//보기 자동 줄바꿈해서 출력
-void optionrowchange(ObjectiveQuestion* questions, int id, int choice)
+
+//입력값에 따른 출력 색 변경
+int select_color(int choice)
 {
-	char name[1024] = { NULL };
-	char addChar[4][10] = {{"① "},{"② "},{"③ "},{"④ "} };
-	int mycolor=240;
+	int mycolor = 240;
 	//색 선택
-	if (changecolor[2] == 1){
+	if (changecolor[2] == 1) {
 		if (changecolor[0] == changecolor[1] && changecolor[0] == choice)
 			mycolor = 242;
 		else if (changecolor[0] != changecolor[1] && changecolor[0] == choice)
 			mycolor = 252;
 		else if (changecolor[0] != changecolor[1] && changecolor[1] == choice)
-			mycolor = 249;
+			mycolor = 242;
 	}
-	else{
+	else {
 		mycolor = 240;
 	}
+	return mycolor;
+}
+
+//보기 자동 줄바꿈해서 출력
+void optionrowchange(ObjectiveQuestion* questions, int id, int choice)
+{
+	char name[1024] = { NULL };
+	char addChar[4][10] = {{"① "},{"② "},{"③ "},{"④ "} };
+	int mycolor=select_color(choice);
 	SetConsoleTextAttribute(console, mycolor);
+
 	//출력할 내용 선택
 	for (int i = 0; i < 4; i++)
 	{
@@ -347,4 +359,79 @@ void optionrowchange(ObjectiveQuestion* questions, int id, int choice)
 	strcpy(name + strlen(name), options[choice-1]);
 	print_change_row(&name);
 	SetConsoleTextAttribute(console, 240);
+	puts("");
+}
+void print_row_change(ObjectiveQuestion* questions, int id, int choice)
+{
+
+	char name[1024] = { NULL };
+	char addChar[5][10] = { {"Q. "}, {"① "},{"② "},{"③ "},{"④ "} };
+	int mycolor = select_color(choice);
+	SetConsoleTextAttribute(console, mycolor);
+
+	//출력할 내용 선택
+	for (int i = 0; i < 5; i++)
+	{
+		name[i] = addChar[choice][i];
+	}
+	if(choice==0)
+		strcpy(name + strlen(name), questions[id].question);
+	else
+		strcpy(name + strlen(name), options[choice-1]);
+	print_change_row(&name);
+	SetConsoleTextAttribute(console, 240);
+	puts("");
+}
+
+void option_select(ObjectiveQuestion*questions,int id)
+{
+	cursorPosition.X = 2;
+	cursorPosition.Y = 4;
+	SetConsoleCursorPosition(console, cursorPosition);
+	for (int i = 0; i < 4; i++) {
+		if (i == 0)
+		{
+			print_row_change(questions, id, 0);
+			cursorPosition.Y += count_change_row;
+		}
+		SetConsoleCursorPosition(console, cursorPosition);
+		printf("%s ", ((current_menu_item) == i) ? "▶" : " ");
+		print_row_change(questions,id,i+1);
+		cursorPosition.Y += count_change_row;
+	}
+}
+
+void select_by_arrow(ObjectiveQuestion* questions, int id)
+{
+	int num;
+	while (1) {
+		option_select(questions, id);
+		printf("\n\n정답을 선택하세요(1~4): \n");
+		key_pressed = getch();
+		if (key_pressed == 'w' || key_pressed == 'W' || key_pressed == 72) {
+			current_menu_item = (current_menu_item + 3) % 4;
+		}
+		else if (key_pressed == 's' || key_pressed == 'S' || key_pressed == 80) {
+			current_menu_item = (current_menu_item + 1) % 4;
+		}
+		else if (key_pressed == '\r') {
+			ClearScreen();
+			break;
+		}
+		else if (key_pressed >= 1 && key_pressed <= 4) {
+			current_menu_item = key_pressed - 1;
+			ClearScreen();
+			break;
+		}
+	}
+	changecolor[0] += current_menu_item%4 +1;
+	changecolor[1] += changedanswer() - '0';
+	changecolor[2] += 1;
+	option_select(questions, id);
+	num= check_my_answer();
+	changecolor[0] -= current_menu_item%4 +1;
+	changecolor[1] -= changedanswer() - '0';
+	changecolor[2] -= 1;
+	return num;
+
 }

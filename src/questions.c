@@ -107,7 +107,6 @@ void write_history(struct Queue* queue_objective, struct Queue* queue_subjective
 
 
 static count = 0;     //이 소스 파일에서만 사용할 count변수
-
 //틀린 문제의 INDEX 저장
 int repeat[MAX_QUESTIONS] = { -1 };
 int faltcount = 0;
@@ -132,8 +131,7 @@ int CheckAnswer(ObjectiveQuestion*questions,int id,HANDLE console)
 	printf("\n\n");
     //사용자 입력 받기
     printf("답을 입력하세요(1~4): \n");
-    scanf(" %c", &input);
-
+	scanf(" %c", &input);
     // 입력값이 유효한지 체크
     while (!is_valid_input(input)) {
         printf("잘못된 값이 입력되었습니다. 다시 입력해주세요(1~4): \n");
@@ -163,5 +161,20 @@ int CheckAnswer(ObjectiveQuestion*questions,int id,HANDLE console)
 	changecolor[1] -= changedanswer() - '0';
 	changecolor[2] -= 1;
 	
+	return result;
+}
+
+int check_my_answer()
+{
+	int result;
+	if (current_menu_item%4+1 == changedanswer()-'0')
+	{
+		printf("정답입니다!\n\n");
+		result =1;
+	}
+	else {
+		printf("오답입니다. \n정답은 %c입니다.\n\n", changedanswer());
+		result = 0;
+	}
 	return result;
 }
