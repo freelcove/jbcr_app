@@ -167,7 +167,7 @@ int CheckAnswer(ObjectiveQuestion* questions, int id, HANDLE console)
 int check_my_answer()
 {
 	int result;
-	if (current_menu_item % 4 + 1 == changedanswer() - '0')
+	if (changecolor[0] == changedanswer() - '0')
 	{
 		printf("정답입니다!\n\n");
 		result = 1;

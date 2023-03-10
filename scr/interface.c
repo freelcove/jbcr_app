@@ -36,7 +36,7 @@ void fit_console_screen_buffer_size() {
 
 void set_color_theme(int color_mode) {
 
-	SetConsoleTextAttribute(console, color_mode_preset[color_mode]);
+	SetConsoleTextAttribute(console, color_mode_preset[color_mode%4]);
 
 }
 

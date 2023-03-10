@@ -246,7 +246,7 @@ void print_change_row(char* sentence)
 {
 	count_change_row = 2;
 	char print_sentence[1024] = { NULL };
-	int widlen = 70;
+	int widlen = 50;
 	char temp1[1024] = { NULL };
 	char temp2[1024] = { NULL };
 	int firstcount = 1;
@@ -254,14 +254,19 @@ void print_change_row(char* sentence)
 	while (strlen(print_sentence) > widlen)
 	{
 		int nextrow = widlen;
+		int min_nextrow = widlen;
 		int lengthname = strlen(print_sentence);
 		//내용이 지정한 길이보다 길때 자를 위치 지정
 		if (lengthname >= widlen)
 		{
 			for (int i = widlen; print_sentence[i] != ' '; i++)
-				nextrow = i + 1;
+				nextrow = i+1;
+			for (int i = widlen; print_sentence[i] != ' '; i--)
+				min_nextrow = i-1;
 		}
 		//자를위치가 내용의 길이와 같거나 길때 내용 그대로 출력하기 위해 반복문 종료
+		if (nextrow - widlen > widlen - min_nextrow)
+			nextrow = min_nextrow;
 		if (nextrow >= lengthname)
 			break;
 		int dellen = sizeof(temp1);
@@ -326,19 +331,34 @@ void questionrowchange(ObjectiveQuestion* questions, int id)
 
 //입력값에 따른 출력 색 변경
 int select_color(int choice)
-{
-	int mycolor = 240;
+{	//240		143		176		225
+	int mycolor = color_mode_preset[color_mode%4];
 	//색 선택
+	int origin_color=mycolor;
+	int add_color[2];
+	if (color_mode%4 == 1)
+	{
+		add_color[0] = 256-3;
+		add_color[1] = 256-5;
+	}
+	else
+	{
+		add_color[0] = 12;
+		add_color[1] = 2;
+	}
+	int option_color = color_mode%4;
 	if (changecolor[2] == 1) {
-		if (changecolor[0] == changecolor[1] && changecolor[0] == choice)
-			mycolor = 242;
-		else if (changecolor[0] != changecolor[1] && changecolor[0] == choice)
-			mycolor = 252;
-		else if (changecolor[0] != changecolor[1] && changecolor[1] == choice)
-			mycolor = 242;
+		if (changecolor[0] != changecolor[1] && changecolor[0] == choice) {
+			origin_color += add_color[0];
+			mycolor = origin_color % 256;
+		}
+		else if (changecolor[1] == choice) {
+			origin_color += add_color[1];
+			mycolor = origin_color % 256;
+		}
 	}
 	else {
-		mycolor = 240;
+		mycolor = color_mode_preset[color_mode%4];
 	}
 	return mycolor;
 }
@@ -361,6 +381,7 @@ void optionrowchange(ObjectiveQuestion* questions, int id, int choice)
 	SetConsoleTextAttribute(console, 240);
 	puts("");
 }
+
 void print_row_change(ObjectiveQuestion* questions, int id, int choice)
 {
 
@@ -379,7 +400,7 @@ void print_row_change(ObjectiveQuestion* questions, int id, int choice)
 	else
 		strcpy(name + strlen(name), options[choice - 1]);
 	print_change_row(&name);
-	SetConsoleTextAttribute(console, 240);
+	SetConsoleTextAttribute(console, color_mode_preset[color_mode%4]);
 	puts("");
 }
 
@@ -387,6 +408,8 @@ void option_select(ObjectiveQuestion* questions, int id)
 {
 	cursorPosition.X = 2;
 	cursorPosition.Y = 4;
+	char icon[3][10] = { {"▶"},{"O"},{"X"}};
+	int num;
 	SetConsoleCursorPosition(console, cursorPosition);
 	for (int i = 0; i < 4; i++) {
 		if (i == 0)
@@ -395,7 +418,23 @@ void option_select(ObjectiveQuestion* questions, int id)
 			cursorPosition.Y += count_change_row;
 		}
 		SetConsoleCursorPosition(console, cursorPosition);
-		printf("%s ", ((current_menu_item) == i) ? "▶" : " ");
+		if (changecolor[2] == 1)
+		{
+			if (changecolor[0] == changecolor[1]&&changecolor[0] == i + 1) {
+				num = 1;
+				current_menu_item = changecolor[0]-1;
+			}
+			else if (changecolor[0] != changecolor[1] && changecolor[0] == i+1){
+				num = 2;
+				current_menu_item = changecolor[0]-1;
+			}
+			else if (changecolor[1] == i+1){
+				num = 1;
+				current_menu_item = changecolor[1]-1;
+			}
+		}
+		else num = 0;
+		printf("%s ", ((current_menu_item) == i) ? icon[num] : " ");
 		print_row_change(questions, id, i + 1);
 		cursorPosition.Y += count_change_row;
 	}
@@ -427,11 +466,12 @@ void select_by_arrow(ObjectiveQuestion* questions, int id)
 	changecolor[0] += current_menu_item % 4 + 1;
 	changecolor[1] += changedanswer() - '0';
 	changecolor[2] += 1;
+	current_menu_item = changedanswer() - '0' - 1;
 	option_select(questions, id);
 	num = check_my_answer();
-	changecolor[0] -= current_menu_item % 4 + 1;
-	changecolor[1] -= changedanswer() - '0';
-	changecolor[2] -= 1;
+	changecolor[0] = 0;
+	changecolor[1] = 0;
+	changecolor[2] = 0;
 	return num;
 
 }

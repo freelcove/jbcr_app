@@ -28,7 +28,7 @@ ObjectiveQuestion* objective_questions = NULL;
 SubjectiveQuestion* subjective_questions = NULL;
 
 int color_mode = 0;
-int color_mode_preset[] = { 240, 143, 176, 225 };
+int color_mode_preset[] = { 240, 143, 176, 224 };
 
 char user_name[50];
 

@@ -1,5 +1,4 @@
 #pragma once
-#pragma once
 #include "globals.h"
 
 #ifndef INTERFACE_H
