@@ -25,7 +25,6 @@ void draw_user_options() {
 	}
 }
 
-
 void draw_user_info() {
 
 	char option0[50];
@@ -52,4 +51,43 @@ void draw_user_info() {
 		printf("%s\n", user_info_list[i]);
 		cursorPosition.Y += 2;
 	}
+}
+
+void WriteUserInfo() {
+	FILE* file;
+	char line[MAX_LINE_LENGTH];
+
+	file = fopen("db_user_info.tsv", "w");
+	if (file == NULL) {
+		wprintf(L"Failed to open file.\n");
+		return;
+	}
+
+	fprintf(file, "%s\t%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d\n",
+		user_name, interval_failed_questions, font_size,
+		color_mode, best_streak, current_streak,
+		total_tried_objective, total_right_objective,
+		total_tried_subjective, total_right_subjective);
+
+	fclose(file);
+}
+
+void LoadUserInfo() {
+	FILE* file;
+	char line[MAX_LINE_LENGTH];
+
+	file = fopen("db_user_info.tsv", "r");
+	if (file == NULL) {
+		wprintf(L"Failed to open file.\n");
+		return;
+	}
+
+	fgets(line, MAX_LINE_LENGTH, file);
+	sscanf(line, "%s\t%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d",
+		user_name, &interval_failed_questions, &font_size,
+		&color_mode, &best_streak, &current_streak,
+		&total_tried_objective, &total_right_objective,
+		&total_tried_subjective, &total_right_subjective);
+
+	fclose(file);
 }

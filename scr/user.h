@@ -15,4 +15,9 @@ void draw_user_options();
 
 void draw_user_info();
 
+void WriteUserInfo();
+
+void LoadUserInfo();
+
+
 #endif

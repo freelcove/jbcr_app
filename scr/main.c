@@ -8,6 +8,8 @@ int main()
 	//전역 변수 Initialization
 	init_globals();
 
+	
+
 	//콘솔창 Initialization.
 	InitScreen();
 
