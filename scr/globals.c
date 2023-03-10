@@ -10,14 +10,14 @@ int current_option_item = 0;
 
 int app_started = 0;
 
-int best_streak;
-int current_streak;
+int best_streak=0;
+int current_streak=0;
 
-int total_tried_objective;
-int total_right_objective;
+int total_tried_objective=0;
+int total_right_objective=0;
 
-int total_tried_subjective;
-int total_right_subjective;
+int total_tried_subjective=0;
+int total_right_subjective=0;
 
 char key_pressed = ' ';
 int num_objective_questions = 0;

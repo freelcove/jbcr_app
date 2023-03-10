@@ -169,10 +169,14 @@ int check_my_answer()
 	int result;
 	if (changecolor[0] == changedanswer() - '0')
 	{
-		printf("정답입니다!\n\n");
+		current_streak++;
+		printf("정답입니다!\n현재까지 맞춘 문제수 : %d\tBEST : %d\n\n",current_streak,best_streak);
 		result = 1;
 	}
 	else {
+		if (best_streak < current_streak)
+			best_streak = current_streak;
+		current_streak = 0;
 		printf("오답입니다. \n정답은 %c입니다.\n\n", changedanswer());
 		result = 0;
 	}
