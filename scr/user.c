@@ -59,7 +59,7 @@ void WriteUserInfo() {
 
 	file = fopen("db/db_user_info.tsv", "w");
 	if (file == NULL) {
-		wprintf(L"Failed to open file.\n");
+		printf("Failed to open file.\n");
 		return;
 	}
 
