@@ -8,7 +8,7 @@ int main()
 	//전역 변수 Initialization
 	init_globals();
 
-	
+	LoadUserInfo();
 
 	//콘솔창 Initialization.
 	InitScreen();
@@ -315,6 +315,8 @@ int main()
 
 			//코멘트를 txt 파일로 출력
 			write_txt_comments(comment_list);
+
+			WriteUserInfo();
 
 			// 동적할당한 메모리 해제
 			free(objective_questions);
