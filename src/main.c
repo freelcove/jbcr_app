@@ -45,13 +45,12 @@ int main()
 	// 코멘트 리스트 생성
 	struct CommentList* comment_list = create_comment_list();
 
-
 	// 코멘트 입력 하는 방법:
 	// 2번째 parameter에 문제 id, 3번째 parameter에 코멘트를 넣으면 됨
 	// enqueue_comment(comment_list, 문제 id, 코멘트);
 
 	// 코멘트 입력 테스트 (추후 삭제)
-	enqueue_comment(comment_list, 1, "test");
+	enqueue_comment(comment_list, 1, "Test");
 
 
 	while (1)
