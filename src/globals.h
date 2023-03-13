@@ -65,6 +65,7 @@ extern int best_streak;
 extern int current_streak;
 extern int faltcount;
 extern int changecolor[3];
+extern int solved_questions;
 
 extern int total_tried_objective;
 

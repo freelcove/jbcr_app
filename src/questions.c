@@ -170,14 +170,14 @@ int check_my_answer(id)
 		current_streak++;
 		if (best_streak < current_streak)
 			best_streak = current_streak;
-		printf("\n\t   %d번은 정답입니다!\n\t   현재까지 맞춘 문제수 : %d\tBEST : %d\n\n",changecolor[0],current_streak,best_streak);
+		printf("\n\t     %d번은 정답입니다!\n\t     현재까지 맞춘 문제수 : %d\tBEST : %d\n\n",changecolor[0],current_streak,best_streak);
 		cursorPosition.Y += 4;
 		result = 1;
 	}
 	else {
 		current_streak = 0;
 		faltquestions(id);
-		printf("\n\t   %d번은 오답입니다. \n\t   정답은 %c번입니다.\tBEST : %d\n\n", changecolor[0],changedanswer(),best_streak);
+		printf("\n\t     %d번은 오답입니다. \n\t     정답은 %c번입니다.\tBEST : %d\n\n", changecolor[0],changedanswer(),best_streak);
 		cursorPosition.Y += 4;
 		result = 0;
 	}

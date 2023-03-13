@@ -34,11 +34,11 @@ void draw_user_info() {
 	sprintf(option1, "이제까지 푼 총 문제 수: %d", total_tried_objective + total_tried_subjective);
 
 	char option2[50];
-	int objective_percentage = (total_tried_objective == 0) ? 0 : total_right_objective / total_tried_objective * 100;
+	int objective_percentage = (total_tried_objective == 0) ? 0 : (double)total_right_objective / total_tried_objective * 100;
 	sprintf(option2, "객관식 푼 문제 수: %d | 정답률: %d%%", total_tried_objective, objective_percentage);
 
 	char option3[50];
-	int subjective_percentage = (total_tried_subjective == 0) ? 0 : total_right_subjective / total_tried_subjective * 100;
+	int subjective_percentage = (total_tried_subjective == 0) ? 0 : (double)total_right_subjective / total_tried_subjective * 100;
 	sprintf(option3, "주관식 푼 문제 수: %d | 정답률: %d%%", total_tried_subjective, subjective_percentage);
 
 	char* user_info_list[] = { option0, option1, option2, option3, "(뒤로 가려면 아무 키나 누르세요.)" };

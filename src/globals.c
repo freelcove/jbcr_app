@@ -13,6 +13,7 @@ int app_started = 0;
 int best_streak=0;
 int current_streak=0;
 int faltcount = 0;
+int solved_questions=0;
 
 int changecolor[3] = { 0,0,0 };
 

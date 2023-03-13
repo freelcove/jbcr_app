@@ -110,9 +110,9 @@ void print_change_row(char* sentence)
 		strcpy(print_sentence, temp2);					//temp2의 내용을 name으로 옮기기
 
 		if (firstcount)
-			printf("\t   %s\n", temp1);					//temp1의 내용 출력
+			printf("  %s\n", temp1);					//temp1의 내용 출력
 		else
-			printf("\t      %s\n", temp1);
+			printf("\t     %s\n", temp1);
 
 		dellen = sizeof(temp2);
 		for (int j = 0; j < dellen; j++)		//다음에 받을 데이터를 위해 temp2의 내용 지우기
@@ -128,9 +128,9 @@ void print_change_row(char* sentence)
 		count_change_row++;
 	}
 	if (firstcount)
-		printf("\t   %s\n", print_sentence);
+		printf("  %s\n", print_sentence);
 	else
-		printf("\t      %s\n", print_sentence);
+		printf("\t     %s\n", print_sentence);
 }
 
 //입력값에 따른 출력 색 변경
@@ -172,12 +172,12 @@ void print_objective_question(ObjectiveQuestion* questions, int id, int choice)
 {
 
 	char name[MAX_LINE_LENGTH] = { NULL };
-	char addChar[5][10] = { {"Q. "}, {"① "},{"② "},{"③ "},{"④ "} };
+	char addChar[5][10] = { {"  Q. "}, {"① "},{"② "},{"③ "},{"④ "} };
 	int mycolor = select_color(choice);
 	SetConsoleTextAttribute(console, mycolor);
 
 	//출력할 내용 선택
-	for (int i = 0; i < 5; i++)
+	for (int i = 0; i < 10; i++)
 	{
 		name[i] = addChar[choice][i];
 	}
@@ -193,7 +193,7 @@ void print_objective_question(ObjectiveQuestion* questions, int id, int choice)
 //옵션들중 커서의 위치 출력
 void option_select(ObjectiveQuestion* questions, int id)
 {
-	cursorPosition.X = 2;
+	cursorPosition.X =6;
 	cursorPosition.Y = 4;
 	char icon[3][10] = { {"▶"},{"O"},{"X"}};
 	int num;
@@ -227,6 +227,19 @@ void option_select(ObjectiveQuestion* questions, int id)
 	}
 }
 
+void print_best_streak()
+{
+	int x1, y1;
+	x1 = cursorPosition.X;
+	y1 = cursorPosition.Y;
+	cursorPosition.X = 64;
+	cursorPosition.Y = 0;
+	SetConsoleCursorPosition(console, cursorPosition);
+	printf("BEST : %d\n", best_streak);	//첫줄 가장자리에 best_streak 출력
+	cursorPosition.X = x1;
+	cursorPosition.Y = y1;
+	SetConsoleCursorPosition(console, cursorPosition);
+}
 //방향키나 번호로 정답 선택하기
 int select_by_arrow(ObjectiveQuestion* questions, int id)
 {
@@ -234,17 +247,9 @@ int select_by_arrow(ObjectiveQuestion* questions, int id)
 	int key_in;
 	int num;
 	while (1) {
-		x1 = cursorPosition.X;
-		y1 = cursorPosition.Y;
-		cursorPosition.X = 64;
-		cursorPosition.Y = 0;
-		SetConsoleCursorPosition(console, cursorPosition);
-		printf("BEST : %d\n", best_streak);	//첫줄 가장자리에 best_streak 출력
-		cursorPosition.X = x1;
-		cursorPosition.Y = y1;
-		SetConsoleCursorPosition(console, cursorPosition);
+		print_best_streak();
 		option_select(questions, id);
-		printf("\n\n\t   정답을 선택하세요(1~4): \n");
+		printf("\n\n\t     정답을 선택하세요(1~4): \n");
 		key_pressed = getch();
 		if (key_pressed == 'w' || key_pressed == 'W' || key_pressed == 72) {
 			current_menu_item = (current_menu_item + 3) % 4;
@@ -271,15 +276,7 @@ int select_by_arrow(ObjectiveQuestion* questions, int id)
 	option_select(questions, id);
 	num = check_my_answer(id);							//정답 체크
 
-	x1 = cursorPosition.X;
-	y1 = cursorPosition.Y;	//정답 출력 후 X, Y값 기록
-	cursorPosition.X = 64;
-	cursorPosition.Y = 0;
-	SetConsoleCursorPosition(console, cursorPosition);
-	printf("BEST : %d\n", best_streak);					//best_streak 실시간 반영 첫째줄 출력
-	cursorPosition.X = x1;
-	cursorPosition.Y = y1;
-	SetConsoleCursorPosition(console, cursorPosition);	//커서 위치 재정의(정답 체크 출력 후의 위치)
+	print_best_streak();
 
 	changecolor[0] = 0;
 	changecolor[1] = 0;
@@ -305,7 +302,6 @@ void exit_menu(int solved_questions)
 
 void all_process_objective(ObjectiveQuestion* objective_questions, struct Queue* queue_objective)
 {
-	int solved_questions;
 	solved_questions = 0;
 	current_streak = 0;
 	faltcount = 0;
@@ -333,7 +329,7 @@ void all_process_objective(ObjectiveQuestion* objective_questions, struct Queue*
 			break;
 		}
 		solved_questions++;
-		printf("\t   다음 문제로 넘어가시려면 엔터를 누르세요\n\t   종료를 원하시면 x나 Esc를 누르세요.\n");
+		printf("\t     다음 문제로 넘어가시려면 엔터를 누르세요\n\t     종료를 원하시면 x나 Esc를 누르세요.\n");
 		current_menu_item = 0;
 		while (1)
 		{
@@ -349,6 +345,12 @@ void all_process_objective(ObjectiveQuestion* objective_questions, struct Queue*
 			exit_menu(solved_questions);
 			break;
 		}
+
 		ClearScreen();
 	}
+	total_tried_objective += solved_questions;
+	total_right_objective += solved_questions-faltcount;
+	solved_questions = 0;
+	faltcount = 0;
+	current_streak = 0;
 }
