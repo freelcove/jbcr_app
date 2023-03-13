@@ -27,7 +27,6 @@
 
 void init_globals();
 
-extern int app_started;
 
 extern char user_name[50];
 
@@ -40,7 +39,9 @@ extern COORD cursorPosition;
 extern HANDLE console;
 
 //메인 메뉴에서 현재 메뉴 아이템
-extern int current_menu_item;
+extern int app_menu_item;
+extern char app_mode[20];
+extern char app_input;
 
 //객관식 문제 개수
 extern int num_objective_questions;
@@ -49,7 +50,7 @@ extern int num_objective_questions;
 extern int num_subjective_questions;
 
 //현재 눌러진 키 저장 변수
-extern char key_pressed;
+
 
 //틀린 문제가 몇 문제 뒤에 나올지 정하는 변수
 extern int interval_failed_questions;

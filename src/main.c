@@ -52,36 +52,43 @@ int main()
 	// 코멘트 입력 테스트 (추후 삭제)
 	enqueue_comment(comment_list, 1, "Test");
 
+	while(1){
+		clearScreen();
+		drawScreen();
+		getUserInput();
+		processUserInput();
+	}
+/*
 	while (1)
 	{
-		ClearScreen();
-		draw_title();
+		clearScreen();
+		drawTitle();
 
 		while (1)
 		{
 			draw_menu();
-			key_pressed = getch();
-			if (key_pressed == 'w' || key_pressed == 'W' || key_pressed == 72)
+			app_input = getch();
+			if (app_input == 'w' || app_input == 'W' || app_input == 72)
 			{
-				current_menu_item = (current_menu_item - 1 + 5) % 5;
+				app_menu_item = (app_menu_item - 1 + 5) % 5;
 			}
-			else if (key_pressed == 's' || key_pressed == 'S' || key_pressed == 80)
+			else if (app_input == 's' || app_input == 'S' || app_input == 80)
 			{
-				current_menu_item = (current_menu_item + 1) % 5;
+				app_menu_item = (app_menu_item + 1) % 5;
 			}
-			else if (key_pressed == '\r')
+			else if (app_input == '\r')
 			{
-				ClearScreen();
+				clearScreen();
 				break;
 			}
-			else if (key_pressed == 27)
+			else if (app_input == 27)
 			{
-				ClearScreen();
-				current_menu_item = 4;
+				clearScreen();
+				app_menu_item = 4;
 				break;
 			}
 		}
-		switch (current_menu_item)
+		switch (app_menu_item)
 		{
 
 			// 메뉴 "객관식 문제"
@@ -93,26 +100,17 @@ int main()
 
 		// 메뉴 "주관식 문제"
 		case 1:
-			printf("주관식 문제\n\n\n");
-			char c[100] = {NULL};
-			while (1)
-			{
-				gets(c);
-				printf("%s", c);
-				if (c[0] == 'x')
-					break;
-			}
 			break;
 
 			// 메뉴 "사용자"
 		case 2:
-			draw_title();
-			current_menu_item = 0;
+			drawTitle();
+			app_menu_item = 0;
 			while (1)
 			{
 				draw_user_options();
-				key_pressed = getch();
-				if (key_pressed == 27)
+				app_input = getch();
+				if (app_input == 27)
 				{
 					break;
 				};
@@ -122,13 +120,13 @@ int main()
 
 			// 메뉴 "옵션"
 		case 3:
-			draw_title();
-			current_menu_item = 0;
+			drawTitle();
+			app_menu_item = 0;
 			while (1)
 			{
 				draw_options();
-				key_pressed = getch();
-				if (key_pressed == 27)
+				app_input = getch();
+				if (app_input == 27)
 				{
 					break;
 				};
@@ -156,5 +154,6 @@ int main()
 			break;
 		}
 	}
+	*/
 	return 0;
 }

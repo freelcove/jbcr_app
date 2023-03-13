@@ -209,19 +209,19 @@ void option_select(ObjectiveQuestion* questions, int id)
 		{
 			if (changecolor[0] == changecolor[1]&&changecolor[0] == i + 1) {
 				num = 1;
-				current_menu_item = changecolor[0]-1;
+				app_menu_item = changecolor[0]-1;
 			}
 			else if (changecolor[0] != changecolor[1] && changecolor[0] == i+1){
 				num = 2;
-				current_menu_item = changecolor[0]-1;
+				app_menu_item = changecolor[0]-1;
 			}
 			else if (changecolor[1] == i+1){
 				num = 1;
-				current_menu_item = changecolor[1]-1;
+				app_menu_item = changecolor[1]-1;
 			}
 		}
 		else num = 0;
-		printf("%s ", ((current_menu_item) == i) ? icon[num] : " ");
+		printf("%s ", ((app_menu_item) == i) ? icon[num] : " ");
 		print_objective_question(questions, id, i + 1);
 		cursorPosition.Y += count_change_row;
 	}
@@ -250,29 +250,29 @@ int select_by_arrow(ObjectiveQuestion* questions, int id)
 		print_best_streak();
 		option_select(questions, id);
 		printf("\n\n\t     정답을 선택하세요(1~4): \n");
-		key_pressed = getch();
-		if (key_pressed == 'w' || key_pressed == 'W' || key_pressed == 72) {
-			current_menu_item = (current_menu_item + 3) % 4;
+		app_input = getch();
+		if (app_input == 'w' || app_input == 'W' || app_input == 72) {
+			app_menu_item = (app_menu_item + 3) % 4;
 		}
-		else if (key_pressed == 's' || key_pressed == 'S' || key_pressed == 80) {
-			current_menu_item = (current_menu_item + 1) % 4;
+		else if (app_input == 's' || app_input == 'S' || app_input == 80) {
+			app_menu_item = (app_menu_item + 1) % 4;
 		}
-		else if (key_pressed == '\r') {
-			ClearScreen();
+		else if (app_input == '\r') {
+			clearScreen();
 			break;
 		}
-		else if (key_pressed >= '1' && key_pressed <= '4') {
-			current_menu_item = key_pressed - 1-'0';
-			ClearScreen();
+		else if (app_input >= '1' && app_input <= '4') {
+			app_menu_item = app_input - 1-'0';
+			clearScreen();
 			break;
 		}
-		else if (key_pressed == 27)
+		else if (app_input == 27)
 			return -1;
 	}
-	changecolor[0] += current_menu_item % 4 + 1;
+	changecolor[0] += app_menu_item % 4 + 1;
 	changecolor[1] += changedanswer() - '0';
 	changecolor[2] += 1;
-	current_menu_item = changedanswer() - '0' - 1;
+	app_menu_item = changedanswer() - '0' - 1;
 	option_select(questions, id);
 	num = check_my_answer(id);							//정답 체크
 
@@ -288,7 +288,7 @@ int select_by_arrow(ObjectiveQuestion* questions, int id)
 //메뉴에서 나가기
 void exit_menu(int solved_questions)
 {
-	ClearScreen();
+	clearScreen();
 	Percentage(solved_questions);
 	while (1)
 	{
@@ -330,7 +330,7 @@ void all_process_objective(ObjectiveQuestion* objective_questions, struct Queue*
 		}
 		solved_questions++;
 		printf("\t     다음 문제로 넘어가시려면 엔터를 누르세요\n\t     종료를 원하시면 x나 Esc를 누르세요.\n");
-		current_menu_item = 0;
+		app_menu_item = 0;
 		while (1)
 		{
 			if (kbhit()) {
@@ -346,7 +346,7 @@ void all_process_objective(ObjectiveQuestion* objective_questions, struct Queue*
 			break;
 		}
 
-		ClearScreen();
+		clearScreen();
 	}
 	total_tried_objective += solved_questions;
 	total_right_objective += solved_questions-faltcount;

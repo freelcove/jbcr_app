@@ -141,7 +141,7 @@ int CheckAnswer(ObjectiveQuestion* questions, int id, HANDLE console)
 	changecolor[1] += changedanswer() - '0';
 	changecolor[2] += 1;
 	// 정답 체크
-	ClearScreen();
+	clearScreen();
 
 			//문제 보기 출력 추가필요
 

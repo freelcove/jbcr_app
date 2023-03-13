@@ -4,7 +4,7 @@ struct Comment* create_comment(int id, char* text)
 {
 	struct Comment* temp = (struct Comment*)malloc(sizeof(struct Comment));
 	temp->id = id;
-	temp->mode = current_menu_item;
+	temp->mode = app_menu_item;
 	strncpy(temp->text, text, 100);
 	temp->next = NULL;
 	return temp;

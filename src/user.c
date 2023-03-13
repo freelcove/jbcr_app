@@ -20,40 +20,40 @@ void draw_user_options() {
 
 	for (int i = 0; i < 5; i++) {
 		SetConsoleCursorPosition(console, cursorPosition);
-		printf("%s %s\n", (current_menu_item) == i ? "▶" : " ", option_items[i]);
+		printf("%s %s\n", (app_menu_item) == i ? "▶" : " ", option_items[i]);
 		cursorPosition.Y += 2;
 	}
 }
 
 void controlUserOptions(){
-		if (key_pressed == 'w' || key_pressed == 'W' || key_pressed == 72) {
-					current_menu_item = (current_menu_item - 1 + 5) % 5;
+		if (app_input == 'w' || app_input == 'W' || app_input == 72) {
+					app_menu_item = (app_menu_item - 1 + 5) % 5;
 				}
 
-				else if (key_pressed == 's' || key_pressed == 'S' || key_pressed == 80) {
-					current_menu_item = (current_menu_item + 1) % 5;
+				else if (app_input == 's' || app_input == 'S' || app_input == 80) {
+					app_menu_item = (app_menu_item + 1) % 5;
 				}
 
-				else if (key_pressed == 'a' || key_pressed == 'A' || key_pressed == 37) {
+				else if (app_input == 'a' || app_input == 'A' || app_input == 37) {
 
 
 				}
-				else if (key_pressed == 'd' || key_pressed == 'D' || key_pressed == 39) {
+				else if (app_input == 'd' || app_input == 'D' || app_input == 39) {
 				}
 
 				//사용자 정보
-				else if (key_pressed == '\r' && current_menu_item == 1) {
-					ClearScreen();
-					draw_title();
+				else if (app_input == '\r' && app_menu_item == 1) {
+					clearScreen();
+					drawTitle();
 					draw_user_info();
 					getch();
-					ClearScreen();
-					draw_title();
+					clearScreen();
+					drawTitle();
 				}
 				//이름 변경
-				else if (key_pressed == '\r' && current_menu_item == 2) {
-					ClearScreen();
-					draw_title();
+				else if (app_input == '\r' && app_menu_item == 2) {
+					clearScreen();
+					drawTitle();
 					cursorPosition.X = 26;
 					cursorPosition.Y = 16;
 					SetConsoleCursorPosition(console, cursorPosition);
@@ -71,16 +71,16 @@ void controlUserOptions(){
 					SetConsoleCursorPosition(console, cursorPosition);
 					printf("환영합니다 %s님!", user_name);
 					getch();
-					ClearScreen();
-					draw_title();
+					clearScreen();
+					drawTitle();
 				}
 
 				//기록 초기화
-				else if (key_pressed == '\r' && current_menu_item == 3) {
+				else if (app_input == '\r' && app_menu_item == 3) {
 					resetUserInfo();
 				}
 
-				else if (key_pressed == '\r' && current_menu_item == 4) {
+				else if (app_input == '\r' && app_menu_item == 4) {
 
 					
 				}

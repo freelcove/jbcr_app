@@ -25,7 +25,7 @@ void draw_options()
 	for (int i = 0; i < 5; i++)
 	{
 		SetConsoleCursorPosition(console, cursorPosition);
-		printf("%s %s\n", (current_menu_item) == i ? "¢º" : " ", option_items[i]);
+		printf("%s %s\n", (app_menu_item) == i ? "¢º" : " ", option_items[i]);
 		cursorPosition.Y += 2;
 	}
 }
@@ -33,19 +33,19 @@ void draw_options()
 void controlOptions()
 {
 
-	if (key_pressed == 'w' || key_pressed == 'W' || key_pressed == 72)
+	if (app_input == 'w' || app_input == 'W' || app_input == 72)
 	{
-		current_menu_item = (current_menu_item - 1 + 5) % 5;
+		app_menu_item = (app_menu_item - 1 + 5) % 5;
 	}
-	else if (key_pressed == 's' || key_pressed == 'S' || key_pressed == 80)
+	else if (app_input == 's' || app_input == 'S' || app_input == 80)
 	{
-		current_menu_item = (current_menu_item + 1) % 5;
+		app_menu_item = (app_menu_item + 1) % 5;
 	}
 
-	else if (key_pressed == 'a' || key_pressed == 'A' || key_pressed == 37)
+	else if (app_input == 'a' || app_input == 'A' || app_input == 37)
 	{
 
-		switch (current_menu_item)
+		switch (app_menu_item)
 		{
 		case 0:
 			if (interval_failed_questions > 1)
@@ -65,16 +65,16 @@ void controlOptions()
 			{
 				color_mode--;
 				set_color_theme(color_mode);
-				ClearScreen();
-				draw_title();
+				clearScreen();
+				drawTitle();
 				draw_options();
 			}
 			break;
 		}
 	}
-	else if (key_pressed == 'd' || key_pressed == 'D' || key_pressed == 39)
+	else if (app_input == 'd' || app_input == 'D' || app_input == 39)
 	{
-		switch (current_menu_item)
+		switch (app_menu_item)
 		{
 		case 0:
 			if (interval_failed_questions < 50)
@@ -94,26 +94,26 @@ void controlOptions()
 			{
 				color_mode++;
 				set_color_theme(color_mode);
-				ClearScreen();
-				draw_title();
+				clearScreen();
+				drawTitle();
 				draw_options();
 			}
 			break;
 		}
 	}
 
-	else if (key_pressed == '\r' && current_menu_item == 3)
+	else if (app_input == '\r' && app_menu_item == 3)
 	{
 		interval_failed_questions = 10;
 		font_size = 25;
 		color_mode = 0;
 		InitScreen();
-		ClearScreen();
-		draw_title();
+		clearScreen();
+		drawTitle();
 		draw_options();
 	}
 
-	else if (key_pressed == '\r' && current_menu_item == 4)
+	else if (app_input == '\r' && app_menu_item == 4)
 	{
 		
 	}

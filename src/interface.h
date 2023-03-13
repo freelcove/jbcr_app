@@ -5,7 +5,7 @@
 #define INTERFACE_H
 
 //콘솔창 깨끗이 빈 화면으로
-void ClearScreen();
+void clearScreen();
 
 //콘솔 창 깜빡이는 커서 켜고 끄기 (parameter 1: 보임, 0: 안 보임.)
 void SetCursorVisibility(int visible);
@@ -27,7 +27,7 @@ void InitScreen();
 void draw_menu();
 
 //타이틀 그리기
-void draw_title();
+void drawTitle();
 
 
 
