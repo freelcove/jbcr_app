@@ -13,7 +13,6 @@ void SetCursorVisibility(int visible);
 //폰트 사이즈 조정
 void set_console_font_size(int size);
 
-
 //콘솔창 오른쪽에 스크롤바를 없애기 위해서 스크린 버퍼 사이즈를 조정
 void fit_console_screen_buffer_size();
 
@@ -24,12 +23,16 @@ void set_color_theme(int color_mode);
 void InitScreen();
 
 //draw 메인 메뉴 화면 
-void draw_menu();
+void drawMenu();
 
 //타이틀 그리기
 void drawTitle();
 
+void drawUserInfo();
 
+void controlUserInfo();
+
+void drawObjectiveOptions();
 
 
 #endif

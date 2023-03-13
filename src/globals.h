@@ -19,8 +19,8 @@
 #include "filecontrol.h"
 #include "comment.h"
 #include "utilities.h"
-#include "options.h"
-#include "user.h"
+
+
 
 #define CONSOLE_WIDTH 80
 #define CONSOLE_HEIGHT 30
