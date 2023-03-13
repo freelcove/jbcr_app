@@ -63,6 +63,7 @@ extern int color_mode_preset[];
 
 extern int best_streak;
 extern int current_streak;
+extern int faltcount;
 
 extern int total_tried_objective;
 

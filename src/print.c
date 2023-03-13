@@ -165,9 +165,14 @@ extern faltcount;
 
 void Percentage(int num)
 {
-	int correct = num - faltcount;
+	if (num != 0)
+	{
+		int correct = num - faltcount;
+		printf("\n\n\n\n\t\t\t%d문제중 %d문제 맞추었습니다.\n\n\t\t\t%d점\n", num, correct, correct * 100 / num);
+	}
+	if(num==0)
+		printf("\n\n\n\n\t\t\t푼 문제가 없습니다.\n");
 
-	printf("\n\n\n\n\t\t\t%d문제중 %d문제 맞추었습니다.\n\n\t\t\t%d점\n", num, correct, correct * 100 / num);
 }
 
 //줄 바꿔서 출력하기(0:문제, 1:옵션1, 2:옵션2, 3:옵션3, 4:옵션4)
@@ -440,12 +445,14 @@ void option_select(ObjectiveQuestion* questions, int id)
 	}
 }
 
-void select_by_arrow(ObjectiveQuestion* questions, int id)
+
+int select_by_arrow(ObjectiveQuestion* questions, int id)
 {
+	int key_in;
 	int num;
 	while (1) {
 		option_select(questions, id);
-		printf("\n\n정답을 선택하세요(1~4): \n");
+		printf("\n\n\t정답을 선택하세요(1~4): \n");
 		key_pressed = getch();
 		if (key_pressed == 'w' || key_pressed == 'W' || key_pressed == 72) {
 			current_menu_item = (current_menu_item + 3) % 4;
@@ -462,16 +469,32 @@ void select_by_arrow(ObjectiveQuestion* questions, int id)
 			ClearScreen();
 			break;
 		}
+		else if (key_pressed == 27)
+			return -1;
+
 	}
 	changecolor[0] += current_menu_item % 4 + 1;
 	changecolor[1] += changedanswer() - '0';
 	changecolor[2] += 1;
 	current_menu_item = changedanswer() - '0' - 1;
 	option_select(questions, id);
-	num = check_my_answer();
+	num = check_my_answer(id);
 	changecolor[0] = 0;
 	changecolor[1] = 0;
 	changecolor[2] = 0;
 	return num;
+
+}
+void exit_menu(int solved_questions)
+{
+	ClearScreen();
+	Percentage(solved_questions);
+	while (1)
+	{
+		if (kbhit()) {
+			char input = getch();
+			break;
+		}
+	}
 
 }
