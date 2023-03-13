@@ -91,3 +91,15 @@ void LoadUserInfo() {
 	
 	fclose(file);
 }
+
+void resetUserInfo()
+{
+	best_streak = 0;
+	current_streak = 0;
+
+	total_tried_objective = 0;
+	total_right_objective = 0;
+
+	total_tried_subjective = 0;
+	total_right_subjective = 0;
+}
