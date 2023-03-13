@@ -16,7 +16,6 @@
 #include "interface.h"
 #include "print.h"
 
-#include "comment.h"
 #include "utilities.h"
 #include "options.h"
 #include "user.h"
