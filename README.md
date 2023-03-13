@@ -3,12 +3,13 @@
 
 ![Screenshot 2023-03-07 1136062](https://user-images.githubusercontent.com/115542245/223305592-26fdd71d-c46e-489f-a75c-4162d0c7bd10.jpg)
 
+미리캔버스 (ppt):
+https://www.miricanvas.com/design/11ucr1g
 
-
-Miro.com 링크:
+Miro.com (작업 진행판):
 https://miro.com/welcomeonboard/UnJOSG85YzBVS0xqS1ZRVWNYQnJMTTd3a256T3ZwTm9JWTBjWGJRSVp5TGl1SGx3RVZJWm5pN2h6WjZHcWhWWHwzNDU4NzY0NTQzNTc4MTcwMjA5fDI=?share_link_id=578663904844
 
-구글 시트 데이터베이스:
+Google Sheet (데이터베이스 + 요구사항 정의서):
 https://docs.google.com/spreadsheets/d/1g3ygewxJyUQHp-9CXS64r2iVQ_I7W1QQw6VjM-njOYo/edit?usp=sharing
 
 정보처리기사 필기 기출문제 모음:
