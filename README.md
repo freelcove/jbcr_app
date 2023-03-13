@@ -5,6 +5,8 @@
 
 미리캔버스 (ppt):
 https://www.miricanvas.com/login?redirect=%2Fdesign%2F11ucr1g
+
+박준호: freelcove@gmail.com
 소병수: baptist0602@gmail.com
 
 Miro.com (작업 진행판):
