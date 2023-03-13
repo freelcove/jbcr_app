@@ -7,5 +7,7 @@
 
 void draw_options();
 
+void controlOptions();
+
 
 #endif

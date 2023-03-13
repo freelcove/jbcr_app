@@ -6,7 +6,6 @@ COORD cursorPosition = { 0, 0 };
 
 int font_size = 25;
 int current_menu_item = 0;
-int current_option_item = 0;
 
 int app_started = 0;
 

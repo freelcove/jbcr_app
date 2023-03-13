@@ -41,7 +41,6 @@ extern HANDLE console;
 
 //메인 메뉴에서 현재 메뉴 아이템
 extern int current_menu_item;
-extern int current_option_item;
 
 //객관식 문제 개수
 extern int num_objective_questions;

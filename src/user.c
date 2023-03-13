@@ -20,10 +20,72 @@ void draw_user_options() {
 
 	for (int i = 0; i < 5; i++) {
 		SetConsoleCursorPosition(console, cursorPosition);
-		printf("%s %s\n", (current_option_item) == i ? "▶" : " ", option_items[i]);
+		printf("%s %s\n", (current_menu_item) == i ? "▶" : " ", option_items[i]);
 		cursorPosition.Y += 2;
 	}
 }
+
+void controlUserOptions(){
+		if (key_pressed == 'w' || key_pressed == 'W' || key_pressed == 72) {
+					current_menu_item = (current_menu_item - 1 + 5) % 5;
+				}
+
+				else if (key_pressed == 's' || key_pressed == 'S' || key_pressed == 80) {
+					current_menu_item = (current_menu_item + 1) % 5;
+				}
+
+				else if (key_pressed == 'a' || key_pressed == 'A' || key_pressed == 37) {
+
+
+				}
+				else if (key_pressed == 'd' || key_pressed == 'D' || key_pressed == 39) {
+				}
+
+				//사용자 정보
+				else if (key_pressed == '\r' && current_menu_item == 1) {
+					ClearScreen();
+					draw_title();
+					draw_user_info();
+					getch();
+					ClearScreen();
+					draw_title();
+				}
+				//이름 변경
+				else if (key_pressed == '\r' && current_menu_item == 2) {
+					ClearScreen();
+					draw_title();
+					cursorPosition.X = 26;
+					cursorPosition.Y = 16;
+					SetConsoleCursorPosition(console, cursorPosition);
+					printf("새로운 이름을 입력하세요");
+
+					cursorPosition.X = 26;
+					cursorPosition.Y = 18;
+					SetConsoleCursorPosition(console, cursorPosition);
+					printf("이름: ");
+					
+					scanf("%s", &user_name);
+
+					cursorPosition.X = 26;
+					cursorPosition.Y = 20;
+					SetConsoleCursorPosition(console, cursorPosition);
+					printf("환영합니다 %s님!", user_name);
+					getch();
+					ClearScreen();
+					draw_title();
+				}
+
+				//기록 초기화
+				else if (key_pressed == '\r' && current_menu_item == 3) {
+					resetUserInfo();
+				}
+
+				else if (key_pressed == '\r' && current_menu_item == 4) {
+
+					
+				}
+}
+
 
 void draw_user_info() {
 
@@ -103,3 +165,4 @@ void resetUserInfo()
 	total_tried_subjective = 0;
 	total_right_subjective = 0;
 }
+

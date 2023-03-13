@@ -7,11 +7,14 @@
 
 void draw_user_options();
 
+void controlUserOptions();
+
 void draw_user_info();
 
 void WriteUserInfo();
 
 void LoadUserInfo();
 
+void resetUserInfo();
 
 #endif
