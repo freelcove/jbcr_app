@@ -7,84 +7,19 @@ static int count = 1;
 char options[4][MAX_LINE_LENGTH];
 static int maxlen = 0;
 static int count_change_row = 0;
-
-
-//보기 중 가장 긴 길이 저장
-void OptionsMaxLen()
-{
-	maxlen -= maxlen;	//static값 초기화
-	for (int j = 0; j < 4; j++)	//maxlen에 가장 큰 strlen값 저장
-	{
-		if (maxlen < strlen(options[j]))
-			maxlen = strlen(options[j]);
-	}
-}
-//문제 출력
-void printquestion(ObjectiveQuestion* questions, int id)
-{
-
-	printf("%d. %s\n\n", count, questions[id].question);
-
-	count++;
-}
-//보기1,2 사이 간격,줄바꿈 설정
-void changerow1()
-{
-	int lendiff1 = 37 - (_mbslen(options[0]));
-	int lendiff2 = 37 - (_mbslen(options[2]));
-	if (maxlen > 40)
-	{
-		printf("\n");
-	}
-	else
-	{
-		if (lendiff1 > 0)
-		{
-			lendiff1 += 8;
-			while (lendiff1 > 0)
-			{
-				printf("\t");
-				lendiff1 -= 8;
-			}
-		}
-		else
-			printf("\t\t");
-	}
-}
-//보기3,4 사이 간격,줄바꿈 설정
-void changerow2()
-{
-	int lendiff1 = 37 - (_mbslen(options[0]));
-	int lendiff2 = 37 - (_mbslen(options[2]));
-	if (maxlen > 40)
-	{
-		printf("\n");
-	}
-	else
-	{
-		if (lendiff2 > 0)
-		{
-			lendiff2 += 8;
-			while (lendiff2 > 0)
-			{
-				printf("\t");
-				lendiff2 -= 8;
-			}
-		}
-		else
-			printf("\t\t");
-	}
-}
 static int right_answer;
+
+
 //보기 출력 순서 변경에 따른 정답 변경
 char changedanswer()
 {
 	return right_answer + '0';
 }
+
 //보기 1,2,3,4 출력 순서 섞기
 void optionchange(ObjectiveQuestion* questions, int id)
 {
-	right_answer -= right_answer;
+	right_answer = 0;
 	for (int x = 0; x < 4; x++)
 	{
 		for (int y = 0; y < sizeof(options[x]); y++)
@@ -114,55 +49,8 @@ void optionchange(ObjectiveQuestion* questions, int id)
 		right_answer = nums[3] + 1;
 
 }
-//보기 1,2,3,4 출력설정
-void printoptions(ObjectiveQuestion* questions, int id)
-{
-	optionchange(questions, id);
-	OptionsMaxLen();
-	printf("① %s", options[0]);
-	changerow1();
-	printf("② %s\n", options[1]);
-	printf("③ %s", options[2]);
-	changerow2();
-	printf("④ %s\n\n", options[3]);
-}
 
-int rand_id[100] = { -1 };
-
-void id_sequence()
-{
-	int num = 0;
-	for (int i = 0; i < 29; i++)
-	{
-		while (1)
-		{
-			int swit = 1;
-			num = randnum();
-			for (int j = 0; j <= i; j++)
-			{
-				if (rand_id[j] == num)
-					swit = 0;
-			}
-			if (swit)
-			{
-				rand_id[i] = num;
-				break;
-			}
-		}
-
-	}
-}
-//랜덤의 숫자 반환(29미만)
-int randnum()
-{
-	srand(time(NULL) * rand());
-	return rand() % 29;
-}
-
-extern repeat[];
-extern faltcount;
-
-
+//점수 출력
 void Percentage(int num)
 {
 	if (num != 0)
@@ -174,77 +62,6 @@ void Percentage(int num)
 		printf("\n\n\n\n\t\t\t푼 문제가 없습니다.\n");
 
 }
-
-//줄 바꿔서 출력하기(0:문제, 1:옵션1, 2:옵션2, 3:옵션3, 4:옵션4)
-void rowchange(ObjectiveQuestion* questions, int id, int choice)
-{
-	char name[1024] = { NULL };
-	int widlen = 70;
-	char temp1[1024] = { NULL };
-	char temp2[1024] = { NULL };
-	char addChar[10] = { "Q. " };
-	int nextrow = 0;
-	int firstcount = 1;
-	//출력할 내용 선택
-	optionchange(questions, id);
-
-	for (int i = 0; i < 4; i++)
-	{
-		name[i] = addChar[i];
-	}
-	strcpy(name + strlen(name), questions[id].question);
-	while (strlen(name) > widlen)
-	{
-		int lengthname = strlen(name);
-		//내용이 지정한 길이보다 길때 자를 위치 지정
-		if (lengthname >= widlen)
-		{
-			for (int i = widlen; name[i] != ' '; i++)
-				nextrow = i + 1;
-		}
-		//자를위치가 내용의 길이와 같거나 길때 내용 그대로 출력하기 위해 반복문 종료
-		if (nextrow >= lengthname)
-			break;
-		int dellen = sizeof(temp1);
-		for (int j = 0; j < dellen; j++)	//temp1의 내용 지우기
-			temp1[j] = NULL;
-		strncpy(temp1, name, nextrow);		//temp1에 name 내용 복사하기
-		int k = 0;
-		if (name[nextrow] == ' ')
-			nextrow++;
-		//temp2에다가 temp1의 내용을 집어놓고 남은 나머지의 내용 복사하기
-		for (int j = nextrow; name[j] != NULL; j++)
-		{
-			temp2[k] = name[j];
-			k++;
-		}
-		for (int j = 0; j < lengthname; j++)	//name에 있는 데이터 지우기
-			name[j] = NULL;
-		strcpy(name, temp2);					//temp2의 내용을 name으로 옮기기
-		printf("\t%s\n", temp1);					//temp1의 내용 출력
-		dellen = sizeof(temp2);
-		for (int j = 0; j < dellen; j++)		//다음에 받을 데이터를 위해 temp2의 내용 지우기
-			temp2[j] = NULL;
-		nextrow = widlen;
-		lengthname = 0;
-		dellen = 0;
-	}
-	printf("\t%s\n", name);
-	puts("");
-}
-//검정(0),빨강(1),녹색(2),노랑(3),파랑(4),자주(5),청록(6),밝은회색(7)
-char textcolor[8][20] = {
-	{"\033[0;30m"},{"\033[0;31m"},{"\033[0;32m"},{"\033[0;33m"},{"\033[0;34m"},{"\033[0;35m"},
-	{"\033[0;36m"},{"\033[0;37m"}
-};
-char endcolor[20] = { "\033[0m" };
-//검정(0),빨강(1),녹색(2),노랑(3),파랑(4),자주(5),청록(6),밝은회색(7)
-char backcolor[8][20] = {
-	{"\033[0;40m"},{"\033[0;41m"},{"\033[0;42m"},{"\033[0;43m"},{"\033[0;44m"},{"\033[0;45m"},
-	{"\033[0;46m"},{"\033[0;47m"}
-};
-//[0] : 입력한 번호, [1] : 정답 번호, [2] : 0==색 변환X, 1==색 변환O
-int changecolor[3] = { 0,0,0 };
 
 //문자열 길이 맞춰서 줄바꾸기
 void print_change_row(char* sentence)
@@ -315,25 +132,6 @@ void print_change_row(char* sentence)
 		printf("\t   %s\n", print_sentence);
 }
 
-//문제 자동 줄바꿈해서 출력
-void questionrowchange(ObjectiveQuestion* questions, int id)
-{
-	printf("\n\n");
-	if (changecolor[2] != 1)
-		optionchange(questions, id);
-	char name[1024] = { NULL };
-	char addChar[10] = { "Q. " };
-
-	//출력할 내용 선택
-	for (int i = 0; i < 4; i++)
-	{
-		name[i] = addChar[i];
-	}
-	strcpy(name + strlen(name), questions[id].question);
-	print_change_row(&name);
-	printf("\n");
-}
-
 //입력값에 따른 출력 색 변경
 int select_color(int choice)
 {	//240		143		176		225
@@ -368,29 +166,11 @@ int select_color(int choice)
 	return mycolor;
 }
 
-//보기 자동 줄바꿈해서 출력
-void optionrowchange(ObjectiveQuestion* questions, int id, int choice)
-{
-	char name[1024] = { NULL };
-	char addChar[4][10] = { {"① "},{"② "},{"③ "},{"④ "} };
-	int mycolor = select_color(choice);
-	SetConsoleTextAttribute(console, mycolor);
-
-	//출력할 내용 선택
-	for (int i = 0; i < 4; i++)
-	{
-		name[i] = addChar[choice - 1][i];
-	}
-	strcpy(name + strlen(name), options[choice - 1]);
-	print_change_row(&name);
-	SetConsoleTextAttribute(console, 240);
-	puts("");
-}
-
-void print_row_change(ObjectiveQuestion* questions, int id, int choice)
+//객관식 문제 출력
+void print_objective_question(ObjectiveQuestion* questions, int id, int choice)
 {
 
-	char name[1024] = { NULL };
+	char name[MAX_LINE_LENGTH] = { NULL };
 	char addChar[5][10] = { {"Q. "}, {"① "},{"② "},{"③ "},{"④ "} };
 	int mycolor = select_color(choice);
 	SetConsoleTextAttribute(console, mycolor);
@@ -409,6 +189,7 @@ void print_row_change(ObjectiveQuestion* questions, int id, int choice)
 	puts("");
 }
 
+//옵션들중 커서의 위치 출력
 void option_select(ObjectiveQuestion* questions, int id)
 {
 	cursorPosition.X = 2;
@@ -419,7 +200,7 @@ void option_select(ObjectiveQuestion* questions, int id)
 	for (int i = 0; i < 4; i++) {
 		if (i == 0)
 		{
-			print_row_change(questions, id, 0);
+			print_objective_question(questions, id, 0);
 			cursorPosition.Y += count_change_row;
 		}
 		SetConsoleCursorPosition(console, cursorPosition);
@@ -440,19 +221,19 @@ void option_select(ObjectiveQuestion* questions, int id)
 		}
 		else num = 0;
 		printf("%s ", ((current_menu_item) == i) ? icon[num] : " ");
-		print_row_change(questions, id, i + 1);
+		print_objective_question(questions, id, i + 1);
 		cursorPosition.Y += count_change_row;
 	}
 }
 
-
+//방향키나 번호로 정답 선택하기
 int select_by_arrow(ObjectiveQuestion* questions, int id)
 {
 	int key_in;
 	int num;
 	while (1) {
 		option_select(questions, id);
-		printf("\n\n\t정답을 선택하세요(1~4): \n");
+		printf("\n\n\t   정답을 선택하세요(1~4): \n");
 		key_pressed = getch();
 		if (key_pressed == 'w' || key_pressed == 'W' || key_pressed == 72) {
 			current_menu_item = (current_menu_item + 3) % 4;
@@ -464,14 +245,13 @@ int select_by_arrow(ObjectiveQuestion* questions, int id)
 			ClearScreen();
 			break;
 		}
-		else if (key_pressed >= 1 && key_pressed <= 4) {
-			current_menu_item = key_pressed - 1;
+		else if (key_pressed >= '1' && key_pressed <= '4') {
+			current_menu_item = key_pressed - 1-'0';
 			ClearScreen();
 			break;
 		}
 		else if (key_pressed == 27)
 			return -1;
-
 	}
 	changecolor[0] += current_menu_item % 4 + 1;
 	changecolor[1] += changedanswer() - '0';
@@ -485,6 +265,8 @@ int select_by_arrow(ObjectiveQuestion* questions, int id)
 	return num;
 
 }
+
+//메뉴에서 나가기
 void exit_menu(int solved_questions)
 {
 	ClearScreen();
@@ -497,4 +279,54 @@ void exit_menu(int solved_questions)
 		}
 	}
 
+}
+
+void all_process_objective(ObjectiveQuestion* objective_questions, struct Queue* queue_objective)
+{
+	int solved_questions;
+	solved_questions = 0;
+	current_streak = 0;
+	faltcount = 0;
+	while (1)
+	{
+		int start = time(NULL);
+		int id = queue_objective->front->key;
+		int num;
+		int swit = 0;
+		optionchange(objective_questions, id);
+		num = select_by_arrow(objective_questions, id);
+		if (num == 1) {
+			enqueue(queue_objective, queue_objective->front->key);
+			dequeue(queue_objective);
+		}
+		else if (num == 0) {
+			insert_after_x(queue_objective, queue_objective->front->key, interval_failed_questions);
+			dequeue(queue_objective);
+		}
+		else if (num == -1)
+		{
+
+			exit_menu(solved_questions);
+
+			break;
+		}
+		solved_questions++;
+		printf("\t   다음 문제로 넘어가시려면 엔터를 누르세요\n\t   종료를 원하시면 x나 Esc를 누르세요.\n");
+		current_menu_item = 0;
+		while (1)
+		{
+			if (kbhit()) {
+				char input = getch();
+				if (input == 'x' || input == 27)
+					swit = 1;
+				break;
+			}
+		}
+		if (swit == 1)
+		{
+			exit_menu(solved_questions);
+			break;
+		}
+		ClearScreen();
+	}
 }

@@ -73,6 +73,12 @@ int main()
 				ClearScreen();
 				break;
 			}
+			else if (key_pressed == 27)
+			{
+				ClearScreen();
+				current_menu_item = 4;
+				break;
+			}
 		}
 		switch (current_menu_item)
 		{
@@ -80,52 +86,9 @@ int main()
 			// 메뉴 "객관식 문제"
 		case 0:
 		{
-			int solved_questions;
-			solved_questions= 0;
-			current_streak = 0;
-			faltcount = 0;
-			while (1)
-			{
-				int start = time(NULL);
-				int id = queue_objective->front->key;
-				int num;
-				int swit = 0;
-				optionchange(objective_questions, id);
-				num = select_by_arrow(objective_questions, id);
-				if (num == 1) {
-					enqueue(queue_objective, queue_objective->front->key);
-					dequeue(queue_objective);
-				}
-				else if (num == 0) {
-					insert_after_x(queue_objective, queue_objective->front->key, interval_failed_questions);
-					dequeue(queue_objective);
-				}
-				else if (num == -1)
-				{
 
-					exit_menu(solved_questions);
-					
-					break;
-				}
-				solved_questions++;
-				printf("\t   다음 문제로 넘어가시려면 엔터를 누르세요\n\t   종료를 원하시면 x나 Esc를 누르세요.\n");
-				current_menu_item = 0;
-				while (1)
-				{
-					if (kbhit()) {
-						char input = getch();
-						if (input == 'x'||input==27)
-							swit = 1;
-						break;
-					}
-				}
-				if (swit == 1)
-				{
-					exit_menu(solved_questions);
-					break;
-				}
-				ClearScreen();
-			}
+			all_process_objective(objective_questions, queue_objective);
+
 		}
 		break;
 

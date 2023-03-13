@@ -108,7 +108,7 @@ void write_history(struct Queue* queue_objective, struct Queue* queue_subjective
 
 static count = 0;     //이 소스 파일에서만 사용할 count변수
 //틀린 문제의 INDEX 저장
-int repeat[MAX_QUESTIONS] = { -1 };
+extern int repeat[MAX_QUESTIONS] = { -1 };
 
 
 void faltquestions(int id)
@@ -142,11 +142,9 @@ int CheckAnswer(ObjectiveQuestion* questions, int id, HANDLE console)
 	changecolor[2] += 1;
 	// 정답 체크
 	ClearScreen();
-	questionrowchange(questions, id);
-	optionrowchange(questions, id, 1, console);
-	optionrowchange(questions, id, 2, console);
-	optionrowchange(questions, id, 3, console);
-	optionrowchange(questions, id, 4, console);
+
+			//문제 보기 출력 추가필요
+
 	printf("\n\n");
 	if (input == changedanswer()) {
 		printf("정답입니다!\n\n");
@@ -172,13 +170,13 @@ int check_my_answer(id)
 		current_streak++;
 		if (best_streak < current_streak)
 			best_streak = current_streak;
-		printf("\n\t   정답입니다!\n\t   현재까지 맞춘 문제수 : %d\tBEST : %d\n\n",current_streak,best_streak);
+		printf("\n\t   %d번은 정답입니다!\n\t   현재까지 맞춘 문제수 : %d\tBEST : %d\n\n",changecolor[0],current_streak,best_streak);
 		result = 1;
 	}
 	else {
 		current_streak = 0;
 		faltquestions(id);
-		printf("\n\t   오답입니다. \n\t   정답은 %c입니다.\tBEST : %d\n\n", changedanswer(),best_streak);
+		printf("\n\t   %d번은 오답입니다. \n\t   정답은 %c번입니다.\tBEST : %d\n\n", changecolor[0],changedanswer(),best_streak);
 		result = 0;
 	}
 	return result;
