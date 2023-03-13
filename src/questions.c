@@ -1,6 +1,6 @@
 #include "globals.h"
 
-void read_objective_questions(ObjectiveQuestion* questions) {
+void readObjectiveQuestions(ObjectiveQuestion* questions) {
 	FILE* file;
 	char line[MAX_LINE_LENGTH];
 
@@ -23,7 +23,7 @@ void read_objective_questions(ObjectiveQuestion* questions) {
 	fclose(file);
 }
 
-void read_subjective_questions(SubjectiveQuestion* questions) {
+void readSubjectiveQuestions(SubjectiveQuestion* questions) {
 	FILE* file;
 	char line[MAX_LINE_LENGTH];
 
@@ -44,7 +44,7 @@ void read_subjective_questions(SubjectiveQuestion* questions) {
 	fclose(file);
 }
 
-void read_history(struct Queue* queue_objective, struct Queue* queue_subjective) {
+void readHistory(struct Queue* queue_objective, struct Queue* queue_subjective) {
 	// 첫째 행 객관식 문제 큐 배열
 	// 둘째 행 주관식 문제 큐 배열
 	FILE* file;
@@ -74,7 +74,7 @@ void read_history(struct Queue* queue_objective, struct Queue* queue_subjective)
 }
 
 
-void write_history(struct Queue* queue_objective, struct Queue* queue_subjective) {
+void writeHistory(struct Queue* queue_objective, struct Queue* queue_subjective) {
 	FILE* file;
 	file = fopen("db/db_history.tsv", "w");
 	if (file == NULL) {
@@ -141,7 +141,7 @@ int CheckAnswer(ObjectiveQuestion* questions, int id, HANDLE console)
 	changecolor[1] += changedanswer() - '0';
 	changecolor[2] += 1;
 	// 정답 체크
-	ClearScreen();
+	clearScreen();
 
 			//문제 보기 출력 추가필요
 

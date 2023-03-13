@@ -4,9 +4,9 @@ int main()
 {
 
 	// 전역 변수 Initialization
-	init_globals();
+	initGlobals();
 
-	LoadUserInfo();
+	loadUserInfo();
 
 	// 콘솔창 Initialization.
 	InitScreen();
@@ -16,14 +16,14 @@ int main()
 	SubjectiveQuestion *subjective_questions = malloc(sizeof(SubjectiveQuestion) * MAX_QUESTIONS);
 
 	// tsv 파일에서 데이터 불러와서 questions[] 배열에 저장
-	read_objective_questions(objective_questions);
-	read_subjective_questions(subjective_questions);
+	readObjectiveQuestions(objective_questions);
+	readSubjectiveQuestions(subjective_questions);
 
 	// 히스토리를 저장할 queue 생성
 	struct Queue *queue_objective = create_queue();
 	struct Queue *queue_subjective = create_queue();
 
-	read_history(queue_objective, queue_subjective);
+	readHistory(queue_objective, queue_subjective);
 
 	// 만약 프로그램 첫 실행이라면 히스토리를 새로 채워 넣음.
 	if (queue_objective->front == NULL)
@@ -44,9 +44,9 @@ int main()
 
 	while (1)
 	{
-		current_menu_item = 0;
-		ClearScreen();
-		draw_title();
+		current_menu = 0;
+		clearScreen();
+		drawTitle();
 
 		while (1)
 		{
@@ -54,25 +54,25 @@ int main()
 			key_pressed = getch();
 			if (key_pressed == 'w' || key_pressed == 'W' || key_pressed == 72)
 			{
-				current_menu_item = (current_menu_item - 1 + 5) % 5;
+				current_menu = (current_menu - 1 + 5) % 5;
 			}
 			else if (key_pressed == 's' || key_pressed == 'S' || key_pressed == 80)
 			{
-				current_menu_item = (current_menu_item + 1) % 5;
+				current_menu = (current_menu + 1) % 5;
 			}
 			else if (key_pressed == '\r')
 			{
-				ClearScreen();
+				clearScreen();
 				break;
 			}
 			else if (key_pressed == 27)
 			{
-				ClearScreen();
-				current_menu_item = 4;
+				clearScreen();
+				current_menu = 4;
 				break;
 			}
 		}
-		switch (current_menu_item)
+		switch (current_menu)
 		{
 
 			// 메뉴 "객관식 문제"
@@ -128,7 +128,7 @@ int main()
 
 					solved_questions++;
 					printf("다음 문제로 넘어가시려면 엔터를 누르세요\n종료를 원하시면 x를 누르세요.\n");
-					current_menu_item = 0;
+					current_menu = 0;
 					int swit = 0;
 					while (1)
 					{
@@ -142,24 +142,24 @@ int main()
 					}
 					if (swit == 1)
 					{
-						ClearScreen();
+						clearScreen();
 						Percentage(solved_questions);
 						break;
 					}
-					ClearScreen();
+					clearScreen();
 				}
 			}
 			break;
 
 			// 메뉴 "사용자"
 		case 2:
-			draw_title();
-			current_menu_item = 0;
+			drawTitle();
+			current_menu = 0;
 			while (1)
 			{
-				draw_user_options();
+				drawUserOptions();
 				key_pressed = getch();
-				if (key_pressed == 27 || (key_pressed == '\r' && current_menu_item == 4))
+				if (key_pressed == 27 || (key_pressed == '\r' && current_menu == 4))
 				{
 					break;
 				};
@@ -169,13 +169,13 @@ int main()
 
 			// 메뉴 "옵션"
 		case 3:
-			draw_title();
-			current_menu_item = 0;
+			drawTitle();
+			current_menu = 0;
 			while (1)
 			{
-				draw_options();
+				drawOptions();
 				key_pressed = getch();
-				if (key_pressed == 27 || (key_pressed == '\r' && current_menu_item == 4))
+				if (key_pressed == 27 || (key_pressed == '\r' && current_menu == 4))
 				{
 					break;
 				};
@@ -187,7 +187,7 @@ int main()
 			printf("프로그램 종료");
 
 			// db_history.tsv에 history를 저장
-			write_history(queue_objective, queue_subjective);
+			writeHistory(queue_objective, queue_subjective);
 
 			WriteUserInfo();
 

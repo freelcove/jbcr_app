@@ -1,7 +1,7 @@
 #include "user.h"
 
 
-void draw_user_options() {
+void drawUserOptions() {
 
 
 	char option1[50];
@@ -20,18 +20,18 @@ void draw_user_options() {
 
 	for (int i = 0; i < 5; i++) {
 		SetConsoleCursorPosition(console, cursorPosition);
-		printf("%s %s\n", (current_menu_item) == i ? "▶" : " ", option_items[i]);
+		printf("%s %s\n", (current_menu) == i ? "▶" : " ", option_items[i]);
 		cursorPosition.Y += 2;
 	}
 }
 
 void controlUserOptions(){
 		if (key_pressed == 'w' || key_pressed == 'W' || key_pressed == 72) {
-					current_menu_item = (current_menu_item - 1 + 5) % 5;
+					current_menu = (current_menu - 1 + 5) % 5;
 				}
 
 				else if (key_pressed == 's' || key_pressed == 'S' || key_pressed == 80) {
-					current_menu_item = (current_menu_item + 1) % 5;
+					current_menu = (current_menu + 1) % 5;
 				}
 
 				else if (key_pressed == 'a' || key_pressed == 'A' || key_pressed == 37) {
@@ -42,18 +42,18 @@ void controlUserOptions(){
 				}
 
 				//사용자 정보
-				else if (key_pressed == '\r' && current_menu_item == 1) {
-					ClearScreen();
-					draw_title();
-					draw_user_info();
+				else if (key_pressed == '\r' && current_menu == 1) {
+					clearScreen();
+					drawTitle();
+					drawUserInfo();
 					getch();
-					ClearScreen();
-					draw_title();
+					clearScreen();
+					drawTitle();
 				}
 				//이름 변경
-				else if (key_pressed == '\r' && current_menu_item == 2) {
-					ClearScreen();
-					draw_title();
+				else if (key_pressed == '\r' && current_menu == 2) {
+					clearScreen();
+					drawTitle();
 					cursorPosition.X = 26;
 					cursorPosition.Y = 16;
 					SetConsoleCursorPosition(console, cursorPosition);
@@ -71,21 +71,17 @@ void controlUserOptions(){
 					SetConsoleCursorPosition(console, cursorPosition);
 					printf("환영합니다 %s님!", user_name);
 					getch();
-					ClearScreen();
-					draw_title();
+					clearScreen();
+					drawTitle();
 				}
 
 				//기록 초기화
-				else if (key_pressed == '\r' && current_menu_item == 3) {
+				else if (key_pressed == '\r' && current_menu == 3) {
 					resetUserInfo();
 				}
-
-				
 }
 
-
-void draw_user_info() {
-
+void drawUserInfo() {
 	char option0[50];
 	sprintf(option0, "최고 Streak: %d", best_streak);
 
@@ -131,7 +127,7 @@ void WriteUserInfo() {
 	fclose(file);
 }
 
-void LoadUserInfo() {
+void loadUserInfo() {
 	FILE* file;
 	char line[MAX_LINE_LENGTH];
 

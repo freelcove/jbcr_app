@@ -1,6 +1,6 @@
 #include "options.h"
 
-void draw_options()
+void drawOptions()
 {
 
 	char option1[50];
@@ -25,7 +25,7 @@ void draw_options()
 	for (int i = 0; i < 5; i++)
 	{
 		SetConsoleCursorPosition(console, cursorPosition);
-		printf("%s %s\n", (current_menu_item) == i ? "¢º" : " ", option_items[i]);
+		printf("%s %s\n", (current_menu) == i ? "¢º" : " ", option_items[i]);
 		cursorPosition.Y += 2;
 	}
 }
@@ -35,17 +35,17 @@ void controlOptions()
 
 	if (key_pressed == 'w' || key_pressed == 'W' || key_pressed == 72)
 	{
-		current_menu_item = (current_menu_item - 1 + 5) % 5;
+		current_menu = (current_menu - 1 + 5) % 5;
 	}
 	else if (key_pressed == 's' || key_pressed == 'S' || key_pressed == 80)
 	{
-		current_menu_item = (current_menu_item + 1) % 5;
+		current_menu = (current_menu + 1) % 5;
 	}
 
 	else if (key_pressed == 'a' || key_pressed == 'A' || key_pressed == 37)
 	{
 
-		switch (current_menu_item)
+		switch (current_menu)
 		{
 		case 0:
 			if (interval_failed_questions > 1)
@@ -65,16 +65,16 @@ void controlOptions()
 			{
 				color_mode--;
 				set_color_theme(color_mode);
-				ClearScreen();
-				draw_title();
-				draw_options();
+				clearScreen();
+				drawTitle();
+				drawOptions();
 			}
 			break;
 		}
 	}
 	else if (key_pressed == 'd' || key_pressed == 'D' || key_pressed == 39)
 	{
-		switch (current_menu_item)
+		switch (current_menu)
 		{
 		case 0:
 			if (interval_failed_questions < 50)
@@ -94,26 +94,26 @@ void controlOptions()
 			{
 				color_mode++;
 				set_color_theme(color_mode);
-				ClearScreen();
-				draw_title();
-				draw_options();
+				clearScreen();
+				drawTitle();
+				drawOptions();
 			}
 			break;
 		}
 	}
 
-	else if (key_pressed == '\r' && current_menu_item == 3)
+	else if (key_pressed == '\r' && current_menu == 3)
 	{
 		interval_failed_questions = 10;
 		font_size = 25;
 		color_mode = 0;
 		InitScreen();
-		ClearScreen();
-		draw_title();
-		draw_options();
+		clearScreen();
+		drawTitle();
+		drawOptions();
 	}
 
-	else if (key_pressed == '\r' && current_menu_item == 4)
+	else if (key_pressed == '\r' && current_menu == 4)
 	{
 		
 	}

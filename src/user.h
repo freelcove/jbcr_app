@@ -5,15 +5,15 @@
 #define USER_H
 
 
-void draw_user_options();
+void drawUserOptions();
 
 void controlUserOptions();
 
-void draw_user_info();
+void drawUserInfo();
 
 void WriteUserInfo();
 
-void LoadUserInfo();
+void loadUserInfo();
 
 void resetUserInfo();
 

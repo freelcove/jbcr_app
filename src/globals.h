@@ -23,7 +23,7 @@
 #define CONSOLE_WIDTH 80
 #define CONSOLE_HEIGHT 30
 
-void init_globals();
+void initGlobals();
 
 extern char user_name[50];
 
@@ -36,7 +36,7 @@ extern COORD cursorPosition;
 extern HANDLE console;
 
 // 메인 메뉴에서 현재 메뉴 아이템
-extern int current_menu_item;
+extern int current_menu;
 
 // 객관식 문제 개수
 extern int num_objective_questions;

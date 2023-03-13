@@ -5,7 +5,7 @@
 #ifndef OPTIONS_H
 #define OPTIONS_H
 
-void draw_options();
+void drawOptions();
 
 void controlOptions();
 

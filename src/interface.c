@@ -1,6 +1,6 @@
 #include "globals.h"
 
-void ClearScreen()
+void clearScreen()
 {
 	system("cls");
 }
@@ -61,11 +61,11 @@ void InitScreen() {
 
 }
 
-void draw_title()
+void drawTitle()
 {
 	printf("\n");
 	printf("\n");
-		printf("                               æ»≥Á«œººø‰ %s¥‘!\n", user_name);
+	printf("                            æ»≥Á«œººø‰ %s¥‘!\n", user_name);
 	printf("\n");
 	printf("             _________  _____ ______       _             _       \n");
 	printf("            |_  | ___ \\/  __ \\| ___ \\     | |           | |      \n");
@@ -94,7 +94,7 @@ void draw_menu() {
 
 	for (int i = 0; i < 5; i++) {
 		SetConsoleCursorPosition(console, cursorPosition);
-		printf("%s %s\n", (current_menu_item) == i ? "¢∫" : " ", menu_items[i]);
+		printf("%s %s\n", (current_menu) == i ? "¢∫" : " ", menu_items[i]);
 		cursorPosition.Y += 2;
 	}
 }

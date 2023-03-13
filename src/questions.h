@@ -25,15 +25,15 @@ typedef struct {
 } SubjectiveQuestion;
 
 
-void read_objective_questions(ObjectiveQuestion* questions);
+void readObjectiveQuestions(ObjectiveQuestion* questions);
 
-void read_subjective_questions(SubjectiveQuestion* questions);
+void readSubjectiveQuestions(SubjectiveQuestion* questions);
 
 //db_history.tsv를 불러오기
-void read_history(int* objective_history, int* subjective_history);
+void readHistory(int* objective_history, int* subjective_history);
 
 //현재 히스토리 값들을 db_history.tsv에 저장.
-void write_history(struct Queue* queue_objective, struct Queue* queue_subjective);
+void writeHistory(struct Queue* queue_objective, struct Queue* queue_subjective);
 
 
 #endif
