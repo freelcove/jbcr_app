@@ -80,10 +80,7 @@ void controlUserOptions(){
 					resetUserInfo();
 				}
 
-				else if (key_pressed == '\r' && current_menu_item == 4) {
-
-					
-				}
+				
 }
 
 
