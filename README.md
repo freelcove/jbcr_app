@@ -7,7 +7,7 @@
 https://www.miricanvas.com/login?redirect=%2Fdesign%2F11ucr1g
 
 박준호: freelcove@gmail.com
-소병수: baptist0602@gmail.com
+소병수: baptist0@naver.com
 송준희: koolca1219@nate.com
 
 Miro.com (작업 진행판):
