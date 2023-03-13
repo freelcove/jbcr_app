@@ -66,6 +66,7 @@ void Percentage(int num)
 //문자열 길이 맞춰서 줄바꾸기
 void print_change_row(char* sentence)
 {
+
 	count_change_row = 2;
 	char print_sentence[1024] = { NULL };
 	int widlen = 50;
@@ -109,9 +110,9 @@ void print_change_row(char* sentence)
 		strcpy(print_sentence, temp2);					//temp2의 내용을 name으로 옮기기
 
 		if (firstcount)
-			printf("\t%s\n", temp1);					//temp1의 내용 출력
+			printf("\t   %s\n", temp1);					//temp1의 내용 출력
 		else
-			printf("\t   %s\n", temp1);
+			printf("\t      %s\n", temp1);
 
 		dellen = sizeof(temp2);
 		for (int j = 0; j < dellen; j++)		//다음에 받을 데이터를 위해 temp2의 내용 지우기
@@ -127,9 +128,9 @@ void print_change_row(char* sentence)
 		count_change_row++;
 	}
 	if (firstcount)
-		printf("\t%s\n", print_sentence);
-	else
 		printf("\t   %s\n", print_sentence);
+	else
+		printf("\t      %s\n", print_sentence);
 }
 
 //입력값에 따른 출력 색 변경
@@ -232,6 +233,7 @@ int select_by_arrow(ObjectiveQuestion* questions, int id)
 	int key_in;
 	int num;
 	while (1) {
+		printf("\t\t\t\t\t\t\t\tBEST : %d\n", best_streak);	//첫줄 가장자리에 best_streak 출력
 		option_select(questions, id);
 		printf("\n\n\t   정답을 선택하세요(1~4): \n");
 		key_pressed = getch();
@@ -258,7 +260,17 @@ int select_by_arrow(ObjectiveQuestion* questions, int id)
 	changecolor[2] += 1;
 	current_menu_item = changedanswer() - '0' - 1;
 	option_select(questions, id);
-	num = check_my_answer(id);
+	num = check_my_answer(id);							//정답 체크
+
+	int x1 = cursorPosition.X, y1 = cursorPosition.Y;	//정답 출력 후 X, Y값 기록
+	cursorPosition.X = 64;
+	cursorPosition.Y = 0;
+	SetConsoleCursorPosition(console, cursorPosition);
+	printf("BEST : %d\n", best_streak);					//best_streak 실시간 반영 첫째줄 출력
+	cursorPosition.X = x1;
+	cursorPosition.Y = y1;
+	SetConsoleCursorPosition(console, cursorPosition);	//커서 위치 재정의(정답 체크 출력 후의 위치)
+
 	changecolor[0] = 0;
 	changecolor[1] = 0;
 	changecolor[2] = 0;
