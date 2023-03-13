@@ -230,10 +230,19 @@ void option_select(ObjectiveQuestion* questions, int id)
 //방향키나 번호로 정답 선택하기
 int select_by_arrow(ObjectiveQuestion* questions, int id)
 {
+	int x1, y1;
 	int key_in;
 	int num;
 	while (1) {
-		printf("\t\t\t\t\t\t\t\tBEST : %d\n", best_streak);	//첫줄 가장자리에 best_streak 출력
+		x1 = cursorPosition.X;
+		y1 = cursorPosition.Y;
+		cursorPosition.X = 64;
+		cursorPosition.Y = 0;
+		SetConsoleCursorPosition(console, cursorPosition);
+		printf("BEST : %d\n", best_streak);	//첫줄 가장자리에 best_streak 출력
+		cursorPosition.X = x1;
+		cursorPosition.Y = y1;
+		SetConsoleCursorPosition(console, cursorPosition);
 		option_select(questions, id);
 		printf("\n\n\t   정답을 선택하세요(1~4): \n");
 		key_pressed = getch();
@@ -262,7 +271,8 @@ int select_by_arrow(ObjectiveQuestion* questions, int id)
 	option_select(questions, id);
 	num = check_my_answer(id);							//정답 체크
 
-	int x1 = cursorPosition.X, y1 = cursorPosition.Y;	//정답 출력 후 X, Y값 기록
+	x1 = cursorPosition.X;
+	y1 = cursorPosition.Y;	//정답 출력 후 X, Y값 기록
 	cursorPosition.X = 64;
 	cursorPosition.Y = 0;
 	SetConsoleCursorPosition(console, cursorPosition);
