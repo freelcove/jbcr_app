@@ -29,7 +29,7 @@ void optionchange(ObjectiveQuestion* questions, int id)
 	int nums[4] = { 0, 1, 2, 3 };
 	int i, temp, rand_idx;
 	for (i = 0; i < 4; i++) {
-		rand_idx = rand() % 4;  // 0 ~ 3까지의 랜덤한 인덱스 생성
+		rand_idx = (rand()*time(NULL)) % 4;  // 0 ~ 3까지의 랜덤한 인덱스 생성
 		temp = nums[i];
 		nums[i] = nums[rand_idx];
 		nums[rand_idx] = temp;  // 랜덤한 인덱스에 해당하는 값과 i번째 값을 교환
@@ -240,12 +240,14 @@ void print_best_streak()
 	cursorPosition.Y = y1;
 	SetConsoleCursorPosition(console, cursorPosition);
 }
+
 //방향키나 번호로 정답 선택하기
 int select_by_arrow(ObjectiveQuestion* questions, int id)
 {
 	int x1, y1;
 	int key_in;
 	int num;
+
 	while (1) {
 		print_best_streak();
 		option_select(questions, id);
@@ -329,13 +331,13 @@ void all_process_objective(ObjectiveQuestion* objective_questions, struct Queue*
 			break;
 		}
 		solved_questions++;
-		printf("\t     다음 문제로 넘어가시려면 엔터를 누르세요\n\t     종료를 원하시면 x나 Esc를 누르세요.\n");
+		printf("\t     다음 문제로 넘어가시려면 엔터를 누르세요\n\t     종료를 원하시면 Esc를 누르세요.\n");
 		current_menu_item = 0;
 		while (1)
 		{
 			if (kbhit()) {
 				char input = getch();
-				if (input == 'x' || input == 27)
+				if (input == 27)
 					swit = 1;
 				break;
 			}
