@@ -116,7 +116,7 @@ int main()
 				{
 					break;
 				};
-				void controlUserOptions();
+				controlUserOptions();
 			}
 			break;
 
