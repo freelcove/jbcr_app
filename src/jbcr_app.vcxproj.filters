@@ -21,12 +21,6 @@
     <ClCompile Include="comment.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="convert.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="filecontrol.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="globals.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -51,15 +45,15 @@
     <ClCompile Include="utilities.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="match.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sub.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="comment.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="convert.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="filecontrol.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="globals.h">
@@ -84,6 +78,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="utilities.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="match.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="sub.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

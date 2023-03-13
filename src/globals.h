@@ -15,8 +15,7 @@
 #include "queue.h"
 #include "interface.h"
 #include "print.h"
-#include "convert.h"
-#include "filecontrol.h"
+
 #include "comment.h"
 #include "utilities.h"
 #include "options.h"

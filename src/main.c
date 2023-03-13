@@ -92,17 +92,80 @@ int main()
 		break;
 
 		// 메뉴 "주관식 문제"
+		
 		case 1:
 			printf("주관식 문제\n\n\n");
-			char c[100] = {NULL};
-			while (1)
 			{
-				gets(c);
-				printf("%s", c);
-				if (c[0] == 'x')
-					break;
+				int solved_questions = 0;
+
+				while (1)
+				{
+					int id = queue_subjective->front->key;
+
+					printf("%s\n", subjective_questions[id].definition);
+
+					printf("\n정답을 입력하세요\n");
+					char user_answer[MAX_LINE_LENGTH];
+					scanf("%[^\n]%*c", user_answer);
+
+
+					/*
+
+
+			printf("\n정답을 입력하세요\n");
+					char user_answer[MAX_LINE_LENGTH];
+					fgets(user_answer, MAX_LINE_LENGTH, stdin);
+					int len = strlen(user_answer);
+					if (user_answer[len - 1] == '\n') {
+						user_answer[len - 1] = '\0';
+					}
+					*/
+
+
+
+
+					//subjective_questions, id
+					if (match(user_answer, subjective_questions[id].name) == 0) { // match 함수 활용
+						printf("정답입니다.\n");
+						enqueue(queue_subjective, queue_subjective->front->key);
+						dequeue(queue_subjective);
+					}
+
+					else {
+						printf("오답입니다.\n");
+						insert_after_x(queue_subjective, queue_subjective->front->key, interval_failed_questions);
+						dequeue(queue_subjective);
+					}
+
+
+
+					solved_questions++;
+					printf("다음 문제로 넘어가시려면 엔터를 누르세요\n종료를 원하시면 x를 누르세요.\n");
+					current_menu_item = 0;
+					int swit = 0;
+					while (1)
+					{
+						if (kbhit()) {
+							char input = getchar();
+							if (input == 'x')
+								swit = 1;
+							break;
+						}
+					}
+					if (swit == 1)
+					{
+						ClearScreen();
+						Percentage(solved_questions);
+						break;
+					}
+					ClearScreen();
+				}
+
+
 			}
 			break;
+
+		
 
 			// 메뉴 "사용자"
 		case 2:
