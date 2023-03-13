@@ -65,13 +65,7 @@ void draw_title()
 {
 	printf("\n");
 	printf("\n");
-	if (app_started == 0) {
 		printf("                               æ»≥Á«œººø‰ %s¥‘!\n", user_name);
-		app_started = 1;
-	}
-	else {
-		printf("\n");
-	}
 	printf("\n");
 	printf("             _________  _____ ______       _             _       \n");
 	printf("            |_  | ___ \\/  __ \\| ___ \\     | |           | |      \n");

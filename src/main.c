@@ -42,18 +42,9 @@ int main()
 		}
 	}
 
-	// 코멘트 리스트 생성
-	struct CommentList *comment_list = create_comment_list();
-
-	// 코멘트 입력 하는 방법:
-	// 2번째 parameter에 문제 id, 3번째 parameter에 코멘트를 넣으면 됨
-	// enqueue_comment(comment_list, 문제 id, 코멘트);
-
-	// 코멘트 입력 테스트 (추후 삭제)
-	enqueue_comment(comment_list, 1, "Test");
-
 	while (1)
 	{
+		current_menu_item = 0;
 		ClearScreen();
 		draw_title();
 
@@ -91,8 +82,8 @@ int main()
 		}
 		break;
 
-		// 메뉴 "주관식 문제"
-		
+			// 메뉴 "주관식 문제"
+
 		case 1:
 			printf("주관식 문제\n\n\n");
 			{
@@ -108,7 +99,6 @@ int main()
 					char user_answer[MAX_LINE_LENGTH];
 					scanf("%[^\n]%*c", user_answer);
 
-
 					/*
 
 
@@ -121,23 +111,20 @@ int main()
 					}
 					*/
 
-
-
-
-					//subjective_questions, id
-					if (match(user_answer, subjective_questions[id].name) == 0) { // match 함수 활용
+					// subjective_questions, id
+					if (match(user_answer, subjective_questions[id].name) == 0)
+					{ // match 함수 활용
 						printf("정답입니다.\n");
 						enqueue(queue_subjective, queue_subjective->front->key);
 						dequeue(queue_subjective);
 					}
 
-					else {
+					else
+					{
 						printf("오답입니다.\n");
 						insert_after_x(queue_subjective, queue_subjective->front->key, interval_failed_questions);
 						dequeue(queue_subjective);
 					}
-
-
 
 					solved_questions++;
 					printf("다음 문제로 넘어가시려면 엔터를 누르세요\n종료를 원하시면 x를 누르세요.\n");
@@ -145,7 +132,8 @@ int main()
 					int swit = 0;
 					while (1)
 					{
-						if (kbhit()) {
+						if (kbhit())
+						{
 							char input = getchar();
 							if (input == 'x')
 								swit = 1;
@@ -160,12 +148,8 @@ int main()
 					}
 					ClearScreen();
 				}
-
-
 			}
 			break;
-
-		
 
 			// 메뉴 "사용자"
 		case 2:
@@ -175,7 +159,7 @@ int main()
 			{
 				draw_user_options();
 				key_pressed = getch();
-				if (key_pressed == 27)
+				if (key_pressed == 27 || (key_pressed == '\r' && current_menu_item == 4))
 				{
 					break;
 				};
@@ -191,22 +175,19 @@ int main()
 			{
 				draw_options();
 				key_pressed = getch();
-				if (key_pressed == 27)
+				if (key_pressed == 27 || (key_pressed == '\r' && current_menu_item == 4))
 				{
 					break;
 				};
 				controlOptions();
 			}
 			break;
-			
+
 		case 4:
 			printf("프로그램 종료");
 
 			// db_history.tsv에 history를 저장
 			write_history(queue_objective, queue_subjective);
-
-			// 코멘트를 txt 파일로 출력
-			write_txt_comments(comment_list);
 
 			WriteUserInfo();
 

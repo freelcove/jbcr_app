@@ -127,7 +127,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="comment.c" />
     <ClCompile Include="globals.c" />
     <ClCompile Include="interface.c" />
     <ClCompile Include="main.c" />
@@ -141,7 +140,6 @@
     <ClCompile Include="utilities.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="comment.h" />
     <ClInclude Include="globals.h" />
     <ClInclude Include="interface.h" />
     <ClInclude Include="match.h" />

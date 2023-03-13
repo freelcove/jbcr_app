@@ -7,8 +7,6 @@ COORD cursorPosition = { 0, 0 };
 int font_size = 25;
 int current_menu_item = 0;
 
-int app_started = 0;
-
 int best_streak=0;
 int current_streak=0;
 int faltcount = 0;
