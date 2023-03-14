@@ -77,62 +77,62 @@ int main()
 			break;
 
 			// current_mode = 주관식 문제
-		case 1:
+		case 1: {
+			int solved_questions = 0;
+			while (1) {
+				int id = queue_subjective->front->key;
 
-			{
-				int solved_questions = 0;
+				faltcount = 0;
+				check_subjective = 1;
+				print_change_row(&subjective_questions[id].definition);
+				printf("\n");
+				print_change_row("정답을 입력하세요");
 
-				while (1)
-				{
-					int id = queue_subjective->front->key;
+				fgets(user_answer, sizeof(user_answer), stdin);
+				user_answer[strcspn(user_answer, "\n")] = 0;
 
-					faltcount = 0;
-					check_subjective = 1;
-					print_change_row(&subjective_questions[id].definition);
+				if (check_subjective_correction(subjective_questions, id, queue_subjective)) {
+					char error_message[100];
+					sprintf(error_message, "%s은(는) 오답입니다.", user_answer);
+					print_change_row(error_message);
 
-					printf("\n정답을 입력하세요\n");
-					fgets(user_answer, sizeof(user_answer), stdin);
-					user_answer[strcspn(user_answer, "\n")] = 0;
+					char correct_answer_message[100];
+					sprintf(correct_answer_message, "정답은 %s 입니다.", subjective_questions[id].name);
+					print_change_row(correct_answer_message);
 
-					if (check_subjective_correction(subjective_questions, id,queue_subjective))
-					{
-						printf("%s은(는) 오답입니다.\n", user_answer);
-						printf("\n정답은 ");
-						SetConsoleTextAttribute(console, select_color(-1));
-						printf("%s", subjective_questions[id].name);
-						SetConsoleTextAttribute(console, color_mode_preset[color_mode % 4]);
-						printf(" 입니다.\n");
-						faltcount++;
-						insert_after_x(queue_subjective, queue_subjective->front->key, interval_failed_questions);
-						dequeue(queue_subjective);
-					}
-					clearInputBuffer();
-					solved_questions++;
-					printf("다음 문제로 넘어가시려면 엔터를 누르세요\n종료를 원하시면 Esc를 누르세요.\n");
-					current_menu = 0;
-					int swit = 0;
-					while (1)
-					{
-						if (kbhit())
-						{
-							char input = getch();
-							if (input == 'x'||input==27)
-								swit = 1;
-							break;
+					faltcount++;
+					insert_after_x(queue_subjective, queue_subjective->front->key, interval_failed_questions);
+					dequeue(queue_subjective);
+				}
+
+				clearInputBuffer();
+				solved_questions++;
+				print_change_row("다음 문제로 넘어가시려면 엔터를 누르세요.");
+				print_change_row("종료를 원하시면 Esc를 누르세요.");
+				current_menu = 0;
+				int swit = 0;
+				while (1) {
+					if (kbhit()) {
+						char input = getch();
+						if (input == 'x' || input == 27) {
+							swit = 1;
 						}
-					}
-					if (swit == 1)
-					{
-						exit_menu(solved_questions);
-						check_subjective = 0;
-						current_mode = 5;
-						current_menu = 0;
 						break;
 					}
-					clearScreen();
 				}
+
+				if (swit == 1) {
+					exit_menu(solved_questions);
+					check_subjective = 0;
+					current_mode = 5;
+					current_menu = 0;
+					break;
+				}
+
+				clearScreen();
 			}
-			break;
+		}
+			  break;
 
 			// current_mode = 기록
 		case 2:
