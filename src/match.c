@@ -54,7 +54,11 @@ int check_subjective_correction(SubjectiveQuestion* subjective_questions, int id
 		i = 0;
 		subjective_len += 1;
 		if (user_answer[i] != subjective_answer[i] && subjective_answer[i] != NULL)
+		{
+			if (subjective_questions[id].name[subjective_len - 1] == NULL)
+				break;
 			continue;
+		}
 		int num = strcmp(user_answer, subjective_answer);
 		if (num == 0)
 		{ // match 함수 활용
