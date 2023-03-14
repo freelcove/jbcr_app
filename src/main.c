@@ -76,7 +76,7 @@ int main()
 			all_process_objective(objective_questions, queue_objective);
 			break;
 
-			// current_mode = 按包侥 巩力
+			// current_mode = 林包侥 巩力
 		case 1:
 
 			{
