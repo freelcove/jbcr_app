@@ -1,6 +1,7 @@
 #pragma once
 
 #ifndef GLOBALS_H
+
 #define GLOBALS_H
 
 #include <windows.h>
@@ -13,19 +14,17 @@
 
 #include "questions.h"
 #include "queue.h"
-#include "interface.h"
+
 #include "print.h"
 
+#include "interface.h"
 #include "utilities.h"
-#include "options.h"
-#include "user.h"
+
 
 #define CONSOLE_WIDTH 80
 #define CONSOLE_HEIGHT 30
 
 void initGlobals();
-
-extern char user_name[50];
 
 extern int font_size;
 
@@ -37,6 +36,7 @@ extern HANDLE console;
 
 // 메인 메뉴에서 현재 메뉴 아이템
 extern int current_menu;
+extern int current_mode;
 
 // 객관식 문제 개수
 extern int num_objective_questions;

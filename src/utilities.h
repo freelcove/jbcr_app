@@ -8,5 +8,11 @@
 
 char* get_current_time();
 
+void WriteUserInfo();
+
+void loadUserInfo();
+
+void resetUserInfo();
+
 #endif
 

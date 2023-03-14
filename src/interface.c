@@ -1,5 +1,6 @@
 #include "globals.h"
 
+
 void clearScreen()
 {
 	system("cls");
@@ -15,35 +16,34 @@ void SetCursorVisibility(int visible)
 
 void set_console_font_size(int size)
 {
-	CONSOLE_FONT_INFOEX font_info = { 0 };
+	CONSOLE_FONT_INFOEX font_info = {0};
 	font_info.cbSize = sizeof(font_info);
 	GetCurrentConsoleFontEx(console, FALSE, &font_info);
 	font_info.dwFontSize.Y = size; // set font size Y coordinate
 	SetCurrentConsoleFontEx(console, FALSE, &font_info);
 }
 
-void fit_console_screen_buffer_size() {
+void fit_console_screen_buffer_size()
+{
 	CONSOLE_SCREEN_BUFFER_INFO csbi;
 	GetConsoleScreenBufferInfo(console, &csbi);
 
 	COORD new_size = {
 		csbi.srWindow.Right - csbi.srWindow.Left + 1,
-		csbi.srWindow.Bottom - csbi.srWindow.Top + 1
-	};
+		csbi.srWindow.Bottom - csbi.srWindow.Top + 1};
 	SetConsoleScreenBufferSize(console, new_size);
 }
 
+void set_color_theme(int color_mode)
+{
 
-void set_color_theme(int color_mode) {
-
-	SetConsoleTextAttribute(console, color_mode_preset[color_mode%4]);
-
+	SetConsoleTextAttribute(console, color_mode_preset[color_mode % 4]);
 }
 
-
-void InitScreen() {
-	//콘솔 창 크기 바꾸기	
-	SMALL_RECT windowSize = { 0, 0, 75, 29 };	// {, , 넓이(76열), 높이 (30행)}
+void initScreen()
+{
+	// 콘솔 창 크기 바꾸기
+	SMALL_RECT windowSize = {0, 0, 75, 29}; // {, , 넓이(76열), 높이 (30행)}
 	SetConsoleWindowInfo(console, TRUE, &windowSize);
 
 	set_console_font_size(font_size);
@@ -52,20 +52,17 @@ void InitScreen() {
 
 	SetCursorVisibility(0);
 
-	//콘솔 창 컬러 바꾸기
+	// 콘솔 창 컬러 바꾸기
 	set_color_theme(color_mode);
 
-	//콘솔 인코딩 utf_8로 설정
-
-
-
+	// 콘솔 인코딩 utf_8로 설정
 }
 
 void drawTitle()
 {
 	printf("\n");
 	printf("\n");
-	printf("                            안녕하세요 %s님!\n", user_name);
+	printf("\n");
 	printf("\n");
 	printf("             _________  _____ ______       _             _       \n");
 	printf("            |_  | ___ \\/  __ \\| ___ \\     | |           | |      \n");
@@ -77,24 +74,197 @@ void drawTitle()
 	printf("                                                           |___/ \n");
 	printf("\n");
 	printf("                          - 정보처리기사 공부 App -\n");
-
 }
 
-void draw_menu() {
+void drawMenu(int num_menu_items, char *menu_items[], int position_x, int position_y)
+{
 
-	const char* menu_items[] = { "1. 객관식 문제",
-								 "2. 주관식 풀기",
-								 "3. 사용자",
-								 "4. 옵션",
-								 "5. 종료" };
+	COORD cursorPosition = {position_x, position_y};
 
-	cursorPosition.X = 28;
-	cursorPosition.Y = 16;
-	SetConsoleCursorPosition(console, cursorPosition);
-
-	for (int i = 0; i < 5; i++) {
+	for (int i = 0; i < num_menu_items; i++, cursorPosition.Y += 2)
+	{
 		SetConsoleCursorPosition(console, cursorPosition);
 		printf("%s %s\n", (current_menu) == i ? "▶" : " ", menu_items[i]);
-		cursorPosition.Y += 2;
+	}
+}
+// 사용자 입력을 받아서 해당 키에 따라 값을 반환
+// 숫자 -> 해당하는 메뉴 값 0~4
+// 방향키 또는 wsad -> 좌우는 8, 9, 상하는 메뉴 값만 조정 반환값 -1
+// 엔터키 -> 현재 메뉴 값 반환 0~4
+// esc -> 4
+
+int processUserInput(int num_menu_items)
+{
+
+	key_pressed = getch();
+
+	switch (key_pressed)
+	{
+	case '1':
+		return 0;
+		break;
+	case '2':
+		return 1;
+		break;
+	case '3':
+		return 2;
+		break;
+	case '4':
+		return 3;
+		break;
+	case '5':
+		return 4;
+		break;
+	case 27: // = esc
+		return 4;
+		break;
+	default:
+		break;
+	}
+
+	if (key_pressed == '\r')
+	{
+		switch (current_menu)
+		{
+		case 0:
+			return 0;
+			break;
+		case 1:
+			return 1;
+			break;
+		case 2:
+			return 2;
+			break;
+		case 3:
+			return 3;
+			break;
+		case 4:
+			return 4;
+			break;
+		default:
+			break;
+		}
+	}
+
+	else if (key_pressed == 'w' || key_pressed == 'W' || key_pressed == 72)
+	{
+		current_menu = (current_menu - 1 + num_menu_items) % num_menu_items;
+	}
+	else if (key_pressed == 's' || key_pressed == 'S' || key_pressed == 80)
+	{
+		current_menu = (current_menu + 1) % num_menu_items;
+	}
+	else if (key_pressed == 'a' || key_pressed == 'A' || key_pressed == 37)
+	{
+		return 8;
+	}
+	else if (key_pressed == 'd' || key_pressed == 'D' || key_pressed == 39)
+	{
+		return 9;
+	}
+
+	return -1;
+}
+
+void controlMainMenu(int input)
+{
+	switch (input)
+	{
+	case 0:
+		current_mode = 0;
+		current_menu = 0;
+		break;
+	case 1:
+		current_mode = 1;
+		current_menu = 0;
+		break;
+	case 2:
+		current_mode = 2;
+		current_menu = 0;
+		break;
+	case 3:
+		current_mode = 3;
+		current_menu = 0;
+		break;
+	case 4:
+		current_mode = 4;
+		break;
+	default:
+		break;
+	}
+}
+
+void controlOptions(int input)
+{
+	switch (input)
+	{
+	// 초기화
+	case 3:
+		interval_failed_questions = 10;
+		font_size = 25;
+		color_mode = 0;
+		initScreen();
+		break;
+
+	// 뒤로 가기
+	case 4:
+		current_mode = 5;
+		current_menu = 0;
+		break;
+
+	// 증가
+	case 8:
+		if (current_menu == 0 && interval_failed_questions > 1)
+		{
+			interval_failed_questions--;
+		}
+		if (current_menu == 1 && font_size > 1)
+		{
+			font_size--;
+		}
+
+		if (current_menu == 2 && color_mode > 0)
+		{
+			color_mode--;
+		}
+		initScreen(); /* code */
+		break;
+
+		// 감소
+	case 9:
+		if (current_menu == 0 && interval_failed_questions < 50)
+		{
+			interval_failed_questions++;
+		}
+		if (current_menu == 1 && font_size < 50)
+		{
+			font_size++;
+		}
+
+		if (current_menu == 2 && color_mode < 3)
+		{
+			color_mode++;
+		}
+		initScreen();
+
+	default:
+		break;
+	}
+}
+
+void controlInfo(int input){
+		switch (input)
+	{
+	case 3:
+		resetUserInfo();
+		break;
+	// 뒤로 가기
+	case 4:
+		current_mode = 5;
+		current_menu = 0;
+		break;
+
+	default:
+		break;
 	}
 }

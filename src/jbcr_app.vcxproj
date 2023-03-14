@@ -131,24 +131,20 @@
     <ClCompile Include="interface.c" />
     <ClCompile Include="main.c" />
     <ClCompile Include="match.c" />
-    <ClCompile Include="options.c" />
     <ClCompile Include="print.c" />
     <ClCompile Include="questions.c" />
     <ClCompile Include="queue.c" />
     <ClCompile Include="sub.c" />
-    <ClCompile Include="user.c" />
     <ClCompile Include="utilities.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="globals.h" />
     <ClInclude Include="interface.h" />
     <ClInclude Include="match.h" />
-    <ClInclude Include="options.h" />
     <ClInclude Include="print.h" />
     <ClInclude Include="questions.h" />
     <ClInclude Include="queue.h" />
     <ClInclude Include="sub.h" />
-    <ClInclude Include="user.h" />
     <ClInclude Include="utilities.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

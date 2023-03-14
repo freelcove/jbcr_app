@@ -6,6 +6,7 @@ COORD cursorPosition = { 0, 0 };
 
 int font_size = 25;
 int current_menu = 0;
+int current_mode = 5;
 
 int best_streak=0;
 int current_streak=0;
@@ -31,9 +32,9 @@ SubjectiveQuestion* subjective_questions = NULL;
 int color_mode = 0;
 int color_mode_preset[] = { 240, 143, 176, 224 };
 
-char user_name[50];
+
 
 void initGlobals() {
     console = GetStdHandle(STD_OUTPUT_HANDLE);
-    strcpy(user_name, "guest");
+    
 }

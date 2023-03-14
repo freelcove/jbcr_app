@@ -21,15 +21,21 @@ void fit_console_screen_buffer_size();
 void set_color_theme(int color_mode);
 
 //콘솔 화면 Initialization.
-void InitScreen();
+void initScreen();
 
-//draw 메인 메뉴 화면 
-void draw_menu();
+//Menu 그리기
+void drawMenu();
+
+//메인메뉴 컨트롤
+int processUserInput(int num_menu_items);
 
 //타이틀 그리기
 void drawTitle();
 
+void controlMainMenu(int input);
 
+void controlOptions(int input);
+void controlInfo(int input);
 
 
 #endif
