@@ -92,6 +92,7 @@ void drawMenu(int num_menu_items, char *menu_items[], int position_x, int positi
 // 방향키 또는 wsad -> 좌우는 8, 9, 상하는 메뉴 값만 조정 반환값 -1
 // 엔터키 -> 현재 메뉴 값 반환 0~4
 // esc -> 4
+// 디폴트 반환값 = -1
 
 int processUserInput(int num_menu_items)
 {
