@@ -122,6 +122,7 @@ int main()
 					else
 					{
 						printf("오답입니다.\n");
+						printf("\n정답은 \033[1m%s\033[0m 입니다.\n",subjective_questions[id].name);
 						insert_after_x(queue_subjective, queue_subjective->front->key, interval_failed_questions);
 						dequeue(queue_subjective);
 					}
