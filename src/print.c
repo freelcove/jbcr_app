@@ -164,6 +164,10 @@ int select_color(int choice)
 			mycolor = origin_color % 256;
 		}
 	}
+	else if (choice == -1) {
+		origin_color += add_color[1];
+		mycolor = origin_color % 256;
+	}
 	else {
 		mycolor = color_mode_preset[color_mode%4];
 	}

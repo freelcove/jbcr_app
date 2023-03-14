@@ -97,7 +97,11 @@ int main()
 					if (check_subjective_correction(subjective_questions, id,queue_subjective))
 					{
 						printf("%s은(는) 오답입니다.\n", user_answer);
-						printf("\n정답은 \033[1m%s\033[0m 입니다.\n", subjective_questions[id].name);
+						printf("\n정답은 ");
+						SetConsoleTextAttribute(console, select_color(-1));
+						printf("%s", subjective_questions[id].name);
+						SetConsoleTextAttribute(console, color_mode_preset[color_mode % 4]);
+						printf(" 입니다.\n");
 						faltcount++;
 						insert_after_x(queue_subjective, queue_subjective->front->key, interval_failed_questions);
 						dequeue(queue_subjective);
