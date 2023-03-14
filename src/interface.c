@@ -219,12 +219,12 @@ void controlOptions(int input)
 		{
 			interval_failed_questions--;
 		}
-		if (current_menu == 1 && font_size > 1)
+		else if (current_menu == 1 && font_size > 1)
 		{
 			font_size--;
 		}
 
-		if (current_menu == 2 && color_mode > 0)
+		else if (current_menu == 2 && color_mode > 0)
 		{
 			color_mode--;
 		}
@@ -237,12 +237,12 @@ void controlOptions(int input)
 		{
 			interval_failed_questions++;
 		}
-		if (current_menu == 1 && font_size < 50)
+		else if (current_menu == 1 && font_size < 50)
 		{
 			font_size++;
 		}
 
-		if (current_menu == 2 && color_mode < 3)
+		else if (current_menu == 2 && color_mode < 3)
 		{
 			color_mode++;
 		}
