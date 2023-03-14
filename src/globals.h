@@ -40,6 +40,8 @@ extern char key_pressed;
 // 문제 관련
 extern int num_objective_questions;
 extern int num_subjective_questions;
+extern int check_subjective;
+extern char user_answer[MAX_LINE_LENGTH];
 extern int rand_id[100];
 extern int faltcount;
 extern int changecolor[3];

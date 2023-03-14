@@ -78,7 +78,7 @@ int main()
 
 			// current_mode = 객관식 문제
 		case 1:
-			printf("주관식 문제\n\n\n");
+
 			{
 				int solved_questions = 0;
 
@@ -86,58 +86,41 @@ int main()
 				{
 					int id = queue_subjective->front->key;
 
-					printf("%s\n", subjective_questions[id].definition);
+					faltcount = 0;
+					check_subjective = 1;
+					print_change_row(&subjective_questions[id].definition);
 
 					printf("\n정답을 입력하세요\n");
-					char user_answer[MAX_LINE_LENGTH];
-					scanf("%[^\n]%*c", user_answer);
+					fgets(user_answer, sizeof(user_answer), stdin);
+					user_answer[strcspn(user_answer, "\n")] = 0;
 
-					/*
-
-
-			printf("\n정답을 입력하세요\n");
-					char user_answer[MAX_LINE_LENGTH];
-					fgets(user_answer, MAX_LINE_LENGTH, stdin);
-					int len = strlen(user_answer);
-					if (user_answer[len - 1] == '\n') {
-						user_answer[len - 1] = '\0';
-					}
-					*/
-
-					// subjective_questions, id
-					if (match(user_answer, subjective_questions[id].name) == 0)
-					{ // match 함수 활용
-						printf("정답입니다.\n");
-						enqueue(queue_subjective, queue_subjective->front->key);
-						dequeue(queue_subjective);
-					}
-
-					else
+					if (check_subjective_correction(subjective_questions, id,queue_subjective))
 					{
-						printf("오답입니다.\n");
+						printf("%s은(는) 오답입니다.\n", user_answer);
 						printf("\n정답은 \033[1m%s\033[0m 입니다.\n", subjective_questions[id].name);
+						faltcount++;
 						insert_after_x(queue_subjective, queue_subjective->front->key, interval_failed_questions);
 						dequeue(queue_subjective);
 					}
 					clearInputBuffer();
 					solved_questions++;
-					printf("다음 문제로 넘어가시려면 엔터를 누르세요\n종료를 원하시면 x를 누르세요.\n");
+					printf("다음 문제로 넘어가시려면 엔터를 누르세요\n종료를 원하시면 Esc를 누르세요.\n");
 					current_menu = 0;
 					int swit = 0;
 					while (1)
 					{
 						if (kbhit())
 						{
-							char input = getchar();
-							if (input == 'x')
+							char input = getch();
+							if (input == 'x'||input==27)
 								swit = 1;
 							break;
 						}
 					}
 					if (swit == 1)
 					{
-						clearScreen();
-						Percentage(solved_questions);
+						exit_menu(solved_questions);
+						check_subjective = 0;
 						current_mode = 5;
 						current_menu = 0;
 						break;

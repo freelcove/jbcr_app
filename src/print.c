@@ -108,7 +108,8 @@ void print_change_row(char* sentence)
 		for (int j = 0; j < lengthname; j++)	//name에 있는 데이터 지우기
 			print_sentence[j] = NULL;
 		strcpy(print_sentence, temp2);					//temp2의 내용을 name으로 옮기기
-
+		if (check_subjective&&firstcount)
+			printf("주관식 문제\n\n\n\t   ");
 		if (firstcount)
 			printf("  %s\n", temp1);					//temp1의 내용 출력
 		else
@@ -127,6 +128,8 @@ void print_change_row(char* sentence)
 		dellen = 0;
 		count_change_row++;
 	}
+	if (check_subjective&&firstcount)
+		printf("\t   ");
 	if (firstcount)
 		printf("  %s\n", print_sentence);
 	else
@@ -306,6 +309,7 @@ void exit_menu(int solved_questions)
 
 void all_process_objective(ObjectiveQuestion* objective_questions, struct Queue* queue_objective)
 {
+	check_subjective = 0;
 	solved_questions = 0;
 	current_streak = 0;
 	faltcount = 0;

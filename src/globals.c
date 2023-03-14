@@ -18,6 +18,8 @@ int solved_questions=0;
 int changecolor[3] = { 0,0,0 };
 int num_objective_questions = 0;
 int num_subjective_questions = 0;
+int check_subjective = 0;
+extern char user_answer[MAX_LINE_LENGTH] = { 0 };
 
 ObjectiveQuestion* objective_questions = NULL;
 SubjectiveQuestion* subjective_questions = NULL;
