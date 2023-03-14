@@ -119,7 +119,7 @@ int main()
 						insert_after_x(queue_subjective, queue_subjective->front->key, interval_failed_questions);
 						dequeue(queue_subjective);
 					}
-
+					clearInputBuffer();
 					solved_questions++;
 					printf("다음 문제로 넘어가시려면 엔터를 누르세요\n종료를 원하시면 x를 누르세요.\n");
 					current_menu = 0;

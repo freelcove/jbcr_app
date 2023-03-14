@@ -38,3 +38,9 @@ void initGlobals() {
     console = GetStdHandle(STD_OUTPUT_HANDLE);
     
 }
+
+
+void clearInputBuffer() {
+	int c;
+	while ((c = getchar()) != '\n' && c != EOF) {}
+}
