@@ -23,8 +23,10 @@ extern char user_answer[MAX_LINE_LENGTH] = {0};
 ObjectiveQuestion *objective_questions = NULL;
 SubjectiveQuestion *subjective_questions = NULL;
 
-int best_streak = 0;
-int current_streak = 0;
+int best_streak_objective = 0;
+int current_streak_objective = 0;
+int best_streak_subjective = 0;
+int current_streak_subjective = 0;
 int total_tried_objective = 0;
 int total_right_objective = 0;
 int total_tried_subjective = 0;

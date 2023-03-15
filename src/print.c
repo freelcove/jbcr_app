@@ -243,7 +243,7 @@ void option_select(ObjectiveQuestion *questions, int id)
 	}
 }
 
-void print_best_streak()
+void print_best_streak_objective()
 {
 	int x1, y1;
 	x1 = cursorPosition.X;
@@ -251,7 +251,7 @@ void print_best_streak()
 	cursorPosition.X = 64;
 	cursorPosition.Y = 0;
 	SetConsoleCursorPosition(console, cursorPosition);
-	printf("BEST : %d\n", best_streak); // 첫줄 가장자리에 best_streak 출력
+	printf("BEST : %d\n", best_streak_objective); // 첫줄 가장자리에 best_streak_objective 출력
 	cursorPosition.X = x1;
 	cursorPosition.Y = y1;
 	SetConsoleCursorPosition(console, cursorPosition);
@@ -266,7 +266,7 @@ int select_by_arrow(ObjectiveQuestion *questions, int id)
 
 	while (1)
 	{
-		print_best_streak();
+		print_best_streak_objective();
 		option_select(questions, id);
 		printf("\n\n\t     정답을 선택하세요(1~4): \n");
 		key_pressed = getch();
@@ -299,7 +299,7 @@ int select_by_arrow(ObjectiveQuestion *questions, int id)
 	option_select(questions, id);
 	num = check_my_answer(id); // 정답 체크
 
-	print_best_streak();
+	print_best_streak_objective();
 
 	changecolor[0] = 0;
 	changecolor[1] = 0;
@@ -321,7 +321,7 @@ void all_process_objective(ObjectiveQuestion *objective_questions, struct Queue 
 {
 	check_subjective = 0;
 	solved_questions = 0;
-	current_streak = 0;
+	current_streak_objective = 0;
 	faltcount = 0;
 	while (1)
 	{
@@ -367,5 +367,5 @@ void all_process_objective(ObjectiveQuestion *objective_questions, struct Queue 
 	total_right_objective += solved_questions - faltcount;
 	solved_questions = 0;
 	faltcount = 0;
-	current_streak = 0;
+	current_streak_objective = 0;
 }

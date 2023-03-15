@@ -57,19 +57,30 @@ int check_subjective_correction(SubjectiveQuestion *subjective_questions, int id
 		}
 		i = 0;
 		subjective_len += 1;
+		int num=1;
 		if (user_answer[i] != subjective_answer[i] && subjective_answer[i] != NULL)
+		{
+
+			if (subjective_questions[id].name[subjective_len - 1] == NULL)
+				break;
+			continue;
+		}
+		else if (strlen(user_answer) != strlen(subjective_answer))
 		{
 			if (subjective_questions[id].name[subjective_len - 1] == NULL)
 				break;
 			continue;
 		}
-		int num = strcmp(user_answer, subjective_answer);
+		num=strcmp(user_answer, subjective_answer);
 		if (num == 0)
 		{ // match 함수 활용
 			SetConsoleTextAttribute(console, select_color(-1));
 			printf("\n\t     정답입니다!\n");
 			SetConsoleTextAttribute(console, color_mode_preset[color_mode % 4]);
-
+			current_streak_subjective++;
+			if (best_streak_subjective < current_streak_subjective)
+				best_streak_subjective = current_streak_subjective;
+			printf("\t     현재까지 맞춘 문제수 : %d\tBEST : %d\n", current_streak_subjective, best_streak_subjective);
 			enqueue(queue_subjective, queue_subjective->front->key);
 			dequeue(queue_subjective);
 			check_subjective_correct = 0;
@@ -82,7 +93,7 @@ int check_subjective_correction(SubjectiveQuestion *subjective_questions, int id
 void all_process_subjective(SubjectiveQuestion *subjective_questions, struct Queue *queue_subjective)
 {
 	int solved_questions = 0;
-	current_streak = 0;
+	current_streak_subjective = 0;
 	faltcount = 0;
 
 	while (1)
@@ -90,10 +101,10 @@ void all_process_subjective(SubjectiveQuestion *subjective_questions, struct Que
 		
 		int id = queue_subjective->front->key;
 
-		faltcount = 0;
 		check_subjective = 1;
-		char temp[1024] = "\n\n\n\n\t     Q. ";
-		strcat(temp, subjective_questions[id].definition);
+		char temp[1024] = "\n\n\n\t     Q. ";
+		strcpy(temp+strlen(temp), subjective_questions[id].definition);
+		printf("\t\t\t\t\t\t\t\tBEST : %d", best_streak_subjective);
 		print_change_row(temp);
 		printf("\n");
 		printf("\t     정답을 입력하세요 :  ");
@@ -103,6 +114,7 @@ void all_process_subjective(SubjectiveQuestion *subjective_questions, struct Que
 
 		if (check_subjective_correction(subjective_questions, id, queue_subjective))
 		{
+			faltcount++;
 			char error_message[100];
 			sprintf(error_message, "%s은(는) 오답입니다.", user_answer);
 			printf("\n\t     %s\n", error_message);
@@ -112,7 +124,8 @@ void all_process_subjective(SubjectiveQuestion *subjective_questions, struct Que
 			printf("%s", subjective_questions[id].name);
 			SetConsoleTextAttribute(console, color_mode_preset[color_mode % 4]);
 			printf(" 입니다.\n");
-			faltcount++;
+			current_streak_subjective = 0;
+			printf("\n\t     BEST : %d\n", best_streak_subjective);
 			insert_after_x(queue_subjective, queue_subjective->front->key, interval_failed_questions);
 			dequeue(queue_subjective);
 		}
@@ -135,5 +148,5 @@ void all_process_subjective(SubjectiveQuestion *subjective_questions, struct Que
 	total_right_subjective += solved_questions - faltcount;
 	solved_questions = 0;
 	faltcount = 0;
-	current_streak = 0;
+	current_streak_subjective = 0;
 }

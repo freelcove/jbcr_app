@@ -48,8 +48,10 @@ extern int changecolor[3];
 extern int solved_questions;
 
 // 기록 관련
-extern int best_streak;
-extern int current_streak;
+extern int best_streak_objective;
+extern int current_streak_objective;
+extern int best_streak_subjective;
+extern int current_streak_subjective;
 extern int total_tried_objective;
 extern int total_right_objective;
 extern int total_tried_subjective;

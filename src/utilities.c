@@ -26,9 +26,9 @@ void WriteUserInfo()
 		return;
 	}
 
-	fprintf(file, "%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d\n",
+	fprintf(file, "%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d\n",
 			interval_failed_questions, font_size,
-			color_mode, best_streak, current_streak,
+			color_mode, best_streak_objective, current_streak_objective, best_streak_subjective, current_streak_subjective,
 			total_tried_objective, total_right_objective,
 			total_tried_subjective, total_right_subjective);
 
@@ -48,9 +48,9 @@ void loadUserInfo()
 
 	fgets(line, MAX_LINE_LENGTH, file);
 
-	sscanf(line, "%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d",
+	sscanf(line, "%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d",
 		   &interval_failed_questions, &font_size,
-		   &color_mode, &best_streak, &current_streak,
+		   &color_mode, &best_streak_objective, &current_streak_objective, &best_streak_subjective, &current_streak_subjective,
 		   &total_tried_objective, &total_right_objective,
 		   &total_tried_subjective, &total_right_subjective);
 
@@ -59,9 +59,10 @@ void loadUserInfo()
 
 void resetUserInfo()
 {
-	best_streak = 0;
-	current_streak = 0;
-
+	best_streak_objective = 0;
+	current_streak_objective = 0;
+	best_streak_subjective = 0;
+	current_streak_subjective = 0;
 	total_tried_objective = 0;
 	total_right_objective = 0;
 

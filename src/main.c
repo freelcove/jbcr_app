@@ -81,7 +81,7 @@ int main()
 		case 2:
 			drawTitle();
 			char info0[50];
-			sprintf(info0, "Best Streak: %d", best_streak);
+			sprintf(info0, "按包侥 Best: %d  |  林包侥 Best: %d", best_streak_objective,best_streak_subjective);
 
 			char info1[50];
 			int objective_percentage = (total_tried_objective == 0) ? 0 : (double)total_right_objective / total_tried_objective * 100;
