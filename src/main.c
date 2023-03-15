@@ -150,7 +150,6 @@ int main()
 			drawMenu(num_info_items, info_items, 22, 16);
 			controlInfo(processUserInput(num_info_items));
 			break;
-			drawTitle();
 
 			// current_mode = ¿É¼Ç
 		case 3:

@@ -1,6 +1,5 @@
 #include "globals.h"
 
-
 void clearScreen()
 {
 	system("cls");
@@ -64,6 +63,26 @@ void drawTitle()
 	printf("\n");
 	printf("\n");
 	printf("\n");
+
+	int temp_color_mode;
+	switch (color_mode)
+	{
+	case 0:
+	temp_color_mode = 250;
+		break;
+	case 1:
+	temp_color_mode = 142;
+		break;
+	case 2:
+	temp_color_mode = 185;
+		break;
+	case 3:
+	temp_color_mode = 237;
+		break;
+	default:
+		break;
+	}
+	SetConsoleTextAttribute(console, temp_color_mode);
 	printf("             _________  _____ ______       _             _       \n");
 	printf("            |_  | ___ \\/  __ \\| ___ \\     | |           | |      \n");
 	printf("              | | |_/ /| /  \\/| |_/ /  ___| |_ _   _  __| |_   _ \n");
@@ -72,8 +91,13 @@ void drawTitle()
 	printf("          \\____/\\____/  \\____/\\_| \\_| |___/\\__|\\__,_|\\__,_|\\__, |\n");
 	printf("                                                            __/ |\n");
 	printf("                                                           |___/ \n");
+	set_color_theme(color_mode);
 	printf("\n");
 	printf("                          - 정보처리기사 공부 App -\n");
+	cursorPosition.X = 54;
+	cursorPosition.Y = 29;
+	SetConsoleCursorPosition(console, cursorPosition);
+	printf("Ver. 1.0 (2023.03.15)");
 }
 
 void drawMenu(int num_menu_items, char *menu_items[], int position_x, int position_y)
@@ -253,8 +277,9 @@ void controlOptions(int input)
 	}
 }
 
-void controlInfo(int input){
-		switch (input)
+void controlInfo(int input)
+{
+	switch (input)
 	{
 	case 3:
 		resetUserInfo();

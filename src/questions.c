@@ -184,6 +184,7 @@ int check_my_answer(id)
 	return result;
 }
 
+// Fisher-Yates shuffle algorithmÀ» »ç¿ë.
 void enqueueRandom(struct Queue* queue, int size)
 {
 	srand(time(NULL));
