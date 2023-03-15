@@ -122,7 +122,8 @@ int processUserInput(int num_menu_items)
 {
 
 	key_pressed = getch();
-
+	if(key_pressed==224)
+		key_pressed = getch();
 	switch (key_pressed)
 	{
 	case '1':
@@ -179,11 +180,11 @@ int processUserInput(int num_menu_items)
 	{
 		current_menu = (current_menu + 1) % num_menu_items;
 	}
-	else if (key_pressed == 'a' || key_pressed == 'A' || key_pressed == 37)
+	else if (key_pressed == 'a' || key_pressed == 'A' || key_pressed == 75)
 	{
 		return 8;
 	}
-	else if (key_pressed == 'd' || key_pressed == 'D' || key_pressed == 39)
+	else if (key_pressed == 'd' || key_pressed == 'D' || key_pressed == 77)
 	{
 		return 9;
 	}
@@ -239,36 +240,36 @@ void controlOptions(int input)
 
 	// 증가
 	case 8:
-		if (current_menu == 0 && interval_failed_questions > 1)
+		if (current_menu == 0)
 		{
-			interval_failed_questions--;
+			interval_failed_questions=(interval_failed_questions-2+50)%50+1;
 		}
-		else if (current_menu == 1 && font_size > 1)
+		else if (current_menu == 1)
 		{
-			font_size--;
+			font_size=(font_size-2+50)%50+1;
 		}
 
-		else if (current_menu == 2 && color_mode > 0)
+		else if (current_menu == 2)
 		{
-			color_mode--;
+			color_mode=(color_mode-1+4)%4;
 		}
 		initScreen(); /* code */
 		break;
 
 		// 감소
 	case 9:
-		if (current_menu == 0 && interval_failed_questions < 50)
+		if (current_menu == 0)
 		{
-			interval_failed_questions++;
+			interval_failed_questions=(interval_failed_questions)%50+1;
 		}
-		else if (current_menu == 1 && font_size < 50)
+		else if (current_menu == 1)
 		{
-			font_size++;
+			font_size=(font_size)%50+1;
 		}
 
-		else if (current_menu == 2 && color_mode < 3)
+		else if (current_menu == 2)
 		{
-			color_mode++;
+			color_mode=(color_mode+1)%4;
 		}
 		initScreen();
 
