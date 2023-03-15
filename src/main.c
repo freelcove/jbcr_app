@@ -79,6 +79,9 @@ int main()
 
 				faltcount = 0;
 				check_subjective = 1;
+				cursorPosition.X = 6;
+				cursorPosition.Y = 4;
+				SetConsoleCursorPosition(console, cursorPosition);
 				print_change_row(&subjective_questions[id].definition);
 				printf("\n");
 				printf("\t     정답을 입력하세요 : ");

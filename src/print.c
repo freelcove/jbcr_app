@@ -208,7 +208,7 @@ void option_select(ObjectiveQuestion* questions, int id)
 	cursorPosition.X =6;
 	cursorPosition.Y = 4;
 	char icon[3][10] = { {"¢º"},{"O"},{"X"}};
-	int num;
+	int num=0;
 	SetConsoleCursorPosition(console, cursorPosition);
 	for (int i = 0; i < 4; i++) {
 		if (i == 0)
