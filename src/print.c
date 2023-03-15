@@ -320,6 +320,8 @@ void exit_menu(int solved_questions)
 	{
 		if (kbhit())
 		{
+			current_mode = 5;
+			current_menu = 0;
 			char input = getch();
 			break;
 		}
@@ -360,17 +362,9 @@ void all_process_objective(ObjectiveQuestion *objective_questions, struct Queue 
 		solved_questions++;
 		printf("\t     다음 문제로 넘어가시려면 엔터를 누르세요\n\t     종료를 원하시면 Esc를 누르세요.\n");
 		current_menu = 0;
-		while (1)
-		{
-			if (kbhit())
-			{
-				char input = getch();
-				if (input == 27)
-					swit = 1;
-				break;
-			}
-		}
-		if (swit == 1)
+
+		key_pressed = getch();
+		if (key_pressed == 27)
 		{
 			current_mode = 5;
 			current_menu = 0;

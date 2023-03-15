@@ -122,9 +122,7 @@ void all_process_subjective(SubjectiveQuestion *subjective_questions, struct Que
 
 		key_pressed = getch();
 		if (key_pressed == 27)
-		{
-			current_mode = 5;
-			current_menu = 0;
+		{			
 			exit_menu(solved_questions);
 			break;
 		}
