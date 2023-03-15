@@ -92,7 +92,9 @@ void all_process_subjective(SubjectiveQuestion *subjective_questions, struct Que
 
 		faltcount = 0;
 		check_subjective = 1;
-		print_change_row(&subjective_questions[id].definition);
+		char temp[1024] = "\n\n\n\n\t     Q. ";
+		strcat(temp, subjective_questions[id].definition);
+		print_change_row(temp);
 		printf("\n");
 		printf("\t     정답을 입력하세요 :  ");
 
