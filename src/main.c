@@ -72,10 +72,10 @@ int main()
 			break;
 
 			// current_mode = 주관식 문제
-		case 1: 
+		case 1:
 			all_process_subjective(subjective_questions, queue_objective);
-			  
-			  break;
+
+			break;
 
 			// current_mode = 기록
 		case 2:

@@ -26,7 +26,7 @@ void initGlobals();
 extern HANDLE console;
 extern COORD cursorPosition;
 
-//可记 包访
+// 可记 包访
 extern int font_size;
 extern int color_mode;
 extern int color_mode_preset[];
@@ -47,7 +47,7 @@ extern int faltcount;
 extern int changecolor[3];
 extern int solved_questions;
 
-//扁废 包访
+// 扁废 包访
 extern int best_streak;
 extern int current_streak;
 extern int total_tried_objective;

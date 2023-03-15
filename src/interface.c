@@ -68,16 +68,16 @@ void drawTitle()
 	switch (color_mode)
 	{
 	case 0:
-	temp_color_mode = 250;
+		temp_color_mode = 250;
 		break;
 	case 1:
-	temp_color_mode = 142;
+		temp_color_mode = 142;
 		break;
 	case 2:
-	temp_color_mode = 185;
+		temp_color_mode = 185;
 		break;
 	case 3:
-	temp_color_mode = 237;
+		temp_color_mode = 237;
 		break;
 	default:
 		break;
@@ -122,7 +122,7 @@ int processUserInput(int num_menu_items)
 {
 
 	key_pressed = getch();
-	if(key_pressed==224)
+	if (key_pressed == 224)
 		key_pressed = getch();
 	switch (key_pressed)
 	{
@@ -242,16 +242,16 @@ void controlOptions(int input)
 	case 8:
 		if (current_menu == 0)
 		{
-			interval_failed_questions=(interval_failed_questions-2+50)%50+1;
+			interval_failed_questions = (interval_failed_questions - 2 + 50) % 50 + 1;
 		}
 		else if (current_menu == 1)
 		{
-			font_size=(font_size-2+50)%50+1;
+			font_size = (font_size - 2 + 50) % 50 + 1;
 		}
 
 		else if (current_menu == 2)
 		{
-			color_mode=(color_mode-1+4)%4;
+			color_mode = (color_mode - 1 + 4) % 4;
 		}
 		initScreen(); /* code */
 		break;
@@ -260,16 +260,16 @@ void controlOptions(int input)
 	case 9:
 		if (current_menu == 0)
 		{
-			interval_failed_questions=(interval_failed_questions)%50+1;
+			interval_failed_questions = (interval_failed_questions) % 50 + 1;
 		}
 		else if (current_menu == 1)
 		{
-			font_size=(font_size)%50+1;
+			font_size = (font_size) % 50 + 1;
 		}
 
 		else if (current_menu == 2)
 		{
-			color_mode=(color_mode+1)%4;
+			color_mode = (color_mode + 1) % 4;
 		}
 		initScreen();
 

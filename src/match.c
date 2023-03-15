@@ -1,24 +1,28 @@
 #include "globals.h"
 
-int match(char* user_answer, char* subjective_questions) {
-    int i = 0;
-    while (user_answer[i] != '\0' && subjective_questions[i] != '\0') {
-        if (user_answer[i] != subjective_questions[i]) {
-            return 1;
-        }
-        i++;
-    }
-    if (user_answer[i] != '\0' || subjective_questions[i] != '\0') {
-        return 1;
-    }
+int match(char *user_answer, char *subjective_questions)
+{
+	int i = 0;
+	while (user_answer[i] != '\0' && subjective_questions[i] != '\0')
+	{
+		if (user_answer[i] != subjective_questions[i])
+		{
+			return 1;
+		}
+		i++;
+	}
+	if (user_answer[i] != '\0' || subjective_questions[i] != '\0')
+	{
+		return 1;
+	}
 
-    return 0;
+	return 0;
 }
 
-int check_subjective_correction(SubjectiveQuestion* subjective_questions, int id,struct Queue* queue_subjective)
+int check_subjective_correction(SubjectiveQuestion *subjective_questions, int id, struct Queue *queue_subjective)
 {
 
-	char subjective_answer[MAX_LINE_LENGTH] = { 0 };
+	char subjective_answer[MAX_LINE_LENGTH] = {0};
 	int i = 0;
 	int subjective_len = 0;
 	int check_subjective_correct = 1;
@@ -72,13 +76,14 @@ int check_subjective_correction(SubjectiveQuestion* subjective_questions, int id
 	return check_subjective_correct;
 }
 
-void all_process_subjective(SubjectiveQuestion* subjective_questions, struct Queue* queue_subjective)
+void all_process_subjective(SubjectiveQuestion *subjective_questions, struct Queue *queue_subjective)
 {
 	int solved_questions = 0;
 	current_streak = 0;
 	faltcount = 0;
 
-	while (1) {
+	while (1)
+	{
 		int id = queue_subjective->front->key;
 
 		faltcount = 0;
@@ -90,7 +95,8 @@ void all_process_subjective(SubjectiveQuestion* subjective_questions, struct Que
 		fgets(user_answer, sizeof(user_answer), stdin);
 		user_answer[strcspn(user_answer, "\n")] = 0;
 
-		if (check_subjective_correction(subjective_questions, id, queue_subjective)) {
+		if (check_subjective_correction(subjective_questions, id, queue_subjective))
+		{
 			char error_message[100];
 			sprintf(error_message, "%s은(는) 오답입니다.", user_answer);
 			printf("\n\t     %s\n", error_message);
@@ -111,17 +117,21 @@ void all_process_subjective(SubjectiveQuestion* subjective_questions, struct Que
 		printf("\t     종료를 원하시면 Esc를 누르세요.\n");
 		current_menu = 0;
 		int swit = 0;
-		while (1) {
-			if (kbhit()) {
+		while (1)
+		{
+			if (kbhit())
+			{
 				char input = getch();
-				if (input == 'x' || input == 27) {
+				if (input == 'x' || input == 27)
+				{
 					swit = 1;
 				}
 				break;
 			}
 		}
 
-		if (swit == 1) {
+		if (swit == 1)
+		{
 			exit_menu(solved_questions);
 			check_subjective = 0;
 			current_mode = 5;
@@ -136,6 +146,4 @@ void all_process_subjective(SubjectiveQuestion* subjective_questions, struct Que
 	solved_questions = 0;
 	faltcount = 0;
 	current_streak = 0;
-
 }
-
