@@ -26,6 +26,7 @@ int main()
 	readHistory(queue_objective, queue_subjective);
 
 	// 만약 프로그램 첫 실행이라면 히스토리를 새로 채워 넣음.
+	// enqueueRandom()로 db에 적힌 순서와 달리 랜덤하게 넣음.
 	if (queue_objective->front == NULL)
 	{
 		enqueueRandom(queue_objective, num_objective_questions);
