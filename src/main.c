@@ -28,18 +28,12 @@ int main()
 	// 만약 프로그램 첫 실행이라면 히스토리를 새로 채워 넣음.
 	if (queue_objective->front == NULL)
 	{
-		for (int i = 0; i < num_objective_questions; i++)
-		{
-			enqueue(queue_objective, i);
-		}
+		enqueueRandom(queue_objective, num_objective_questions);
 	}
 
 	if (queue_subjective->front == NULL)
 	{
-		for (int i = 0; i < num_subjective_questions; i++)
-		{
-			enqueue(queue_subjective, i);
-		}
+		enqueueRandom(queue_subjective, num_subjective_questions);
 	}
 
 	const char *main_menu_items[] = {"1. 객관식 문제",

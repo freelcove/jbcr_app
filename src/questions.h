@@ -35,5 +35,6 @@ void readHistory(int* objective_history, int* subjective_history);
 //현재 히스토리 값들을 db_history.tsv에 저장.
 void writeHistory(struct Queue* queue_objective, struct Queue* queue_subjective);
 
+void enqueRandom(struct Queue* queue, int size);
 
 #endif
