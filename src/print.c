@@ -316,16 +316,9 @@ void exit_menu(int solved_questions)
 {
 	clearScreen();
 	Percentage(solved_questions);
-	while (1)
-	{
-		if (kbhit())
-		{
-			current_mode = 5;
-			current_menu = 0;
-			char input = getch();
-			break;
-		}
-	}
+	current_mode = 5;
+	current_menu = 0;
+	key_pressed = getchar();
 }
 
 void all_process_objective(ObjectiveQuestion *objective_questions, struct Queue *queue_objective)
@@ -360,7 +353,7 @@ void all_process_objective(ObjectiveQuestion *objective_questions, struct Queue 
 			break;
 		}
 		solved_questions++;
-		printf("\t     다음 문제로 넘어가시려면 엔터를 누르세요\n\t     종료를 원하시면 Esc를 누르세요.\n");
+		printf("\t     다음 문제로 넘어가시려면 Enter를 누르세요\n\t     종료를 원하시면 Esc를 누르세요.\n");
 		current_menu = 0;
 
 		key_pressed = getch();
