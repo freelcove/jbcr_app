@@ -318,7 +318,7 @@ void exit_menu(int solved_questions)
 	Percentage(solved_questions);
 	current_mode = 5;
 	current_menu = 0;
-	key_pressed = getchar();
+	key_pressed = getch();
 }
 
 void all_process_objective(ObjectiveQuestion *objective_questions, struct Queue *queue_objective)
