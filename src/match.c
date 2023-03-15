@@ -23,9 +23,24 @@ int check_subjective_correction(SubjectiveQuestion *subjective_questions, int id
 {
 
 	char subjective_answer[MAX_LINE_LENGTH] = {0};
+	char subjective_data_answer[MAX_LINE_LENGTH] = { 0 };
+	strcpy(subjective_data_answer, subjective_questions[id].name);
 	int i = 0;
 	int subjective_len = 0;
 	int check_subjective_correct = 1;
+	int k, l;
+	for (k = 0, l = 0; user_answer[k]; k++) {
+		if (user_answer[k] != ' ') {
+			user_answer[l++] = user_answer[k];
+		}
+	}
+	user_answer[l] = '\0';
+	for (k = 0, l = 0; subjective_data_answer[k]; k++) {
+		if (subjective_data_answer[k] != ' ') {
+			subjective_data_answer[l++] = subjective_data_answer[k];
+		}
+	}
+	subjective_data_answer[l] = '\0';
 	while (user_answer[i] != NULL)
 	{
 		if (user_answer[i] >= 'a' && user_answer[i] <= 'z')
@@ -33,10 +48,11 @@ int check_subjective_correction(SubjectiveQuestion *subjective_questions, int id
 		i++;
 	}
 	i = 0;
-	while (subjective_questions[id].name[i] != NULL)
+
+	while (subjective_data_answer[i] != NULL)
 	{
-		if (subjective_questions[id].name[i] >= 'a' && subjective_questions[id].name[i] <= 'z')
-			subjective_questions[id].name[i] += 'A' - 'a';
+		if (subjective_data_answer[i] >= 'a' && subjective_data_answer[i] <= 'z')
+			subjective_data_answer[i] += 'A' - 'a';
 		i++;
 	}
 	i = 0;
@@ -49,9 +65,9 @@ int check_subjective_correction(SubjectiveQuestion *subjective_questions, int id
 			i++;
 		}
 		i = 0;
-		while (subjective_questions[id].name[subjective_len] != ',' && subjective_questions[id].name[subjective_len] != NULL)
+		while (subjective_data_answer[subjective_len] != ',' && subjective_data_answer[subjective_len] != NULL)
 		{
-			subjective_answer[i] = subjective_questions[id].name[subjective_len];
+			subjective_answer[i] = subjective_data_answer[subjective_len];
 			subjective_len++;
 			i++;
 		}
@@ -61,13 +77,13 @@ int check_subjective_correction(SubjectiveQuestion *subjective_questions, int id
 		if (user_answer[i] != subjective_answer[i] && subjective_answer[i] != NULL)
 		{
 
-			if (subjective_questions[id].name[subjective_len - 1] == NULL)
+			if (subjective_data_answer[subjective_len - 1] == NULL)
 				break;
 			continue;
 		}
 		else if (strlen(user_answer) != strlen(subjective_answer))
 		{
-			if (subjective_questions[id].name[subjective_len - 1] == NULL)
+			if (subjective_data_answer[subjective_len - 1] == NULL)
 				break;
 			continue;
 		}
@@ -100,24 +116,21 @@ void all_process_subjective(SubjectiveQuestion *subjective_questions, struct Que
 	{
 		
 		int id = queue_subjective->front->key;
-
 		check_subjective = 1;
 		char temp[1024] = "\n\n\n\t     Q. ";
 		strcpy(temp+strlen(temp), subjective_questions[id].definition);
 		printf("\t\t\t\t\t\t\t\tBEST : %d", best_streak_subjective);
 		print_change_row(temp);
 		printf("\n");
-		printf("\t     정답을 입력하세요 :  ");
-
+		printf("\t     답을 입력하세요 :  ");
 		fgets(user_answer, sizeof(user_answer), stdin);
 		user_answer[strcspn(user_answer, "\n")] = 0;
 
 		if (check_subjective_correction(subjective_questions, id, queue_subjective))
 		{
 			faltcount++;
-			char error_message[100];
-			sprintf(error_message, "%s은(는) 오답입니다.", user_answer);
-			printf("\n\t     %s\n", error_message);
+
+			printf("\n\t     입력하신 답은 오답입니다.\n");
 
 			printf("\t     정답은 ");
 			SetConsoleTextAttribute(console, select_color(-1));
