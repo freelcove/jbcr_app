@@ -72,65 +72,9 @@ int main()
 			break;
 
 			// current_mode = 주관식 문제
-		case 1: {
-			int solved_questions = 0;
-			while (1) {
-				int id = queue_subjective->front->key;
-
-				faltcount = 0;
-				check_subjective = 1;
-				cursorPosition.X = 6;
-				cursorPosition.Y = 4;
-				SetConsoleCursorPosition(console, cursorPosition);
-				print_change_row(&subjective_questions[id].definition);
-				printf("\n");
-				printf("\t     정답을 입력하세요 : ");
-
-				fgets(user_answer, sizeof(user_answer), stdin);
-				user_answer[strcspn(user_answer, "\n")] = 0;
-
-				if (check_subjective_correction(subjective_questions, id, queue_subjective)) {
-					char error_message[100];
-					sprintf(error_message, "%s은(는) 오답입니다.", user_answer);
-					printf("\n\t     %s\n",error_message);
-
-					printf("\t     정답은 ");
-					SetConsoleTextAttribute(console, select_color(-1));
-					printf("%s", subjective_questions[id].name);
-					SetConsoleTextAttribute(console, color_mode_preset[color_mode % 4]);
-					printf(" 입니다.\n");
-					faltcount++;
-					insert_after_x(queue_subjective, queue_subjective->front->key, interval_failed_questions);
-					dequeue(queue_subjective);
-				}
-
-				clearInputBuffer();
-				solved_questions++;
-				printf("\t     다음 문제로 넘어가시려면 엔터를 누르세요.\n");
-				printf("\t     종료를 원하시면 Esc를 누르세요.\n");
-				current_menu = 0;
-				int swit = 0;
-				while (1) {
-					if (kbhit()) {
-						char input = getch();
-						if (input == 'x' || input == 27) {
-							swit = 1;
-						}
-						break;
-					}
-				}
-
-				if (swit == 1) {
-					exit_menu(solved_questions);
-					check_subjective = 0;
-					current_mode = 5;
-					current_menu = 0;
-					break;
-				}
-
-				clearScreen();
-			}
-		}
+		case 1: 
+			all_process_subjective(subjective_questions, queue_objective);
+			  
 			  break;
 
 			// current_mode = 기록
