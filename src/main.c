@@ -81,7 +81,7 @@ int main()
 				check_subjective = 1;
 				print_change_row(&subjective_questions[id].definition);
 				printf("\n");
-				print_change_row("정답을 입력하세요");
+				printf("\t     정답을 입력하세요 : ");
 
 				fgets(user_answer, sizeof(user_answer), stdin);
 				user_answer[strcspn(user_answer, "\n")] = 0;
@@ -89,12 +89,13 @@ int main()
 				if (check_subjective_correction(subjective_questions, id, queue_subjective)) {
 					char error_message[100];
 					sprintf(error_message, "%s은(는) 오답입니다.", user_answer);
-					print_change_row(error_message);
+					printf("\n\t     %s\n",error_message);
 
-					char correct_answer_message[100];
-					sprintf(correct_answer_message, "정답은 %s 입니다.", subjective_questions[id].name);
-					print_change_row(correct_answer_message);
-
+					printf("\t     정답은 ");
+					SetConsoleTextAttribute(console, select_color(-1));
+					printf("%s", subjective_questions[id].name);
+					SetConsoleTextAttribute(console, color_mode_preset[color_mode % 4]);
+					printf(" 입니다.\n");
 					faltcount++;
 					insert_after_x(queue_subjective, queue_subjective->front->key, interval_failed_questions);
 					dequeue(queue_subjective);
@@ -102,8 +103,8 @@ int main()
 
 				clearInputBuffer();
 				solved_questions++;
-				print_change_row("다음 문제로 넘어가시려면 엔터를 누르세요.");
-				print_change_row("종료를 원하시면 Esc를 누르세요.");
+				printf("\t     다음 문제로 넘어가시려면 엔터를 누르세요.\n");
+				printf("\t     종료를 원하시면 Esc를 누르세요.\n");
 				current_menu = 0;
 				int swit = 0;
 				while (1) {

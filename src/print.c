@@ -109,9 +109,9 @@ void print_change_row(char* sentence)
 			print_sentence[j] = NULL;
 		strcpy(print_sentence, temp2);					//temp2의 내용을 name으로 옮기기
 		if (check_subjective && firstcount)
-			printf("\n\n\n\t  ");
+			printf("\n\n\n\t Q.");
 		if (firstcount)
-			printf("Q. %s\n", temp1);					//temp1의 내용 출력
+			printf("  %s\n", temp1);					//temp1의 내용 출력
 		else
 			printf("\t     %s\n", temp1);
 
@@ -163,6 +163,11 @@ int select_color(int choice)
 			origin_color += add_color[1];
 			mycolor = origin_color % 256;
 		}
+		else if (choice == -1){
+			origin_color += add_color[1];
+			mycolor = origin_color % 256;
+		}
+
 	}
 	else if (choice == -1) {
 		origin_color += add_color[1];

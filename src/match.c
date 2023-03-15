@@ -62,7 +62,7 @@ int check_subjective_correction(SubjectiveQuestion* subjective_questions, int id
 		int num = strcmp(user_answer, subjective_answer);
 		if (num == 0)
 		{ // match 함수 활용
-			printf("정답입니다.\n");
+			printf("\n\t     정답입니다.\n");
 			enqueue(queue_subjective, queue_subjective->front->key);
 			dequeue(queue_subjective);
 			check_subjective_correct = 0;
