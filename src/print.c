@@ -321,8 +321,6 @@ void exit_menu(int solved_questions)
 		if (kbhit())
 		{
 			char input = getch();
-			current_mode = 5;
-			current_menu = 0;
 			break;
 		}
 	}
@@ -374,6 +372,8 @@ void all_process_objective(ObjectiveQuestion *objective_questions, struct Queue 
 		}
 		if (swit == 1)
 		{
+			current_mode = 5;
+			current_menu = 0;
 			exit_menu(solved_questions);
 			break;
 		}

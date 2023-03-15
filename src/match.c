@@ -66,7 +66,10 @@ int check_subjective_correction(SubjectiveQuestion *subjective_questions, int id
 		int num = strcmp(user_answer, subjective_answer);
 		if (num == 0)
 		{ // match 함수 활용
-			printf("\n\t     정답입니다.\n");
+			SetConsoleTextAttribute(console, select_color(-1));
+			printf("\n\t     정답입니다!\n");
+			SetConsoleTextAttribute(console, color_mode_preset[color_mode % 4]);
+
 			enqueue(queue_subjective, queue_subjective->front->key);
 			dequeue(queue_subjective);
 			check_subjective_correct = 0;
@@ -84,6 +87,7 @@ void all_process_subjective(SubjectiveQuestion *subjective_questions, struct Que
 
 	while (1)
 	{
+		
 		int id = queue_subjective->front->key;
 
 		faltcount = 0;
@@ -111,31 +115,17 @@ void all_process_subjective(SubjectiveQuestion *subjective_questions, struct Que
 			dequeue(queue_subjective);
 		}
 
-		clearInputBuffer();
+		// clearInputBuffer();
 		solved_questions++;
-		printf("\t     다음 문제로 넘어가시려면 엔터를 누르세요.\n");
+		printf("\n\n\t     다음 문제로 넘어가시려면 Enter를 누르세요.\n");
 		printf("\t     종료를 원하시면 Esc를 누르세요.\n");
-		current_menu = 0;
-		int swit = 0;
-		while (1)
-		{
-			if (kbhit())
-			{
-				char input = getch();
-				if (input == 'x' || input == 27)
-				{
-					swit = 1;
-				}
-				break;
-			}
-		}
 
-		if (swit == 1)
+		key_pressed = getch();
+		if (key_pressed == 27)
 		{
-			exit_menu(solved_questions);
-			check_subjective = 0;
 			current_mode = 5;
 			current_menu = 0;
+			exit_menu(solved_questions);
 			break;
 		}
 

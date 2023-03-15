@@ -39,9 +39,6 @@
     <ClCompile Include="match.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sub.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="globals.h">
@@ -63,9 +60,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="match.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="sub.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
