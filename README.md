@@ -1,7 +1,6 @@
 # JBCR STUDY
 정보처리기사 공부 App
 
-![Screenshot 2023-03-07 1136062](https://user-images.githubusercontent.com/115542245/223305592-26fdd71d-c46e-489f-a75c-4162d0c7bd10.jpg)
 
 # Notice
 본 프로그램은 콘솔창에서 실행되며 D2Coding font를 기반으로 만들어졌습니다.
