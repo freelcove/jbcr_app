@@ -22,6 +22,8 @@ https://docs.google.com/spreadsheets/d/1g3ygewxJyUQHp-9CXS64r2iVQ_I7W1QQw6VjM-nj
 
 
 # Contact
-박준호: freelcove@gmail.com
+박준호: freelcove@gmail.
+
 소병수: baptist0602@gmail.com
+
 송준희: koolca1219@nate.com
