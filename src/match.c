@@ -23,20 +23,24 @@ int check_subjective_correction(SubjectiveQuestion *subjective_questions, int id
 {
 
 	char subjective_answer[MAX_LINE_LENGTH] = {0};
-	char subjective_data_answer[MAX_LINE_LENGTH] = { 0 };
+	char subjective_data_answer[MAX_LINE_LENGTH] = {0};
 	strcpy(subjective_data_answer, subjective_questions[id].name);
 	int i = 0;
 	int subjective_len = 0;
 	int check_subjective_correct = 1;
 	int k, l;
-	for (k = 0, l = 0; user_answer[k]; k++) {
-		if (user_answer[k] != ' ') {
+	for (k = 0, l = 0; user_answer[k]; k++)
+	{
+		if (user_answer[k] != ' ')
+		{
 			user_answer[l++] = user_answer[k];
 		}
 	}
 	user_answer[l] = '\0';
-	for (k = 0, l = 0; subjective_data_answer[k]; k++) {
-		if (subjective_data_answer[k] != ' ') {
+	for (k = 0, l = 0; subjective_data_answer[k]; k++)
+	{
+		if (subjective_data_answer[k] != ' ')
+		{
 			subjective_data_answer[l++] = subjective_data_answer[k];
 		}
 	}
@@ -73,7 +77,7 @@ int check_subjective_correction(SubjectiveQuestion *subjective_questions, int id
 		}
 		i = 0;
 		subjective_len += 1;
-		int num=1;
+		int num = 1;
 		if (user_answer[i] != subjective_answer[i] && subjective_answer[i] != NULL)
 		{
 
@@ -87,7 +91,7 @@ int check_subjective_correction(SubjectiveQuestion *subjective_questions, int id
 				break;
 			continue;
 		}
-		num=strcmp(user_answer, subjective_answer);
+		num = strcmp(user_answer, subjective_answer);
 		if (num == 0)
 		{ // match 함수 활용
 			SetConsoleTextAttribute(console, select_color(-1));
@@ -119,12 +123,12 @@ void all_process_subjective(SubjectiveQuestion *subjective_questions, struct Que
 
 	while (1)
 	{
-		
+
 		int id = queue_subjective->front->key;
-		
+
 		check_subjective = 1;
 		char temp[1024] = "\n\n\n\t     Q. ";
-		strcpy(temp+strlen(temp), subjective_questions[id].definition);
+		strcpy(temp + strlen(temp), subjective_questions[id].definition);
 		printf("\t\t\t\t\t\t\t\tBEST: %d", best_streak_subjective);
 		print_change_row(temp);
 		printf("\n");
@@ -175,7 +179,7 @@ void all_process_subjective(SubjectiveQuestion *subjective_questions, struct Que
 
 		key_pressed = getch();
 		if (key_pressed == 27)
-		{			
+		{
 			exit_menu(solved_questions);
 			break;
 		}

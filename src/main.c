@@ -5,15 +5,15 @@ int main()
 
 	// 전역 변수 Initialization
 	initGlobals();
-	
-	//폰트 바꾸기
-	CONSOLE_FONT_INFOEX font_info = { sizeof(CONSOLE_FONT_INFOEX) };
+
+	// 폰트 바꾸기
+	CONSOLE_FONT_INFOEX font_info = {sizeof(CONSOLE_FONT_INFOEX)};
 	wcscpy(font_info.FaceName, L"D2Coding");
-	if (!SetCurrentConsoleFontEx(GetStdHandle(STD_OUTPUT_HANDLE), FALSE, &font_info)) {
+	if (!SetCurrentConsoleFontEx(GetStdHandle(STD_OUTPUT_HANDLE), FALSE, &font_info))
+	{
 		wcscpy(font_info.FaceName, L"Segoe UI");
 		SetCurrentConsoleFontEx(GetStdHandle(STD_OUTPUT_HANDLE), FALSE, &font_info);
 	}
-
 
 	loadUserInfo();
 
@@ -90,7 +90,7 @@ int main()
 		case 2:
 			drawTitle();
 			char info0[50];
-			sprintf(info0, "객관식 Best: %d  |  주관식 Best: %d", best_streak_objective,best_streak_subjective);
+			sprintf(info0, "객관식 Best: %d  |  주관식 Best: %d", best_streak_objective, best_streak_subjective);
 
 			char info1[50];
 			int objective_percentage = (total_tried_objective == 0) ? 0 : (double)total_right_objective / total_tried_objective * 100;
