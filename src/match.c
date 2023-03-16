@@ -93,6 +93,11 @@ int check_subjective_correction(SubjectiveQuestion *subjective_questions, int id
 			SetConsoleTextAttribute(console, select_color(-1));
 			printf("\n\t     정답입니다!\n");
 			SetConsoleTextAttribute(console, color_mode_preset[color_mode % 4]);
+			printf("\t     정답: ");
+			SetConsoleTextAttribute(console, select_color(-1));
+			printf("%s", subjective_questions[id].name);
+			SetConsoleTextAttribute(console, color_mode_preset[color_mode % 4]);
+			printf("\n");
 			current_streak_subjective++;
 			if (best_streak_subjective < current_streak_subjective)
 				best_streak_subjective = current_streak_subjective;
