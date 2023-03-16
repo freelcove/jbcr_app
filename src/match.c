@@ -121,6 +121,7 @@ void all_process_subjective(SubjectiveQuestion *subjective_questions, struct Que
 	{
 		
 		int id = queue_subjective->front->key;
+		
 		check_subjective = 1;
 		char temp[1024] = "\n\n\n\t     Q. ";
 		strcpy(temp+strlen(temp), subjective_questions[id].definition);

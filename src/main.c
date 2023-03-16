@@ -5,6 +5,15 @@ int main()
 
 	// 전역 변수 Initialization
 	initGlobals();
+	
+	//폰트 바꾸기
+	CONSOLE_FONT_INFOEX font_info = { sizeof(CONSOLE_FONT_INFOEX) };
+	wcscpy(font_info.FaceName, L"D2Coding");
+	if (!SetCurrentConsoleFontEx(GetStdHandle(STD_OUTPUT_HANDLE), FALSE, &font_info)) {
+		wcscpy(font_info.FaceName, L"Segoe UI");
+		SetCurrentConsoleFontEx(GetStdHandle(STD_OUTPUT_HANDLE), FALSE, &font_info);
+	}
+
 
 	loadUserInfo();
 

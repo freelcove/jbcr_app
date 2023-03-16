@@ -1,4 +1,5 @@
 #include "globals.h"
+#include <windows.h>
 
 void clearScreen()
 {
@@ -63,6 +64,7 @@ void drawTitle()
 	printf("\n");
 	printf("\n");
 	printf("\n");
+	printf("\n");
 
 	int temp_color_mode;
 	switch (color_mode)
@@ -92,10 +94,9 @@ void drawTitle()
 	printf("                                                            __/ |\n");
 	printf("                                                           |___/ \n");
 	set_color_theme(color_mode);
-	printf("\n");
 	printf("                          - 정보처리기사 공부 App -\n");
-	cursorPosition.X = 54;
-	cursorPosition.Y = 29;
+	cursorPosition.X = 0;
+	cursorPosition.Y = 0;
 	SetConsoleCursorPosition(console, cursorPosition);
 	printf("Ver. 1.0 (2023.03.15)");
 }
