@@ -98,7 +98,7 @@ void drawTitle()
 	cursorPosition.X = 0;
 	cursorPosition.Y = 0;
 	SetConsoleCursorPosition(console, cursorPosition);
-	printf("Ver. 1.0 (2023.03.15)");
+	printf("Ver. 1.01 (2023.03.16)");
 }
 
 void drawMenu(int num_menu_items, char *menu_items[], int position_x, int position_y)
