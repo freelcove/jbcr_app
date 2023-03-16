@@ -22,7 +22,7 @@ https://docs.google.com/spreadsheets/d/1g3ygewxJyUQHp-9CXS64r2iVQ_I7W1QQw6VjM-nj
 
 
 # Contact
-박준호: freelcove@gmail.
+박준호: freelcove@gmail.com
 
 소병수: baptist0602@gmail.com
 
