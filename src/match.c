@@ -128,7 +128,9 @@ void all_process_subjective(SubjectiveQuestion *subjective_questions, struct Que
 		print_change_row(temp);
 		printf("\n");
 		printf("\t     답을 입력하세요:  ");
+		SetCursorVisibility(1);
 		fgets(user_answer, sizeof(user_answer), stdin);
+		SetCursorVisibility(0);
 		user_answer[strcspn(user_answer, "\n")] = 0;
 
 		if (check_subjective_correction(subjective_questions, id, queue_subjective))
