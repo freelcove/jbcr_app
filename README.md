@@ -20,7 +20,7 @@ Google Sheet (데이터베이스 + 요구사항 정의서):
 https://docs.google.com/spreadsheets/d/1g3ygewxJyUQHp-9CXS64r2iVQ_I7W1QQw6VjM-njOYo/edit?usp=sharing
 
 
-# Contact
+# Contacts
 박준호: freelcove@gmail.com
 
 소병수: baptist0602@gmail.com
