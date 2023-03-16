@@ -3,12 +3,12 @@
 
 ![Screenshot 2023-03-07 1136062](https://user-images.githubusercontent.com/115542245/223305592-26fdd71d-c46e-489f-a75c-4162d0c7bd10.jpg)
 
-# 주의
+# Notice
 본 프로그램은 콘솔창에서 실행되며 D2Coding font를 기반으로 만들어졌습니다.
 
 D2Coding font 설치: https://github.com/naver/d2codingfont
 
-
+# 참고
 미리캔버스 (ppt):
 https://www.miricanvas.com/login?redirect=%2Fdesign%2F11ucr1g
 
