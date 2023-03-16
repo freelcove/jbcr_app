@@ -93,7 +93,7 @@ int check_subjective_correction(SubjectiveQuestion *subjective_questions, int id
 			SetConsoleTextAttribute(console, select_color(-1));
 			printf("\n\t     정답입니다!\n");
 			SetConsoleTextAttribute(console, color_mode_preset[color_mode % 4]);
-			printf("\t     정답: ");
+			printf("\n\t     정답: ");
 			SetConsoleTextAttribute(console, select_color(-1));
 			printf("%s", subjective_questions[id].name);
 			SetConsoleTextAttribute(console, color_mode_preset[color_mode % 4]);
@@ -101,7 +101,7 @@ int check_subjective_correction(SubjectiveQuestion *subjective_questions, int id
 			current_streak_subjective++;
 			if (best_streak_subjective < current_streak_subjective)
 				best_streak_subjective = current_streak_subjective;
-			printf("\t     현재까지 맞춘 문제수 : %d\tBEST : %d\n", current_streak_subjective, best_streak_subjective);
+			printf("\n\n\t     현재까지 맞춘 문제수: %d\tBEST: %d", current_streak_subjective, best_streak_subjective);
 			enqueue(queue_subjective, queue_subjective->front->key);
 			dequeue(queue_subjective);
 			check_subjective_correct = 0;
@@ -124,33 +124,50 @@ void all_process_subjective(SubjectiveQuestion *subjective_questions, struct Que
 		check_subjective = 1;
 		char temp[1024] = "\n\n\n\t     Q. ";
 		strcpy(temp+strlen(temp), subjective_questions[id].definition);
-		printf("\t\t\t\t\t\t\t\tBEST : %d", best_streak_subjective);
+		printf("\t\t\t\t\t\t\t\tBEST: %d", best_streak_subjective);
 		print_change_row(temp);
 		printf("\n");
-		printf("\t     답을 입력하세요 :  ");
+		printf("\t     답을 입력하세요:  ");
 		fgets(user_answer, sizeof(user_answer), stdin);
 		user_answer[strcspn(user_answer, "\n")] = 0;
 
 		if (check_subjective_correction(subjective_questions, id, queue_subjective))
 		{
 			faltcount++;
+			int temp_color_mode;
+			switch (color_mode)
+			{
+			case 0:
+				temp_color_mode = 252;
+				break;
+			case 1:
+				temp_color_mode = 132;
+				break;
+			case 2:
+				temp_color_mode = 188;
+				break;
+			case 3:
+				temp_color_mode = 236;
+				break;
+			default:
+				break;
+			}
+			SetConsoleTextAttribute(console, temp_color_mode);
+			printf("\n\t     오답입니다.\n");
+			set_color_theme(color_mode);
 
-			printf("\n\t     입력하신 답은 오답입니다.\n");
-
-			printf("\t     정답은 ");
+			printf("\n\t     정답: ");
 			SetConsoleTextAttribute(console, select_color(-1));
 			printf("%s", subjective_questions[id].name);
 			SetConsoleTextAttribute(console, color_mode_preset[color_mode % 4]);
-			printf(" 입니다.\n");
 			current_streak_subjective = 0;
-			printf("\n\t     BEST : %d\n", best_streak_subjective);
 			insert_after_x(queue_subjective, queue_subjective->front->key, interval_failed_questions);
 			dequeue(queue_subjective);
 		}
 
 		// clearInputBuffer();
 		solved_questions++;
-		printf("\n\n\t     다음 문제로 넘어가시려면 Enter를 누르세요.\n");
+		printf("\n\n\n\t     다음 문제로 넘어가시려면 Enter를 누르세요.\n");
 		printf("\t     종료를 원하시면 Esc를 누르세요.\n");
 
 		key_pressed = getch();
