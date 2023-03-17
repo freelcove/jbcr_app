@@ -105,7 +105,7 @@ int check_subjective_correction(SubjectiveQuestion *subjective_questions, int id
 			current_streak_subjective++;
 			if (best_streak_subjective < current_streak_subjective)
 				best_streak_subjective = current_streak_subjective;
-			printf("\n\n\t     현재까지 맞춘 문제수: %d\tBEST: %d", current_streak_subjective, best_streak_subjective);
+			printf("\n\n\t     현재 연속으로 맞춘 수: %d\tBEST: %d", current_streak_subjective, best_streak_subjective);
 			enqueue(queue_subjective, queue_subjective->front->key);
 			dequeue(queue_subjective);
 			check_subjective_correct = 0;
@@ -129,7 +129,7 @@ void all_process_subjective(SubjectiveQuestion *subjective_questions, struct Que
 		check_subjective = 1;
 		char temp[1024] = "\n\n\n\t     Q. ";
 		strcpy(temp + strlen(temp), subjective_questions[id].definition);
-		printf("\t\t\t\t\t\t\t\tBEST: %d", best_streak_subjective);
+		printf("\t\t\t\t\t\t\tBEST: %d", best_streak_subjective);
 		print_change_row(temp);
 		printf("\n");
 		printf("\t     답을 입력하세요:  ");

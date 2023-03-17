@@ -188,7 +188,7 @@ int check_my_answer(id)
 		current_streak_objective++;
 		if (best_streak_objective < current_streak_objective)
 			best_streak_objective = current_streak_objective;
-		printf("\n\t     %d번은 정답입니다!\n\t     현재까지 맞춘 문제수 : %d\tBEST : %d\n\n", changecolor[0], current_streak_objective, best_streak_objective);
+		printf("\n\t     %d번은 정답입니다!\n\t     현재 연속으로 맞춘 수: %d\tBEST : %d\n\n", changecolor[0], current_streak_objective, best_streak_objective);
 		cursorPosition.Y += 4;
 		result = 1;
 	}

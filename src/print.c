@@ -248,7 +248,7 @@ void print_best_streak_objective()
 	int x1, y1;
 	x1 = cursorPosition.X;
 	y1 = cursorPosition.Y;
-	cursorPosition.X = 64;
+	cursorPosition.X = 60;
 	cursorPosition.Y = 0;
 	SetConsoleCursorPosition(console, cursorPosition);
 	printf("BEST: %d\n", best_streak_objective); // 첫줄 가장자리에 best_streak_objective 출력
